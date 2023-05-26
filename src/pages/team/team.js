@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 //mugshot photos
 import mugshotSimon from '../../assets/team/cropped_Simon.jpg'
 import mugshotCam from '../../assets/team/cropped_Cam.jpg'
-import mugshotCTroy from '../../assets/team/cropped_Troy.jpg'
 import mugshotChaz from '../../assets/team/cropped_Chaz.jpg'
 import mugshotIsaac from '../../assets/team/cropped_Isaac.jpg'
 import mugshotLudo from '../../assets/team/cropped_Ludo.jpg'
@@ -32,12 +31,6 @@ export default function Team() {
                     >
                 </TeamMemberCard>
                 <TeamMemberCard 
-                    name='Troy' 
-                    position='Carpenter' 
-                    mugshot={mugshotCTroy}
-                    text={TroyCert()}
-                    />
-                <TeamMemberCard 
                     name='Ludo' 
                     position='Carpenter' 
                     mugshot={mugshotLudo}
@@ -64,11 +57,6 @@ export default function Team() {
 }
 
 const CamCert = ()=>{
-    return (
-        <>  Foreman/ builder<br/>
-            National Cert. Carpentry
-        </>)}
-const TroyCert = ()=>{
     return (
         <>  Foreman/ builder<br/>
             National Cert. Carpentry
