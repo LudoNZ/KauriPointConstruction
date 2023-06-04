@@ -1,12 +1,15 @@
 import './contact.css'
 import { useFirestore } from '../../hooks/useFirestore'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
+import emailjs from '@emailjs/browser';
 
 import phone from '../../assets/icons/phone.png'
 import email from '../../assets/icons/email.png'
 
+
 export default function ContactUs() {
     const { addDocument, response } = useFirestore('contactMessage')
+    const form = useRef();
 
   // form field values
   const [name, setName] = useState('')
@@ -38,6 +41,18 @@ export default function ContactUs() {
             message
         }
 
+    //send Email
+    //const sendEmail = (e) => {
+        //e.preventDefault();
+    
+        emailjs.sendForm('service_e5qkmzu', 'template_fgis85f', form.current, 'esQjgmPyEZzS895Bh')
+            .then((result) => {
+                console.log('result: ', result.text);
+            }, (error) => {
+                console.log('error: ', error.text);
+            });
+        //};
+
         //projectFirestore.collection('contactMessage').add(contactMessage)
         await addDocument(contactMessage)
             .then( ()=> {
@@ -63,31 +78,40 @@ export default function ContactUs() {
             <ContactHeader />
             <div className='contact-container'> 
                 <ContactInfo />
-                <form className='contactForm'>
+                <form className='contactForm' ref={form} onSubmit={handleSubmit}>
                     <h1 >Contact Form</h1>
 
                     <div>
                     {name && <label>name</label>}
-                    <input placeholder='name'
+                    <input
+                        type='text'
+                        name='from_name'
+                        placeholder='name'
                         value={name}
                         onChange={ (e)=>setName(e.target.value) }></input>
                     </div>
 
                     <div>
                     {email && <label>email</label>}
-                    <input placeholder='email'
+                    <input 
+                        type='email'
+                        name='contactEmail'
+                        placeholder='email'
                         value={email}
                         onChange={ (e)=>setEmail(e.target.value) }></input>
                     </div>
 
                     <div>
                     {message && <label>message</label>}
-                    <textarea placeholder='message...'
+                    <textarea 
+                        type='text'
+                        name='message'
+                        placeholder='message...'
                         value={message}
                         onChange={ (e)=>setMessage(e.target.value) }></textarea>
                     </div>
 
-                    <button className='btn-green' type='submit' onClick={handleSubmit}>Submit</button>
+                    <button className='btn-green' type='submit'>Submit</button>
                     {formError && <p className="error">{formError}</p>}
                 </form>
             </div>
