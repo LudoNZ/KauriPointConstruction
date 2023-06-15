@@ -265,7 +265,7 @@ export default function ProjectUpdateMainList({project, SetSwitchUpdateMainlist}
   const stages = passMainlist
   const [reStages, dispatch] = useReducer(reducer, stages)
   const { updateDocument, response } = useFirestore('projects')
-  const { id } = useParams()
+  //const { id } = useParams()
 
   const handleSubmit = async(e) => {
     e.preventDefault()
@@ -274,8 +274,9 @@ export default function ProjectUpdateMainList({project, SetSwitchUpdateMainlist}
     }
     // console.log('mainList before', reStages)
     // await updateDocument(id, mainList)
-    await updateDocument(id, mainList)
-    //console.log('mainList after',mainList)
+    await updateDocument(project.id, mainList)
+    console.log('project: ',project.id, ' ', project.name)
+    console.log('mainList after',mainList)
 
     if (!response.error) {
         //history.push('/')
