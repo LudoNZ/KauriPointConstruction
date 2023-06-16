@@ -265,18 +265,14 @@ export default function ProjectUpdateMainList({project, SetSwitchUpdateMainlist}
   const stages = passMainlist
   const [reStages, dispatch] = useReducer(reducer, stages)
   const { updateDocument, response } = useFirestore('projects')
-  //const { id } = useParams()
 
   const handleSubmit = async(e) => {
     e.preventDefault()
     const mainList = {
         mainList: reStages
     }
-    // console.log('mainList before', reStages)
-    // await updateDocument(id, mainList)
+
     await updateDocument(project.id, mainList)
-    console.log('project: ',project.id, ' ', project.name)
-    console.log('mainList after',mainList)
 
     if (!response.error) {
         //history.push('/')
@@ -299,8 +295,8 @@ export default function ProjectUpdateMainList({project, SetSwitchUpdateMainlist}
       <AddStage stage={stages} dispatch={dispatch} />
       <CreateNewStage stage={stages} dispatch={dispatch} />
       <div className='modal-footer'>
-        <button onClick={handleSubmit} className="btn" id="btn_right">Update All Change</button>
-        <button onClick={handleReset} className="btn-cancel" id="btn_right">Reset</button>
+        <button onClick={handleSubmit} className="btn" id="btn_right">Save All Changes</button>
+        <button onClick={handleReset} className="btn-cancel" id="btn_right">Discard Changes</button>
       </div>
       
       </div>

@@ -1,6 +1,9 @@
 import { useState } from 'react'
+
 //styles
 import './MainList.css'
+
+//components
 import { ProgressBar, calculateStageProgress, calculateTaskClaimed } from './progressBar/ProgressBar'
 import { numberWithCommas } from '../pages/project/ProjectFinancialInfo'
 
@@ -68,12 +71,7 @@ function Tasks ({ stage }) {
                 <span className='mainlist-taskHeader-status'>Status</span>
             </div>
             {Object.entries(stage).map( ([key,task]) => {
-                
-                return (
-                    <TaskDetails key={key} 
-                                task={task}
-                                />
-                )
+                return <TaskDetails key={key} task={task}/>
             })}
             </div>
         
@@ -105,15 +103,13 @@ function Stage({ stage }) {
     )
 }
 
-export default function MainList({ stages}) {
-    
-    // console.log('stages: ',stages)
+export default function MainList({ mainList }) {
     
     return (
             <div>
                 <h2>Main List:</h2>
                 
-                { Object.entries(stages).map( ([key, stage]) => {
+                { Object.entries(mainList).map( ([key, stage]) => {
                             return <Stage key={key} stage={stage} />
                 })}
             </div> 

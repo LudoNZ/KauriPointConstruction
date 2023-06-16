@@ -33,7 +33,7 @@ export default function ProjectDetail({project}) {
           <>
             { (!switchUpdateMainlist) &&
               <>
-                <MainList stages={project.mainList} />
+                <MainList mainList={project.mainList} />
                 {((userRole ==="admin") || (userRole ==="foreman")) &&
                   <button onClick={handleSwitchUpdateMainlist}>+ Update Main List</button>
                 }
