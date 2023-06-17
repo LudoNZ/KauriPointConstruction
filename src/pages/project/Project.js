@@ -16,13 +16,15 @@ import ProjectFinancialInfo from "./ProjectFinancialInfo"
 
 // styles
 import './Project.css'
+import ClaimsList from '../../components/Claims/ClaimsList'
 
 
 export default function Project() {
   const { id } = useParams()
   const { error, document } = useDocument('projects' , id)
-  const [ switchLabourList, SetSwitchLabourList ] = useState(false)
   const { user, authIsReady } = useAuthContext()
+  const [ switchList, SetSwitchList ] = useState("MAINLIST")
+  
   const userRole = useUserRole(user)
   // console.log(userRole)
   
@@ -34,8 +36,8 @@ export default function Project() {
   }
 
   // Switches for Main and Labour components
-  const handleSwitchList = () => {
-    SetSwitchLabourList(!switchLabourList)
+  const handleSwitchList = (listName) => {
+    SetSwitchList(listName)
   }
 
   return (
@@ -52,11 +54,12 @@ export default function Project() {
           <ProjectFinancialInfo project={document} />
 
           <div className='listSelector'>
-            <button onClick={ handleSwitchList } className="btn" id={switchLabourList ? 'btn-disabled' : 'btn-active'}>MainList</button>
-            <button onClick={ handleSwitchList } className="btn" id={!switchLabourList ? 'btn-disabled' : 'btn-active'}>LabourList</button>
+            <button onClick={ () => handleSwitchList("MAIN_LIST") } className="btn" id={switchList == "MAIN_LIST" ? 'btn-active' : 'btn-disabled'}>MainList</button>
+            <button onClick={ () => handleSwitchList("LABOUR_LIST") } className="btn" id={switchList == "LABOUR_LIST" ?'btn-active' : 'btn-disabled'}>LabourList</button>
+            <button onClick={ () => handleSwitchList("CLAIM_LIST") } className="btn" id={switchList == "CLAIM_LIST" ? 'btn-active' : 'btn-disabled'}>Claims</button>
           </div>
           
-          {!switchLabourList && 
+          {(switchList === "MAIN_LIST") && 
             <>
               <ProjectDetail project={document} />
               { userRole==="admin" && authIsReady &&
@@ -64,7 +67,9 @@ export default function Project() {
               }
             </>
           }
-          {switchLabourList && <ProjectLabourList project={document} />}
+          {(switchList === "LABOUR_LIST") && <ProjectLabourList project={document} />}
+
+          {(switchList === "CLAIM_LIST") && <ClaimsList />}
 
           
         
