@@ -21,7 +21,7 @@ export default function UpdateTaskStatus({stageName, index, task, dispatch}) {
   const [subcontractedamount, setSubcontractedamount] = useState(task.subcontractedamount)
   const [calculatedamount, setCalculatedamount] = useState(task.calculatedamount)
   const [status, setStatus] = useState(task.status? task.status : "Open" )
-  const [quoteEstimateOrProvision, setQuoteEstimateOrProvision] = useState(task.quoteEstimateOrProvision)
+  const [quoteEstimateOrProvision, setQuoteEstimateOrProvision] = useState(task.quoteEstimateOrProvision ? task.quoteEstimateOrProvision : "" )
   
   // console.log('key',key)
 

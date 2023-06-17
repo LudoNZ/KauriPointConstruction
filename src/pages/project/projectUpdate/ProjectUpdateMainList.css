@@ -1,0 +1,6 @@
+.space{
+    display: flex;
+    gap: 1em;
+    width: 15%;
+    flex-wrap: wrap;
+}

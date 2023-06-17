@@ -1,5 +1,4 @@
 import { useState, useReducer } from 'react'
-import { useParams } from 'react-router-dom'
 import { useFirestore } from '../../../hooks/useFirestore'
 
 import { ProgressBar, calculateTaskClaimed } from '../../../components/progressBar/ProgressBar'
@@ -13,6 +12,7 @@ import AddTask from './components/AddTask'
 import '../../../components/MainList.css'
 import './ProjectUpdateMainList.css'
 import CreateNewStage from './components/CreateNewStage'
+import ClaimOnTask from './components/ClaimOnTask'
 
 export const ACTIONS = {
     CREATE_STAGE: 'create_stage',
@@ -22,15 +22,31 @@ export const ACTIONS = {
     DELETE_STAGE: 'delete_stage',
     DELETE_TASK_ITEM: 'delete_task_item',
     RESET: 'reset',
+    MAKE_CLAIM: 'make_claim',
 }
 
-function reducer(reStages, action) {
+function mainListReducer(reStages, action) {
   let stageTask
   let newTask
   //let taskIndex
   let newTaskArr
   // console.log('reducer payload', tasks, name)
   switch(action.type){
+
+    case ACTIONS.MAKE_CLAIM:
+      stageTask = [...reStages]
+
+      stageTask.forEach(stage => {
+          if (stage.name == action.stageName) {
+            stage.tasks[action.index].nextClaim = action.payload.nextClaim
+            //console.log('CLAIMED AT: ', action.stageName, ' task:' ,action.index)
+          }
+          return
+      })
+
+      return stageTask
+
+
     case ACTIONS.CREATE_STAGE:
       stageTask = [...reStages]
       stageTask.push(action.payload.newStage)
@@ -181,14 +197,17 @@ function TaskDetails({stageName, index, task, dispatch}) {
   
   return (
       <>
-      <div onClick={handleExpandTask} className='mainlist-task'>
-          {expandTask ? <span className='arrow-down'/> : <span className='arrow-right'/> }
+      <div className='mainlist-task'>
+          <span onClick={handleExpandTask} className={expandTask ? 'arrow-down' : 'arrow-right' }/>
           <span className='mainlist-taskHeader-name'>
               <div>{taskName}</div>
               <ProgressBar progress={percentageComplete} />
           </span>
           <span className='mainlist-taskHeader-subContractor'>{subContractor}</span>
-          <span className='mainlist-taskHeader-cost'>{claimed} / {calculatedamount}</span>
+          <div className='mainlist-taskHeader-cost space'>
+            <ClaimOnTask stageName={stageName} index={index} task={task} dispatch={dispatch}/>
+            <span className=''>{claimed} / {calculatedamount}</span>
+          </div>
           <span className='mainlist-taskHeader-status'>{status}
           
             {/* <UpdateTaskStatus stageKey={stageKey} index={index} task={task} dispatch={dispatch} /> */}
@@ -263,7 +282,7 @@ function Stage({ stage, dispatch }) {
 export default function ProjectUpdateMainList({project, SetSwitchUpdateMainlist}) {
   const passMainlist = project.mainList
   const stages = passMainlist
-  const [reStages, dispatch] = useReducer(reducer, stages)
+  const [reStages, dispatch] = useReducer(mainListReducer, stages)
   const { updateDocument, response } = useFirestore('projects')
 
   const handleSubmit = async(e) => {
@@ -272,6 +291,7 @@ export default function ProjectUpdateMainList({project, SetSwitchUpdateMainlist}
         mainList: reStages
     }
 
+    console.log('UPDATING MAINLIST:', mainList)
     await updateDocument(project.id, mainList)
 
     if (!response.error) {
