@@ -23,7 +23,7 @@ export default function Project() {
   const { id } = useParams()
   const { error, document } = useDocument('projects' , id)
   const { user, authIsReady } = useAuthContext()
-  const [ switchList, SetSwitchList ] = useState("MAINLIST")
+  const [ switchList, SetSwitchList ] = useState("MAIN_LIST")
   
   const userRole = useUserRole(user)
   // console.log(userRole)
@@ -69,7 +69,7 @@ export default function Project() {
           }
           {(switchList === "LABOUR_LIST") && <ProjectLabourList project={document} />}
 
-          {(switchList === "CLAIM_LIST") && <ClaimsList />}
+          {(switchList === "CLAIM_LIST") && <ClaimsList project={document}/>}
 
           
         
