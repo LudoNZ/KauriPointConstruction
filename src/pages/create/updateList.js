@@ -1,4 +1,7 @@
+import { timestamp } from '../../firebase/config'
+
 //TO CONVERT IMPORTED LISTS TO ARRAYS
+
 
 function ConvertToList(List) {
 
@@ -25,7 +28,7 @@ function ConvertToList(List) {
         return
     })
 
-    console.log('New Main List:', newMainList)
+    //console.log('New Main List:', newMainList)
 
     return newMainList
 }
@@ -47,7 +50,11 @@ export default function modifyData(project) {
     project.mainList = ConvertToList(project.mainList)
     project.labourList = ConvertToList(project.labourList)
     project.team = convertTeamToList(project.team)
+    project.projectStatus = 'upcoming'
+    project.startDate = timestamp.fromDate(new Date())
 
+
+    console.log('PROJECT:', project)
     return project
 }
 

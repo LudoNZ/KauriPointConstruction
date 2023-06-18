@@ -17,10 +17,10 @@ export default function ClaimsList ({ project }) {
                 ? <div>{Object.entries(claimList.submittedClaims).map(([key, claim] ) => {
                     return (
                         <div key={key}>
-                            <p><strong>{key}</strong></p>
-                            <div>value: {Object.entries(claim.tasks).map( ([key, task]) => {
+                            <p><strong>claim: {key}</strong></p>
+                            <div>{Object.entries(claim.tasks).map( ([key, task]) => {
                                 return (
-                                    <div key={key}>
+                                    <div key={key} className='flex'>
                                         <p>{task.task.task}</p>
                                         <p>${task.value}</p>
                                     </div>

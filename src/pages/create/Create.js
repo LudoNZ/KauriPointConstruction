@@ -10,6 +10,9 @@ import Select from 'react-select'
 import './Create.css'
 import Sidebar from '../../components/Sidebar'
 
+//to prep VBA import docs
+import modifyData from './updateList'
+
 
 export default function Create() {
   const history = useHistory()
@@ -100,6 +103,9 @@ export default function Create() {
       team: teamList,
       projectStatus: "upcoming"
     }
+   
+    // **MODIFY EXCEL IMPORTED DATA**
+    //project = modifyData(project)
 
     await addDocument(project)
 
