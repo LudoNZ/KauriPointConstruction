@@ -1,5 +1,28 @@
-.flex{
+.claimCard{
+    max-width: 700px;
+    margin-bottom: 2em;
+    background-color: var(--bg-color);
+    border-radius: 5px;
+    padding: 1em;
+}
+
+.claimCard-row{
     display: flex;
     justify-content: space-between;
-    max-width: 500px;
+    border-bottom: 1px solid var(--primary-color);
+}
+
+.row-name{
+ width: 35%;
+}
+.row-value{
+width: 20%
+}
+.row-calculatedamount{
+width: 25%
+}
+
+.claim-count, .claim-total{
+    font-size: 1.2em;
+    font-weight: 550;
 }

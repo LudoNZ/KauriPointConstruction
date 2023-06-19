@@ -15,14 +15,21 @@ export default function ClaimsList ({ project }) {
             {claimList 
             
                 ? <div>{Object.entries(claimList.submittedClaims).map(([key, claim] ) => {
+                    let totalClaim = claimTotal(claim)
                     return (
-                        <div key={key}>
-                            <p><strong>claim: {key}</strong></p>
+                        <div key={key} className='claimCard'>
+                            <div className='flex'>
+                                <p className='claim-count'>claim: {key}</p>
+                                <p className='claim-total'>$ {totalClaim}</p>
+                            </div>
+                            
                             <div>{Object.entries(claim.tasks).map( ([key, task]) => {
                                 return (
-                                    <div key={key} className='flex'>
-                                        <p>{task.task.task}</p>
-                                        <p>${task.value}</p>
+                                    <div key={key} className='claimCard-row'>
+                                        <p className='row-name'>{task.task.task}</p>
+
+                                        <p className='row-value'>${task.value}</p>
+                                        <p className='row-calculatedamount'>/ ${task.task.calculatedamount}</p>
                                     </div>
                                 )
                             })}</div>
@@ -50,7 +57,7 @@ function updateClaims( mainlist ) {
         stage.tasks.forEach(task => {
             if(task.claims) {
                 Object.entries(task.claims).forEach( ([claim, value]) => {
-                    console.log('TASK_NAME:', task.task, ', CLAIM:', claim, ', VALUE:', value)
+                    //console.log('TASK_NAME:', task.task, ', CLAIM:', claim, ', VALUE:', value)
                     
                     
                     projectClaims.submittedClaims[claim] 
@@ -77,4 +84,15 @@ function updateClaims( mainlist ) {
     
     return projectClaims
 
+}
+
+function claimTotal(claim) {
+    let claimTotal = 0;
+
+    claim.tasks.forEach(c => {
+        claimTotal += parseInt(c.value)
+        console.log('CLAIMTOTAL: ', claimTotal, ' c.value: ', c.value)
+    });
+
+    return claimTotal
 }
