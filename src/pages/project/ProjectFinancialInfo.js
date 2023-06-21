@@ -17,17 +17,17 @@ export default function ProjectFinancialInfo({project}) {
       <div className="project-financial-info">
         <div>
           <FinancialData label='Total excluding GST' 
-                          value={numberWithCommas(totalExcGst)} />
+                          value={totalExcGst} />
           <FinancialData label='GST' 
-                          value={numberWithCommas(gst)} />
+                          value={gst} />
           <FinancialData label='Total including GST' 
-                          value={numberWithCommas(totalIncGst)} />
+                          value={totalIncGst} />
         </div>
         <div>
           <FinancialData label='Payment Claim to Date' 
-                          value={numberWithCommas(totalClaimed)} />
+                          value={totalClaimed} />
           <FinancialData label='Cost to Completion' 
-                          value={numberWithCommas(stilltoclaim)} />
+                          value={stilltoclaim} />
         </div>
         
           
@@ -39,7 +39,7 @@ function FinancialData({label, value}) {
   return (
     <div className='financialData'>
       <span className='financialData-label'>{label}: </span>
-      <span className='financialData-value'>{value}</span>
+      <NumberFormat number={value} prefix='$'/>
     </div>
   )
 }
@@ -50,7 +50,18 @@ function numberWithCommas(x) {
   var pattern = /(-?\d+)(\d{3})/;
   while (pattern.test(x))
       x = x.replace(pattern, "$1,$2");
-  return '$' + x;
+  return x;
+}
+
+export function NumberFormat({ number, prefix }) {
+  number = numberWithCommas(parseFloat(number))
+  
+  return (
+    <div className='flex row-value' >
+      <span>{prefix}</span>
+      <span>{number}</span>
+    </div>
+  )
 }
 
 export { numberWithCommas }

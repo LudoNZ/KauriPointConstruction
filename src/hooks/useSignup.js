@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { projectAuth, projectStorage, projectFirestore } from '../firebase/config'
-// import { useAuthContext } from './useAuthContext'
+import { useAuthContext } from './useAuthContext'
 
 export const useSignup = () => {
   const [isCancelled, setIsCancelled] = useState(false)
   const [error, setError] = useState(null)
   const [isPending, setIsPending] = useState(false)
-  // const { dispatch } = useAuthContext()
+  const { dispatch } = useAuthContext()
 
   const history = useHistory()
 
@@ -39,7 +39,7 @@ export const useSignup = () => {
       })
 
       // dispatch login action
-      // dispatch({ type: 'LOGIN', payload: res.user })
+      dispatch({ type: 'LOGIN', payload: res.user })
 
       if (!isCancelled) {
         setIsPending(false)

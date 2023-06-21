@@ -1,6 +1,7 @@
 import './ClaimsList.css'
 
-import { numberWithCommas } from '../../pages/project/ProjectFinancialInfo'
+import { NumberFormat } from '../../pages/project/ProjectFinancialInfo'
+import NextClaim from './NextClaim'
 
 export default function ClaimsList ({ project }) {
 
@@ -10,6 +11,8 @@ export default function ClaimsList ({ project }) {
 
     return (
         <div>
+            <NextClaim claimList={claimList}/>
+            
             <h1>Project Claims:</h1>
 
             {claimList 
@@ -27,9 +30,8 @@ export default function ClaimsList ({ project }) {
                                 return (
                                     <div key={key} className='claimCard-row'>
                                         <p className='row-name'>{task.task.task}</p>
-
-                                        <p className='row-value'>${task.value}</p>
-                                        <p className='row-calculatedamount'>/ ${task.task.calculatedamount}</p>
+                                        <NumberFormat number={task.value} prefix='$'/>
+                                        <NumberFormat number={task.task.calculatedamount} prefix='/'/>
                                     </div>
                                 )
                             })}</div>
@@ -48,13 +50,20 @@ export default function ClaimsList ({ project }) {
 function updateClaims( mainlist ) {
     let projectClaims = {
         submittedClaims: {},
-        nextClaim: {},
+        nextClaim: [],
     }
 
     console.log('MAINLIST: ', mainlist )
 
     mainlist.forEach(stage => {
         stage.tasks.forEach(task => {
+            if(task.nextClaim) {
+                projectClaims.nextClaim.push({
+                    task: task,
+                    value: task.nextClaim
+                })
+            }
+
             if(task.claims) {
                 Object.entries(task.claims).forEach( ([claim, value]) => {
                     //console.log('TASK_NAME:', task.task, ', CLAIM:', claim, ', VALUE:', value)
@@ -86,12 +95,12 @@ function updateClaims( mainlist ) {
 
 }
 
+//calculate total value of each claim
 function claimTotal(claim) {
     let claimTotal = 0;
 
     claim.tasks.forEach(c => {
-        claimTotal += parseInt(c.value)
-        console.log('CLAIMTOTAL: ', claimTotal, ' c.value: ', c.value)
+        claimTotal += parseFloat(c.value)
     });
 
     return claimTotal

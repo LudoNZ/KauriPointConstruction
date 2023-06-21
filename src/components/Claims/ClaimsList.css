@@ -16,7 +16,8 @@
  width: 35%;
 }
 .row-value{
-width: 20%
+width: 20%;
+max-width: 6em;
 }
 .row-calculatedamount{
 width: 25%
