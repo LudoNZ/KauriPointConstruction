@@ -2,16 +2,36 @@ import './ClaimsList.css'
 
 import { NumberFormat } from '../../pages/project/ProjectFinancialInfo'
 import NextClaim from './NextClaim'
+import { useState } from 'react'
+import { useFirestore } from '../../hooks/useFirestore'
 
 export default function ClaimsList ({ project }) {
+    const [mainList, setNewMainList] = useState(project.mainList)
+    const [claimList, setClaimList] = useState(updateClaims(project.mainList))
+    const { updateDocument, response } = useFirestore('projects')
+    
+    console.log('CLAIM LIST initial state:', claimList)
 
-    let claimList = updateClaims(project.mainList)
+    let claimCount = Object.keys(claimList.submittedClaims).length +1
 
-    console.log('claimList:', claimList)
+    const handleProcessClaim = async () => {
+        setNewMainList(processClaim(mainList, claimCount))
+        setClaimList(updateClaims(mainList))
+        
+        //Save mainlist
+        let newMainList = { mainList: mainList}
+        console.log('UPDATING MAINLIST:', newMainList)
+        await updateDocument(project.id, newMainList)
+    }
+
+    if (!response.error) {
+        //history.push('/')
+      }
+
 
     return (
         <div>
-            <NextClaim claimList={claimList}/>
+            <NextClaim claimList={claimList} handleProcessClaim={handleProcessClaim}/>
             
             <h1>Project Claims:</h1>
 
@@ -104,4 +124,19 @@ function claimTotal(claim) {
     });
 
     return claimTotal
+}
+
+//move next claim data into an actual claim.
+function processClaim(mainList, claimCount) {
+    console.log("PROCESSING CLAIM....")
+    mainList.forEach(stage => {
+        stage.tasks.forEach(task => {
+            if(task.nextClaim) {
+                console.log('TASK: ', task.nextClaim , task.task)
+                task.claims[claimCount] = task.nextClaim
+                task.nextClaim = null
+            }
+        })
+    })
+    return mainList
 }
