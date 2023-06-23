@@ -103,6 +103,9 @@ export default function Create() {
       team: teamList,
       projectStatus: "upcoming"
     }
+
+    //Restart progress on all tasks
+    project = resetProject(project)
    
     // **MODIFY EXCEL IMPORTED DATA**
     //project = modifyData(project)
@@ -280,6 +283,18 @@ function FormInput({label, onChange, value, type, options}) {
     )
   }
   
+}
+
+function resetProject(project) {
+  //reset claims to null throughout project
+  project.mainList.forEach(stage => {
+    stage.tasks.forEach(task => {
+        task.nextClaim = null
+        task.claims = {}
+    })
+  })
+
+  return project
 }
 
 export{ FormInput }
