@@ -14,3 +14,7 @@
   color: #555;
 }
 
+.sticky-bottom {
+  position: sticky;
+  bottom: .5em;
+}

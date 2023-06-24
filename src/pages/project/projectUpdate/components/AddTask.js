@@ -111,12 +111,10 @@ export default function AddTask({stage, dispatch}) {
 
   return (
     <>
-      <div>
       <button type="btn" onClick={createTaskOption}>
           + Add Task
         </button>
-      </div>
-
+      
       <Modal
         className="modal"
         show={showModal}

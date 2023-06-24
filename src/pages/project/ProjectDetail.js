@@ -35,7 +35,7 @@ export default function ProjectDetail({project}) {
               <>
                 <MainList mainList={project.mainList} />
                 {((userRole ==="admin") || (userRole ==="foreman")) &&
-                  <button onClick={handleSwitchUpdateMainlist}>+ Update Main List</button>
+                  <button className='sticky-bottom btn-white' onClick={handleSwitchUpdateMainlist}>+ Update Main List</button>
                 }
               </>        
             }
@@ -43,7 +43,7 @@ export default function ProjectDetail({project}) {
               <>
                 {/* <CreateMainList /> */}
                   {/* <ProjectUpdateMainList stages={project.mainList} /> */}
-                  <ProjectUpdateMainList project={project} SetSwitchUpdateMainlist={SetSwitchUpdateMainlist}/>
+                  <ProjectUpdateMainList project={project} SetSwitchUpdateMainlist={handleSwitchUpdateMainlist}/>
                   <button onClick={handleSwitchUpdateMainlist}>Back Main List</button>
               </>
               

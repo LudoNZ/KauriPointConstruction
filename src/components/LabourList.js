@@ -31,6 +31,7 @@ function LabourStageCard({stage, team}) {
     const calcHours = Object.entries(stage.tasks).map(([key, task]) => (
         Object.entries(task.hoursPredicted).map(([role, hours]) =>  hours)
     ))
+    console.log('CALC_HOURS: ', calcHours)
 
     for (let i = 0; i < staffRole.length; i++ ){
         const hourArray = calcHours.map((role) => role.at(i))
@@ -39,7 +40,8 @@ function LabourStageCard({stage, team}) {
         totalDays.push(hourSum)
         // console.log('TotalSum',i, ': ',totalDyas)
     }
-
+    console.log('totalDays: ', totalDays)
+    
     function setSum(total, num){
         if(!num || num===" ") {
             num = 0
@@ -68,9 +70,9 @@ function LabourStageCard({stage, team}) {
             <div className='labourList-StageTask labourList-StageSum'>
               <div className='task-container'>Total Amount:</div>
                 <div className='hours-container'>
-                  {/* {totalDyas.map((totalDay, staffRate) => 
+                  {totalDays.map((totalDay, staffRate) => 
                     <span>{totalDay * staffRate}</span>
-                  )} */}
+                  )}
                 </div>
             </div>
             <div className='labourList-StageTask labourList-StageTotal'>

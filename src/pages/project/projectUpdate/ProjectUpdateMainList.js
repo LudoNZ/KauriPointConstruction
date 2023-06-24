@@ -260,19 +260,22 @@ function Stage({ stage, dispatch }) {
   // console.log('stage: ',stage)
   return (
     <div className='mainlist-stageCard'>
-      <div className='flex'>
-        <h3 onClick={handleExpand}>{stage.name}</h3>
-
+      <div onClick={handleExpand} className='mainlist-stageCard-header'>
+        {expandStages? <div className='arrow-down' /> : <div className='arrow-right' />}
+        <div className='stageCard-header-titleBar'>
+          <h3>{stage.name}</h3>
+          <div className='updateStage-footer'>
+            <AddTask stage={stage} dispatch={dispatch} />
+            <button value={stage.name} onClick={(e) => handleDeleteStage(e)}>- Delete Stage</button>
+          </div>
+        </div>
         
       </div>
       <div>
-      {/* {expandStages && <Tasks stageKey={stageKey} stage={stage.tasks} dispatch={dispatch} />} */}
+      
         {expandStages && <Tasks stageName={stage.name} stage={stage.tasks} dispatch={dispatch} />}
       </div>
-      <div className='modal-footer'>
-        <AddTask stage={stage} dispatch={dispatch} />
-        <button value={stage.name} onClick={(e) => handleDeleteStage(e)}>- Delete Stage</button>
-      </div>
+      
       
     </div>
   )
@@ -296,12 +299,15 @@ export default function ProjectUpdateMainList({project, SetSwitchUpdateMainlist}
 
     if (!response.error) {
         //history.push('/')
-        SetSwitchUpdateMainlist(false)
+        SetSwitchUpdateMainlist()
       }
   }
 
-  const handleReset = () => dispatch({ type: ACTIONS.RESET, payload: passMainlist})
-
+  const handleReset = () => {
+    dispatch({ type: ACTIONS.RESET, payload: passMainlist})
+    SetSwitchUpdateMainlist()
+  }
+  
   console.log("reStages", reStages)
   
   return (
@@ -314,8 +320,8 @@ export default function ProjectUpdateMainList({project, SetSwitchUpdateMainlist}
       })}
       <AddStage stage={stages} dispatch={dispatch} />
       <CreateNewStage stage={stages} dispatch={dispatch} />
-      <div className='modal-footer'>
-        <button onClick={handleSubmit} className="btn" id="btn_right">Save All Changes</button>
+      <div className='modal-footer sticky-bottom'>
+        <button onClick={handleSubmit} className="btn " id="btn_right">Save All Changes</button>
         <button onClick={handleReset} className="btn-cancel" id="btn_right">Discard Changes</button>
       </div>
       
