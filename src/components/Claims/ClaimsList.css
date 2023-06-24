@@ -11,6 +11,9 @@
     justify-content: space-between;
     border-bottom: 1px solid var(--primary-color);
 }
+.claimCard-row > .taskTotal{
+   color: grey;
+}
 
 .row-name{
  width: 35%;

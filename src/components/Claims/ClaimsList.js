@@ -51,7 +51,7 @@ export default function ClaimsList ({ project }) {
                                     <div key={key} className='claimCard-row'>
                                         <p className='row-name'>{task.task.task}</p>
                                         <NumberFormat number={task.value} prefix='$'/>
-                                        <NumberFormat number={task.task.calculatedamount} prefix='/'/>
+                                        <NumberFormat number={task.task.calculatedamount} prefix='/' className='taskTotal'/>
                                     </div>
                                 )
                             })}</div>
@@ -61,7 +61,6 @@ export default function ClaimsList ({ project }) {
                 
                 : <p>NO CLAIMS</p>}
 
-                <button className='btn' onClick={() => updateClaims(project.mainList)}>Update Claims</button>
         </div>
     )
 } 

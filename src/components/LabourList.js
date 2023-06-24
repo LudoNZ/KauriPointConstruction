@@ -2,10 +2,10 @@ import React, {useState} from 'react';
 import './LabourList.css'
 import { calculateStageLabour } from './progressBar/ProgressBar';
 
-export default function LabourList({ list , team }) {
+export default function LabourList({ labourList , team }) {
     return (
         <>
-            { Object.entries( list ).map( ([key, stage ]) => {
+            { Object.entries( labourList ).map( ([key, stage ]) => {
                 return (
                     <LabourStageCard key={key} stage={stage} team={team} />    
             )})}

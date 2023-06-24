@@ -53,11 +53,11 @@ function numberWithCommas(x) {
   return x;
 }
 
-export function NumberFormat({ number, prefix }) {
+export function NumberFormat({ number, prefix , className}) {
   number = numberWithCommas(parseFloat(number))
   
   return (
-    <div className='flex row-value' >
+    <div className={'flex row-value ' + className} >
       <span>{prefix}</span>
       <span>{number}</span>
     </div>

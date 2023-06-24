@@ -13,7 +13,7 @@ export default function NextClaim({ claimList, handleProcessClaim}) {
     return (
         <div className="nextClaim">
             <div className="nextClaim-header flex">
-                <h1> Next Claim: { claimCount}</h1>
+                <h1> Next Claim: { claimCount }</h1>
                 <button className="btn-white" 
                         onClick={handleProcessClaimClick}>
                     Submit Claim
