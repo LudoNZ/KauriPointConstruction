@@ -2,7 +2,6 @@ import React, { useState } from "react"
 import { useAuthContext } from '../../hooks/useAuthContext'
 import { useUserRole } from '../../hooks/useUserRole'
 
-import MainList from "../../components/MainList"
 import ProjectUpdateMainList from "./projectUpdate/ProjectUpdateMainList"
 
 
@@ -30,27 +29,9 @@ export default function ProjectDetail({project}) {
     <div className="project-detail">
       <div className="project-summary">
         
-          <>
-            { (!switchUpdateMainlist) &&
-              <>
-                <MainList mainList={project.mainList} />
-                {((userRole ==="admin") || (userRole ==="foreman")) &&
-                  <button className='sticky-bottom btn-white' onClick={handleSwitchUpdateMainlist}>+ Update Main List</button>
-                }
-              </>        
-            }
-            { (switchUpdateMainlist && ((userRole ==="admin") || (userRole ==="foreman"))) &&
-              <>
-                {/* <CreateMainList /> */}
-                  {/* <ProjectUpdateMainList stages={project.mainList} /> */}
-                  <ProjectUpdateMainList project={project} SetSwitchUpdateMainlist={handleSwitchUpdateMainlist}/>
-                  <button onClick={handleSwitchUpdateMainlist}>Back Main List</button>
-              </>
-              
-            }
-          </> 
+        <ProjectUpdateMainList project={project} SetSwitchUpdateMainlist={handleSwitchUpdateMainlist} switchUpdateMainlist={switchUpdateMainlist}/>
 
-        <h3>Project Detail</h3>
+        <h3 className="project-detail-header">Project Detail</h3>
         <p className="due-date">
           Start date: {startDate}
         </p>
@@ -89,7 +70,7 @@ export default function ProjectDetail({project}) {
           </tbody>
              
         </table>
-      </div>
+       </div>
     </div>
   )
 }

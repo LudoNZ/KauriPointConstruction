@@ -1,7 +1,9 @@
 import { useState, useReducer } from 'react'
+import { useAuthContext } from '../../../hooks/useAuthContext'
+import { useUserRole } from '../../../hooks/useUserRole'
 import { useFirestore } from '../../../hooks/useFirestore'
 
-import { ProgressBar, calculateTaskClaimed } from '../../../components/progressBar/ProgressBar'
+import { ProgressBar, calculateStageProgress, calculateTaskClaimed } from '../../../components/progressBar/ProgressBar'
 import { numberWithCommas } from '../ProjectFinancialInfo'
 
 import UpdateTaskStatus from './components/UpdateTaskStatus'
@@ -182,7 +184,7 @@ function TaskSection({task}) {
 }
 
 // function TaskDetails({stageKey, index, task, dispatch}) {
-function TaskDetails({stageName, index, task, dispatch}) {
+function TaskDetails({stageName, index, task, dispatch, switchUpdateMainlist}) {
   const [expandTask, setExpandTask] = useState(false) 
 
   const handleExpandTask = ()=>{
@@ -194,26 +196,32 @@ function TaskDetails({stageName, index, task, dispatch}) {
   const status = task.status ? task.status : ' -'
   const claimed = calculateTaskClaimed(task) > 0 ? numberWithCommas(calculateTaskClaimed(task)) : '-'
   const percentageComplete = (calculateTaskClaimed(task) / parseFloat(task.calculatedamount)) * 100
-  
+  const nextClaim = task.nextClaim ? parseFloat(task.nextClaim) : 0
+  const percentageClaimed = ( ( calculateTaskClaimed(task) + nextClaim ) / parseFloat(task.calculatedamount)) * 100
+
   return (
       <>
       <div className='mainlist-task'>
           <span onClick={handleExpandTask} className={expandTask ? 'arrow-down' : 'arrow-right' }/>
           <span className='mainlist-taskHeader-name'>
               <div>{taskName}</div>
-              <ProgressBar progress={percentageComplete} />
+              <ProgressBar progress={percentageComplete}  warning={percentageClaimed} />
           </span>
           <span className='mainlist-taskHeader-subContractor'>{subContractor}</span>
           <div className='mainlist-taskHeader-cost space'>
-            <ClaimOnTask stageName={stageName} index={index} task={task} dispatch={dispatch}/>
+            
+            {switchUpdateMainlist && 
+              <ClaimOnTask stageName={stageName} index={index} task={task} dispatch={dispatch}/>
+            }
             <span className=''>{claimed} / {calculatedamount}</span>
           </div>
           <span className='mainlist-taskHeader-status'>{status}
           
             {/* <UpdateTaskStatus stageKey={stageKey} index={index} task={task} dispatch={dispatch} /> */}
-
-            <UpdateTaskStatus stageName={stageName} index={index} task={task} dispatch={dispatch} />
-          </span>
+            {switchUpdateMainlist &&
+              <UpdateTaskStatus stageName={stageName} index={index} task={task} dispatch={dispatch} />
+            }
+              </span>
       </div>
       <div>
       {expandTask && <TaskSection task={task}/>}
@@ -222,7 +230,7 @@ function TaskDetails({stageName, index, task, dispatch}) {
   )
 }
 
-function Tasks ({ stageName, stage, dispatch }) { 
+function Tasks ({ stageName, stage, dispatch, switchUpdateMainlist }) { 
 return(
   
     <div className='mainList-stageTasks'>
@@ -239,6 +247,7 @@ return(
                           index={key} 
                           task={task}
                           dispatch={dispatch}
+                          switchUpdateMainlist={switchUpdateMainlist}
                           />
           )
       })}
@@ -247,7 +256,7 @@ return(
 }
 
 // function Stage({ stageKey, stage, dispatch }) {
-function Stage({ stage, dispatch }) {
+function Stage({ stage, dispatch, userRole, switchUpdateMainlist }) {
   const [expandStages, setCollapseStages] = useState(false)
   
   function handleExpand() { setCollapseStages(!expandStages)}
@@ -257,6 +266,11 @@ function Stage({ stage, dispatch }) {
     dispatch({ type: ACTIONS.DELETE_STAGE, payload:{ stageName: stageName }})
   }
 
+  const stageFinancials = calculateStageProgress(stage)
+  const stageCost = stageFinancials.totalCost
+  const stageClaimed = stageFinancials.totalClaimed
+  const stageProgress = (stageClaimed / stageCost) * 100
+
   // console.log('stage: ',stage)
   return (
     <div className='mainlist-stageCard'>
@@ -264,25 +278,28 @@ function Stage({ stage, dispatch }) {
         {expandStages? <div className='arrow-down' /> : <div className='arrow-right' />}
         <div className='stageCard-header-titleBar'>
           <h3>{stage.name}</h3>
-          <div className='updateStage-footer'>
-            <AddTask stage={stage} dispatch={dispatch} />
-            <button value={stage.name} onClick={(e) => handleDeleteStage(e)}>- Delete Stage</button>
-          </div>
+          <ProgressBar progress={stageProgress} />
+          { (switchUpdateMainlist && (userRole ==="admin")) 
+            && <div className='updateStage-footer'>
+                <AddTask stage={stage} dispatch={dispatch} />
+                <button value={stage.name} onClick={(e) => handleDeleteStage(e)}>- Delete Stage</button>
+              </div>
+            }
+            
         </div>
-        
       </div>
-      <div>
-      
-        {expandStages && <Tasks stageName={stage.name} stage={stage.tasks} dispatch={dispatch} />}
-      </div>
-      
+
+      {expandStages && <Tasks stageName={stage.name} stage={stage.tasks} dispatch={dispatch} switchUpdateMainlist={switchUpdateMainlist} />}
       
     </div>
   )
 }
 
 // Reducer setup here
-export default function ProjectUpdateMainList({project, SetSwitchUpdateMainlist}) {
+export default function ProjectUpdateMainList({project, SetSwitchUpdateMainlist, switchUpdateMainlist }) {
+  const { user, authIsReady } = useAuthContext()
+  const userRole = useUserRole(user)
+
   const passMainlist = project.mainList
   const stages = passMainlist
   const [reStages, dispatch] = useReducer(mainListReducer, stages)
@@ -316,15 +333,21 @@ export default function ProjectUpdateMainList({project, SetSwitchUpdateMainlist}
       <div className="update-mainlist">    
       { Object.entries(reStages).map( ([key, stage]) => {
         // console.log('stageKey',key)
-        return <Stage stage={stage} dispatch={dispatch} key={key}/>
+        return <Stage stage={stage} dispatch={dispatch} key={key} userRole={userRole} switchUpdateMainlist={switchUpdateMainlist}/>
       })}
       <AddStage stage={stages} dispatch={dispatch} />
       <CreateNewStage stage={stages} dispatch={dispatch} />
-      <div className='modal-footer sticky-bottom'>
-        <button onClick={handleSubmit} className="btn " id="btn_right">Save All Changes</button>
-        <button onClick={handleReset} className="btn-cancel" id="btn_right">Discard Changes</button>
-      </div>
-      
+
+      {switchUpdateMainlist 
+        ?
+        <div className='modal-footer sticky-bottom'>
+          <button onClick={handleSubmit} className="btn " id="btn_right">Save All Changes</button>
+          <button onClick={handleReset} className="btn-cancel" id="btn_right">Discard Changes</button>
+        </div>
+        : 
+        <button className='sticky-bottom btn-white' onClick={() => {SetSwitchUpdateMainlist()}}>+ Update Main List</button>  
+      }
+
       </div>
     </div> 
   )

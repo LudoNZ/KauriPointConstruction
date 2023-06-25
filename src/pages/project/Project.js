@@ -62,9 +62,7 @@ export default function Project() {
           {(switchList === "MAIN_LIST") && 
             <>
               <ProjectDetail project={document} />
-              { userRole==="admin" && authIsReady &&
-                <ProjectUpdateProjectDetail project={document} />
-              }
+              <ProjectUpdateProjectDetail project={document} />
             </>
           }
           {(switchList === "LABOUR_LIST") && <ProjectLabourList project={document} />}

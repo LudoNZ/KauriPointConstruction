@@ -1,6 +1,11 @@
+.project-detail-header {
+  margin-top: 2em;
+}
+
 .project-detail .team-table {
   border: 1px solid #bbb;
   border-spacing: 0;
+  width: 100%;
 }
 
 .project-detail .team-table th {
@@ -17,4 +22,5 @@
 .sticky-bottom {
   position: sticky;
   bottom: .5em;
+  width: 100%;
 }
