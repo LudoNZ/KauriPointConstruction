@@ -270,6 +270,8 @@ function Stage({ stage, dispatch, userRole, switchUpdateMainlist }) {
   const stageCost = stageFinancials.totalCost
   const stageClaimed = stageFinancials.totalClaimed
   const stageProgress = (stageClaimed / stageCost) * 100
+  const stageNextClaim = stageFinancials.totalNextClaim
+  const NextClaimProgress = (( stageClaimed + stageNextClaim ) / stageCost) * 100
 
   // console.log('stage: ',stage)
   return (
@@ -278,7 +280,7 @@ function Stage({ stage, dispatch, userRole, switchUpdateMainlist }) {
         {expandStages? <div className='arrow-down' /> : <div className='arrow-right' />}
         <div className='stageCard-header-titleBar'>
           <h3>{stage.name}</h3>
-          <ProgressBar progress={stageProgress} />
+          <ProgressBar progress={stageProgress} warning={NextClaimProgress}/>
           { (switchUpdateMainlist && (userRole ==="admin")) 
             && <div className='updateStage-footer'>
                 <AddTask stage={stage} dispatch={dispatch} />

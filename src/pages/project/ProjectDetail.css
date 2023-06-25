@@ -24,3 +24,6 @@
   bottom: .5em;
   width: 100%;
 }
+.sticky-bottom :hover {
+  background-color: #FFF;
+}

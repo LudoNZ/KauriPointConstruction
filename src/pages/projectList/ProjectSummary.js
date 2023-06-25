@@ -17,15 +17,15 @@ export default function ProjectSummary({ projects }) {
       {projects.map(project => {
         const results = calculateProjectProgress(project);
         const claimed = results.totalClaimed / results.totalCost * 100
-
+        const NextClaim = ( results.totalNextClaim + results.totalClaimed) / results.totalCost * 100
         return (
-          <ProjectListCard key={project.id} project={project} claimed={claimed}/> 
+          <ProjectListCard key={project.id} project={project} claimed={claimed} warning={NextClaim}/> 
       )})}
     </div>
   )
 }
 
-function ProjectListCard({project, claimed}) {
+function ProjectListCard({project, claimed, warning}) {
   const [expandProjectListCard, setExpandProjectListCard] = useState(false) 
 
   const handleExpandProjectListCard = () => {
@@ -45,7 +45,7 @@ function ProjectListCard({project, claimed}) {
         </Link>
        
       </div>
-        <ProgressBar initial={claimed} warning={claimed} progress={claimed}/>
+        <ProgressBar initial={claimed} warning={warning} progress={claimed} />
         
     </div>
     {expandProjectListCard && <CardMainList mainList={project.mainList} />}

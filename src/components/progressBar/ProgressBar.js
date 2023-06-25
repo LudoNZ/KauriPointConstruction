@@ -40,14 +40,16 @@ function calculateTaskClaimed(task){
 const calculateStageProgress = (stage) => { 
     let totalCost = 0;
     let totalClaimed = 0;
+    let totalNextClaim = 0
     stage.tasks.forEach( task => {
         //console.log('StageProgressTask: ', task)
         totalCost += parseFloat(task.calculatedamount);
-        totalClaimed += parseFloat(calculateTaskClaimed(task))
+        totalClaimed += parseFloat(calculateTaskClaimed(task));
+        totalNextClaim += task.nextClaim ? parseFloat(task.nextClaim) : 0;
     })
             
 
-    let results = {"totalCost": totalCost, "totalClaimed": totalClaimed}
+    let results = {"totalCost": totalCost, "totalClaimed": totalClaimed, "totalNextClaim": totalNextClaim}
 
     return results
 }
@@ -55,12 +57,14 @@ const calculateStageProgress = (stage) => {
 const calculateProjectProgress = (project) => {
     let totalClaimed = 0
     let totalCost = 0
+    let totalNextClaim = 0
     project.mainList.forEach( stage => {
         const stageSums = calculateStageProgress(stage)
         totalClaimed += stageSums.totalClaimed
         totalCost += stageSums.totalCost
+        totalNextClaim += stageSums.totalNextClaim
     })    
-    return { "totalClaimed": totalClaimed, "totalCost": totalCost,}    
+    return { "totalClaimed": totalClaimed, "totalCost": totalCost, "totalNextClaim": totalNextClaim}    
 }  
 
 //LABOUR LIST
