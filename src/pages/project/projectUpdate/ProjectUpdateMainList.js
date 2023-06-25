@@ -215,13 +215,14 @@ function TaskDetails({stageName, index, task, dispatch, switchUpdateMainlist}) {
             }
             <span className=''>{claimed} / {calculatedamount}</span>
           </div>
-          <span className='mainlist-taskHeader-status'>{status}
           
-            {/* <UpdateTaskStatus stageKey={stageKey} index={index} task={task} dispatch={dispatch} /> */}
-            {switchUpdateMainlist &&
-              <UpdateTaskStatus stageName={stageName} index={index} task={task} dispatch={dispatch} />
+          
+          
+            {switchUpdateMainlist 
+              ? <UpdateTaskStatus stageName={stageName} index={index} task={task} dispatch={dispatch} />
+              : <span className='mainlist-taskHeader-status'>{status} </span>
             }
-              </span>
+              
       </div>
       <div>
       {expandTask && <TaskSection task={task}/>}
@@ -281,7 +282,7 @@ function Stage({ stage, dispatch, userRole, switchUpdateMainlist }) {
         <div className='stageCard-header-titleBar'>
           <h3>{stage.name}</h3>
           <ProgressBar progress={stageProgress} warning={NextClaimProgress}/>
-          { (switchUpdateMainlist && (userRole ==="admin")) 
+          { (switchUpdateMainlist && (userRole ==="admin") && expandStages) 
             && <div className='updateStage-footer'>
                 <AddTask stage={stage} dispatch={dispatch} />
                 <button value={stage.name} onClick={(e) => handleDeleteStage(e)}>- Delete Stage</button>
@@ -340,15 +341,17 @@ export default function ProjectUpdateMainList({project, SetSwitchUpdateMainlist,
       <AddStage stage={stages} dispatch={dispatch} />
       <CreateNewStage stage={stages} dispatch={dispatch} />
 
-      {switchUpdateMainlist 
-        ?
-        <div className='modal-footer sticky-bottom'>
-          <button onClick={handleSubmit} className="btn " id="btn_right">Save All Changes</button>
-          <button onClick={handleReset} className="btn-cancel" id="btn_right">Discard Changes</button>
-        </div>
-        : 
-        <button className='sticky-bottom btn-white' onClick={() => {SetSwitchUpdateMainlist()}}>+ Update Main List</button>  
-      }
+      <div className='sticky-bottom'>
+        {switchUpdateMainlist 
+          ?
+          <>
+            <button onClick={handleSubmit} className="btn " id="btn_right">Save All Changes</button>
+            <button onClick={handleReset} className="btn-cancel" id="btn_right">Discard Changes</button>
+          </>
+          : 
+          <button className='btn-white' onClick={() => {SetSwitchUpdateMainlist()}}>+ Update Main List</button>  
+        }
+      </div>
 
       </div>
     </div> 

@@ -23,7 +23,12 @@
   position: sticky;
   bottom: .5em;
   width: 100%;
+  background-color: var(--lightgray);
+  padding: .5em;
+  display: flex;
+  justify-content: space-around;
 }
-.sticky-bottom :hover {
-  background-color: #FFF;
+
+.sticky-bottom .btn-white {
+  width: 80%
 }
