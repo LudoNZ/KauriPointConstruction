@@ -68,39 +68,32 @@ const calculateProjectProgress = (project) => {
 }  
 
 //LABOUR LIST
-const calculateStageLabour = (stageTasks) => {
-    let stageDays = 0.0
-    let stageCost = 0.0
+const calculateStageLabour = (stageTasks, team) => {
+    let result = {
+        stageDays: 0.0,
+        stageCost: 0.0,
+        team: {},
+    }
+    
 
     //Object.entries(stageTasks).map(task => {
     stageTasks.forEach(task => {
         Object.entries(task.hoursPredicted).forEach(
-            ([key, days]) => {
-                // console.log('taskName: ', task.name)
-                // console.log('key: ', key, 'days: ', days)
-                // console.log('stageDays: ', stageDays)
-                // console.log('stageCost: ', stageCost)
+            ([role, days]) => {
                 days = parseFloat(days)
                 if( days > 0) { 
-                    //let taskCost = 0.0
-                    let dayForemanCost = 0.0
-                    let dayBuilderCost = 0.0
-                    let dayApprenticsCost = 0.0
+                    let payRate = 0.0
+                    result.team[role] ? result.team[role] += days : result.team[role] = days
+                    result.stageDays += days
 
-                    //NEEDS FIXING. Caculator needs attention
-                    dayForemanCost = key.toLocaleLowerCase().includes('foreman', 0) ?  days * 70 * 8 : 0
-                    dayBuilderCost = key.toLocaleLowerCase().includes('builder', 0) ?  days * 70 * 8 : 0
-                    dayApprenticsCost = key.toLocaleLowerCase().includes('apprentice', 0) ?  days * 40 * 8 : 0
-
-                    stageCost += dayForemanCost + dayBuilderCost + dayApprenticsCost
-                    stageDays += days
+                    team.forEach(member => { if(member.role == role) {payRate = member.rate} });
+                    console.log('ROLE: ', role, ', DAYS: ', days, ', PAYRATE: ', payRate)
+                    result.stageCost += days * payRate
                 }
-                return
             }
         )
     })
 
-    const result = { stageDays, stageCost }
     return result
 }
 

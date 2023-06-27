@@ -85,3 +85,11 @@
     text-align: center;
     width:10%;
 }
+
+
+@media screen and (max-width: 900px) {
+
+    .stage-role-container > span {
+        font-size: .7em;
+    }
+}

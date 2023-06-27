@@ -3,6 +3,7 @@ import './LabourList.css'
 import { calculateStageLabour } from './progressBar/ProgressBar';
 
 export default function LabourList({ labourList , team }) {
+    //console.log('TEAM: ', team)
     return (
         <>
             { Object.entries( labourList ).map( ([key, stage ]) => {
@@ -16,30 +17,17 @@ export default function LabourList({ labourList , team }) {
 function LabourStageCard({stage, team}) {
     const [expandLabourStage, setExpandLabourStage] = useState(false)
     const handleToggleStage = ()=>{setExpandLabourStage(!expandLabourStage)}
-    const staffRole = Object.entries(team).map( staff => staff.role)
-    // const staffRate = Object.entries(team).map(([i, staff]) => staff.rate)
-    // const [totalHours, setTotalHours] = useState([{}])
-
-    // const roleOne = calcHours.map((role) => role.at(0))
-    // const a = roleOne.reduce(setSum, 0)
-    // console.log(roleOne)
-    //console.log(calcHours)
-    // console.log('At', a)
-
+    //const staffRole = Object.entries(team).map( staff => staff.role)
+    
     let totalDays = []
 
-    const calcHours = Object.entries(stage.tasks).map(([key, task]) => (
-        Object.entries(task.hoursPredicted).map(([role, hours]) =>  hours)
-    ))
-    console.log('CALC_HOURS: ', calcHours)
+    
+    //sum hours for each team member
+    team.forEach(member => {
 
-    for (let i = 0; i < staffRole.length; i++ ){
-        const hourArray = calcHours.map((role) => role.at(i))
-        const hourSum = hourArray.reduce(setSum, 0)
-        // console.log('for:', hourSum)
-        totalDays.push(hourSum)
-        // console.log('TotalSum',i, ': ',totalDyas)
-    }
+    });
+
+
     console.log('totalDays: ', totalDays)
     
     function setSum(total, num){
@@ -50,29 +38,29 @@ function LabourStageCard({stage, team}) {
     }   
 
     //Calculate stage labour
-    const stageLabourHours = calculateStageLabour(stage.tasks)
+    const stageLabourHours = calculateStageLabour(stage.tasks, team)
 
     return (
         <div className='labourStageCard'>
             <div onClick={handleToggleStage} className='stage-container'>
                 <div className="stage-name-container">{stage.name}</div>
                 <div className="stage-role-container">
-                {staffRole.map((role) => (<div>{role}</div>))}
+                    {expandLabourStage && team.map((member) => {return <span>{member.role}</span>})}
                 </div>
             </div>
-            {expandLabourStage && <LabourStageTask stage={stage.tasks} />}
+            {expandLabourStage && <LabourStageTask stage={stage.tasks} team={team} />}
             <div className='labourList-StageTask labourList-StageSum'>
-                <div className='task-container'>Total Days:</div>
+                <div className='task-container'>Sum Days:</div>
                 <div className='hours-container'>
                     {totalDays.map((totalDay) => <span>{totalDay}</span>)}
                 </div>
             </div>
             <div className='labourList-StageTask labourList-StageSum'>
-              <div className='task-container'>Total Amount:</div>
+              <div className='task-container'>Sum cost:</div>
                 <div className='hours-container'>
-                  {totalDays.map((totalDay, staffRate) => 
+                  {/* {totalDays.map((totalDay, staffRate) => 
                     <span>{totalDay * staffRate}</span>
-                  )}
+                  )} */}
                 </div>
             </div>
             <div className='labourList-StageTask labourList-StageTotal'>
@@ -83,7 +71,7 @@ function LabourStageCard({stage, team}) {
 }
 
 
-function LabourStageTask({ stage }){
+function LabourStageTask({ stage, team }){
     return (
         <>
             {Object.entries(stage).map( ([key, task]) => {
@@ -92,7 +80,7 @@ function LabourStageTask({ stage }){
                     <div className='labourList-StageTask' key={key}>
                         <div className='task-container'>{task.name}</div>
                         <div className='hours-container'> 
-                            <LabourStageHours hoursPredicted={task.hoursPredicted} />
+                            <LabourTaskHours hoursPredicted={task.hoursPredicted} team={team}/>
                         </div>
                     </div>
                     <div className='lineSeperator'><div></div></div>
@@ -103,22 +91,20 @@ function LabourStageTask({ stage }){
     )
 }
 
-function LabourStageHours({ hoursPredicted }){
-    // console.log(hoursPredicted)
-    return (      
+function LabourTaskHours({ hoursPredicted, team}){
+    console.log('HOURS_PREDICTED:', hoursPredicted)
+    console.log('TEAM:', team)
+
+    return (
+        //cycle through Team member list and assign estimated hours from each task
         <>
-            {Object.entries(hoursPredicted).map( ([role, hours]) => {
-                if( hours === "" || hours===" " ){
-                    hours = "-"
-                }
-                return(
-                    <React.Fragment key={role}>
-                        <div className="single-hour-container">
-                            <span> {hours} </span>
-                        </div>  
-                    </React.Fragment>
-                )}   
-            )}
+            {team.map((member) => {
+                const hours = (hoursPredicted[member.role] ? hoursPredicted[member.role] : '-')
+                return (
+                    <span className="single-hour-container">{hours}</span>
+                )
+            })}
+
         </>
     )
 }
