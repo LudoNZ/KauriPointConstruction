@@ -56,7 +56,6 @@ export default function ProjectUpdateProjectDetail({ project }) {
     e.preventDefault()
     setFormError(null)
 
-
     const updateProject = {
       projectStatus,
       GSTno,
@@ -71,6 +70,10 @@ export default function ProjectUpdateProjectDetail({ project }) {
     if (!response.error) {
       history.push('/')
     }
+  }
+
+  const handleRoleSelectInput = (value) => {
+    setMemberRole(value)
   }
 
   return (
@@ -131,15 +134,16 @@ export default function ProjectUpdateProjectDetail({ project }) {
                     
                     onChange = {(e) => setMemberName(e.target.value)}
                   />
-                  <input 
+                  <select 
                     name="role" 
                     type="text" 
                     id="role" 
                     placeholder='role'
                     required
                     value={memberRole}
-                    onChange = {(e) => setMemberRole(e.target.value)}
+                    onChange={(e) => { handleRoleSelectInput(e.target.value); console.log('target.value: ', e.target.value) }}
                   />
+
                   <input 
                     name="rate" 
                     type="text" 

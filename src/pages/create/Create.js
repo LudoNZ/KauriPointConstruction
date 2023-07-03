@@ -214,7 +214,7 @@ export default function Create() {
                     
                     onChange = {(e) => setMemberName(e.target.value)}
                   />
-                  <input 
+                  <select 
                     name="role" 
                     type="text" 
                     id="role" 
@@ -222,7 +222,12 @@ export default function Create() {
                     required
                     value={memberRole}
                     onChange = {(e) => setMemberRole(e.target.value)}
-                  />
+                  >
+                    <option value={'Site Manager'}>{'Site Manager'}</option>
+                    <option value={'Foreman'}>{'Foreman'}</option>
+                    <option value={'Builder'}>{'Builder'}</option>
+                    <option value={'Apprentice'}>{'Apprentice'}</option>
+                  </select>
                   <input 
                     name="rate" 
                     type="text" 
@@ -275,7 +280,7 @@ function FormInput({label, onChange, value, type, options}) {
             required
             type={type ? type : 'text'}
             onChange={(e) => { handleInput(e.target.value); console.log('target.value: ', e.target.value) }}
-            value={value} 
+            value={value}
           >
             { Object.entries(options).map( ([key, option]) => <option key={key} value={option}>{option}</option>) }
           </select>

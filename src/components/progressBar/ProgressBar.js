@@ -69,6 +69,7 @@ const calculateProjectProgress = (project) => {
 
 //LABOUR LIST
 const calculateStageLabour = (stageTasks, team) => {
+    console.log('STAGE_TASKS', stageTasks, 'TEAM', team)
     let result = {
         stageDays: 0.0,
         stageCost: 0.0,
@@ -86,14 +87,15 @@ const calculateStageLabour = (stageTasks, team) => {
                     result.team[role] ? result.team[role] += days : result.team[role] = days
                     result.stageDays += days
 
-                    team.forEach(member => { if(member.role == role) {payRate = member.rate} });
-                    console.log('ROLE: ', role, ', DAYS: ', days, ', PAYRATE: ', payRate)
+                    team.forEach(member => { if(member.role === role) {payRate = member.rate} });
+                    //console.log('ROLE: ', role, ', DAYS: ', days, ', PAYRATE: ', payRate)
                     result.stageCost += days * payRate
                 }
             }
         )
     })
 
+    console.log('RESULT: ', result)
     return result
 }
 
