@@ -1,4 +1,4 @@
-import { useParams, useHistory } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { useState } from 'react'
 import { useFirestore } from '../../../hooks/useFirestore'
 import Modal from "react-overlays/Modal"
@@ -12,7 +12,6 @@ import { timestamp } from '../../../firebase/config'
 export default function ProjectUpdateProjectDetail({ project }) {
   const { updateDocument, response } = useFirestore('projects')
   const [formError, setFormError] = useState(null)
-  const history = useHistory()
   const { id } = useParams()
   // const location = useLocation()
 
@@ -66,10 +65,7 @@ export default function ProjectUpdateProjectDetail({ project }) {
     }
 
     await updateDocument(id, updateProject)
-
-    if (!response.error) {
-      history.push('/')
-    }
+    setShowModal(false)
   }
 
   const handleRoleSelectInput = (value) => {
@@ -142,7 +138,14 @@ export default function ProjectUpdateProjectDetail({ project }) {
                     required
                     value={memberRole}
                     onChange={(e) => { handleRoleSelectInput(e.target.value); console.log('target.value: ', e.target.value) }}
-                  />
+                  >
+                    <option>-</option>
+                    <option>Foreman</option>
+                    <option>Builder 1</option>
+                    <option>Builder 2</option>
+                    <option>Apprentice 1</option>
+                    <option>Apprentice 2</option>
+                  </select>
 
                   <input 
                     name="rate" 

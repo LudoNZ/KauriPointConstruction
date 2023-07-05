@@ -9,7 +9,7 @@ export default function LabourList({ labourList , team }) {
 
     return (
         <>
-            { missingRoles && (
+            { missingRoles.length > 0 && (
                 <div className='error'>
                     WARNING MISSING ROLES! {missingRoles.map(role => {
                         return <p>{role}</p>

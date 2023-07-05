@@ -107,6 +107,10 @@ export default function Create() {
     //Restart progress on all tasks
     project = resetProject(project)
    
+
+    //IMPORT PROJECT
+    //DUMP PROJECT HERE:
+    //project = {}
     // **MODIFY EXCEL IMPORTED DATA**
     //project = modifyData(project)
 
@@ -223,10 +227,13 @@ export default function Create() {
                     value={memberRole}
                     onChange = {(e) => setMemberRole(e.target.value)}
                   >
+                    <option value={'-'}>{'-'}</option>
                     <option value={'Site Manager'}>{'Site Manager'}</option>
                     <option value={'Foreman'}>{'Foreman'}</option>
-                    <option value={'Builder'}>{'Builder'}</option>
-                    <option value={'Apprentice'}>{'Apprentice'}</option>
+                    <option value={'Builder 1'}>{'Builder 1'}</option>
+                    <option value={'Builder 2'}>{'Builder 2'}</option>
+                    <option value={'Apprentice 1'}>{'Apprentice 1'}</option>
+                    <option value={'Apprentice 2'}>{'Apprentice 2'}</option>
                   </select>
                   <input 
                     name="rate" 
