@@ -4,14 +4,53 @@ import { calculateStageLabour } from './progressBar/ProgressBar';
 
 export default function LabourList({ labourList , team }) {
     //console.log('TEAM: ', team)
+    let missingRoles = []
+    missingRoles = checkMinTeam(labourList, team)
+
     return (
         <>
+            { missingRoles && (
+                <div className='error'>
+                    WARNING MISSING ROLES! {missingRoles.map(role => {
+                        return <p>{role}</p>
+                    })}
+                </div>
+             )}
+    
             { Object.entries( labourList ).map( ([key, stage ]) => {
                 return (
                     <LabourStageCard key={key} stage={stage} team={team} />    
             )})}
         </>
     )
+}
+
+function checkMinTeam(labourList, team) { 
+    let missingRoles = []
+
+    labourList.forEach(stage => {
+        stage.tasks.forEach(task => {
+            Object.entries(task.hoursPredicted).forEach(([role, prediction]) => {
+                //console.log('PREDICTION: ', role, prediction)
+                const match = matchTeam(role, team) 
+                if(!match) {
+                    if(!missingRoles.includes(role)) {
+                        missingRoles.push(role)
+                    }
+                }   
+            })
+        })
+    });
+    //console.log('MISSING_ROLES: ', missingRoles)
+    return missingRoles
+}
+
+function matchTeam(role, team) {
+    let match = false
+    team.forEach(member => {
+        if(role === member.role){ match = true }
+    }) 
+    return match
 }
 
 function LabourStageCard({stage, team}) {
@@ -32,7 +71,7 @@ function LabourStageCard({stage, team}) {
     });
 
     function calculateMemberDays(member) {
-        console.log('MEMBER: ', member)
+        //console.log('MEMBER: ', member)
 
         let sumDays = 0.0
 
@@ -40,12 +79,12 @@ function LabourStageCard({stage, team}) {
             const hours = parseFloat(task.hoursPredicted[member.role]) ? parseFloat(task.hoursPredicted[member.role]) : 0
             sumDays += hours
         });
-        console.log('SUM DAYS: ', member, sumDays)
+        //console.log('SUM DAYS: ', member, sumDays)
         return sumDays
     }
 
 
-    console.log('totalDays: ', totalDays)
+    //console.log('totalDays: ', totalDays)
     
     function setSum(total, num){
         if(!num || num===" ") {
