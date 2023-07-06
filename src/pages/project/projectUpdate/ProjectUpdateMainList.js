@@ -39,7 +39,7 @@ function mainListReducer(reStages, action) {
       stageTask = [...reStages]
 
       stageTask.forEach(stage => {
-          if (stage.name == action.stageName) {
+          if (stage.name === action.stageName) {
             stage.tasks[action.index].nextClaim = action.payload.nextClaim
             //console.log('CLAIMED AT: ', action.stageName, ' task:' ,action.index)
           }

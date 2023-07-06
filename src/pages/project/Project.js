@@ -54,9 +54,9 @@ export default function Project() {
           <ProjectFinancialInfo project={document} />
 
           <div className='listSelector'>
-            <button onClick={ () => handleSwitchList("MAIN_LIST") } className="btn" id={switchList == "MAIN_LIST" ? 'btn-active' : 'btn-disabled'}>MainList</button>
-            <button onClick={ () => handleSwitchList("LABOUR_LIST") } className="btn" id={switchList == "LABOUR_LIST" ?'btn-active' : 'btn-disabled'}>LabourList</button>
-            <button onClick={ () => handleSwitchList("CLAIM_LIST") } className="btn" id={switchList == "CLAIM_LIST" ? 'btn-active' : 'btn-disabled'}>Claims</button>
+            <button onClick={ () => handleSwitchList("MAIN_LIST") } className="btn" id={switchList === "MAIN_LIST" ? 'btn-active' : 'btn-disabled'}>MainList</button>
+            <button onClick={ () => handleSwitchList("LABOUR_LIST") } className="btn" id={switchList === "LABOUR_LIST" ?'btn-active' : 'btn-disabled'}>LabourList</button>
+            <button onClick={ () => handleSwitchList("CLAIM_LIST") } className="btn" id={switchList === "CLAIM_LIST" ? 'btn-active' : 'btn-disabled'}>Claims</button>
           </div>
           
           {(switchList === "MAIN_LIST") && 
