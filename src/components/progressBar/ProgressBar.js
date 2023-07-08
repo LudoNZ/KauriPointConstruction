@@ -69,7 +69,7 @@ const calculateProjectProgress = (project) => {
 
 //LABOUR LIST
 const calculateStageLabour = (stageTasks, team) => {
-    console.log('STAGE_TASKS', stageTasks, 'TEAM', team)
+    //console.log('STAGE_TASKS', stageTasks, 'TEAM', team)
     let result = {
         stageDays: 0.0,
         stageCost: 0.0,
@@ -95,7 +95,7 @@ const calculateStageLabour = (stageTasks, team) => {
         )
     })
 
-    console.log('RESULT: ', result)
+    //console.log('RESULT: ', result)
     return result
 }
 

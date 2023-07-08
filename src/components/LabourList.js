@@ -1,17 +1,71 @@
-import React, {useState} from 'react';
+import React, {useState, useReducer} from 'react';
 import './LabourList.css'
 import { calculateStageLabour } from './progressBar/ProgressBar';
+import { useFirestore } from '../hooks/useFirestore';
 
-export default function LabourList({ labourList , team }) {
+function labourListReducer(reLabourList, action) {
+//WORK IN PROGRESS
+let tempLabourList = {...reLabourList}
+    console.log('dispatchLabourList type: ', action.type)
+    switch (action.type) {
+        case 'UPDATE_EXPECTED_HOURS':
+            console.log('PAYLOAD: ', action)
+            console.log('tempLabourList: ', tempLabourList)
+
+            Object.entries(tempLabourList).forEach(([key, stage]) => {
+                console.log("key: ", key, ", stage: ", stage)
+                if(stage.name === action.payload.stage) {
+                    console.log("DISPATCH UPDATING STAGE: ", stage)
+                    stage.tasks.forEach(task => {
+                        if(task.name === action.payload.task){
+                            task.hoursPredicted = action.payload.hoursPredicted
+                        }
+                    });
+                }
+                
+            });
+
+            return tempLabourList
+        
+        default:
+            return reLabourList
+    }
+}
+
+export default function LabourList({ project }) {
     //console.log('TEAM: ', team)
+    const [reLabourList, dispatchLabourList] = useReducer(labourListReducer, project.labourList)
+    const [switchUpdateLabourList, setSwitchUpdateLabourList] = useState(false)
+    const { updateDocument, response } = useFirestore('projects')
+
     let missingRoles = []
-    missingRoles = checkMinTeam(labourList, team)
+    missingRoles = checkMinTeam(project.labourList, project.team)
+
+    const switchUpdate = () => {
+        setSwitchUpdateLabourList(!switchUpdateLabourList)
+    }
+
+    const handleSubmit = async() => {
+        const newLabourList = {
+            labourList: reLabourList
+        }
+    
+        console.log('UPDATING LabourList: ', newLabourList)
+        await updateDocument(project.id, newLabourList)
+    
+        if (!response.error) {
+            //history.push('/')
+            switchUpdate()
+          }
+      }
+      
 
     return (
         <>
             { missingRoles.length > 0 && (
                 <div className='error'>
-                    WARNING MISSING ROLES! {missingRoles.map(role => {
+                    WARNING MISSING ROLES! 
+                    {missingRoles.map(role => {
                         return <p>{role}</p>
                     })}
                 </div>
@@ -19,8 +73,24 @@ export default function LabourList({ labourList , team }) {
     
             { Object.entries( reLabourList ).map( ([key, stage ]) => {
                 return (
-                    <LabourStageCard key={key} stage={stage} team={team} />    
+                    <LabourStageCard key={key} 
+                                    stage={stage} 
+                                    team={project.team} 
+                                    switchUpdateLabourList={switchUpdateLabourList} 
+                                    dispatchLabourList={dispatchLabourList}
+                                    />    
             )})}
+
+            <div className='sticky-bottom'>
+                {switchUpdateLabourList 
+                ?
+                <>
+                    <button  onClick={() => {handleSubmit()}} className="btn " id="btn_right">Save All Changes</button>
+                </>
+                : 
+                <button className='btn-white' onClick={() => {switchUpdate()}}>+ Update Labour List</button>  
+                }
+            </div>
         </>
     )
 }
@@ -28,7 +98,8 @@ export default function LabourList({ labourList , team }) {
 function checkMinTeam(labourList, team) { 
     let missingRoles = []
 
-    labourList.forEach(stage => {
+    Object.entries(labourList).forEach(([key, stage]) => {
+        console.log('STAGE!!: ', stage)
         stage.tasks.forEach(task => {
             Object.entries(task.hoursPredicted).forEach(([role, prediction]) => {
                 //console.log('PREDICTION: ', role, prediction)
@@ -53,7 +124,7 @@ function matchTeam(role, team) {
     return match
 }
 
-function LabourStageCard({stage, team}) {
+function LabourStageCard({stage, team, switchUpdateLabourList, dispatchLabourList}) {
     const [expandLabourStage, setExpandLabourStage] = useState(false)
     const handleToggleStage = ()=>{setExpandLabourStage(!expandLabourStage)}
     //const staffRole = Object.entries(team).map( staff => staff.role)
@@ -96,6 +167,15 @@ function LabourStageCard({stage, team}) {
     //Calculate stage labour
     const stageLabourHours = calculateStageLabour(stage.tasks, team)
 
+    function handleTaskUpdate(toUpdate) {
+        let stageUpdate = {  ...toUpdate,
+                        stage: stage.name,
+                    }
+        //console.log('UPDATING: ', stageUpdate)
+        dispatchLabourList({    type: 'UPDATE_EXPECTED_HOURS',
+                                payload: stageUpdate,
+                                })
+    }
     return (
         <div className='labourStageCard'>
             <div onClick={handleToggleStage} className='stage-container'>
@@ -104,7 +184,11 @@ function LabourStageCard({stage, team}) {
                     {expandLabourStage && team.map((member) => {return <span key={member.role}>{member.role}</span>})}
                 </div>
             </div>
-            {expandLabourStage && <LabourStageTask stage={stage.tasks} team={team} />}
+            {expandLabourStage && <LabourStageTask stage={stage.tasks} 
+                                                team={team} 
+                                                switchUpdateLabourList={switchUpdateLabourList} 
+                                                handleTaskUpdate={handleTaskUpdate}
+                                                />}
 
 
             {/* sums for each team member for each stage */}
@@ -137,20 +221,36 @@ function LabourStageCard({stage, team}) {
 }
 
 
-function LabourStageTask({ stage, team }){
+function LabourStageTask({ stage, team, switchUpdateLabourList, handleTaskUpdate }){
+    
+    
     return (
         <>
             {Object.entries(stage).map( ([key, task]) => {
+
+                function handleHoursUpdate(hoursPredicted) {
+                    const toUpdate = {  task: task.name,
+                                        hoursPredicted: {...hoursPredicted},
+                                        }
+                    handleTaskUpdate(toUpdate)
+                }
                 return(
-                    <>
+                    <div key={key}>
                     <div className='labourList-StageTask' key={key}>
                         <div className='task-container'>{task.name}</div>
                         <div className='hours-container'> 
-                            <UpdateLabourTaskHours hoursPredicted={task.hoursPredicted} team={team}/>
+                            { switchUpdateLabourList 
+                                ? <UpdateLabourTaskHours hoursPredicted={task.hoursPredicted} 
+                                                        team={team} 
+                                                        handleHoursUpdate={handleHoursUpdate}
+                                                        />
+                                : <LabourTaskHours hoursPredicted={task.hoursPredicted} 
+                                                team={team}/>
+                            }
                         </div>
                     </div>
                     <div className='lineSeperator'><div></div></div>
-                    </>
+                    </div>
                 )
             })}
         </>
@@ -164,17 +264,17 @@ function LabourTaskHours({ hoursPredicted, team}){
     return (
         //cycle through Team member list and assign estimated hours from each task
         <>
-            {team.map((member) => {
+            {team.map( member => {
                 const hours = (hoursPredicted[member.role] ? hoursPredicted[member.role] : '-')
                 return (
-                    <span className="single-hour-container">{hours}</span>
+                    <span key={member.role} className="single-hour-container">{hours}</span>
                 )
             })}
 
         </>
     )
 }
-function UpdateLabourTaskHours({ hoursPredicted, team}){
+function UpdateLabourTaskHours({ hoursPredicted, team, handleHoursUpdate}){
     //console.log('HOURS_PREDICTED:', hoursPredicted)
     // console.log('TEAM:', team)
 
@@ -185,6 +285,7 @@ function UpdateLabourTaskHours({ hoursPredicted, team}){
         tempReHoursPredicted[role] = value
         console.log('RE_HOURS: ', tempReHoursPredicted)
         setReHoursPredicted(tempReHoursPredicted)
+        handleHoursUpdate(tempReHoursPredicted)
     }
 
     return (

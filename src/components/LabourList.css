@@ -81,9 +81,20 @@
     justify-content: space-around;
 }
 
+.hours-container > form {
+    display: flex;
+    width: 100%;
+}
+
 .single-hour-container{
     text-align: center;
     width:10%;
+    margin: 0px;
+    padding: 0px;
+}
+.single-hour-container > input{
+    margin: 0px;
+    padding: 0px;
 }
 
 

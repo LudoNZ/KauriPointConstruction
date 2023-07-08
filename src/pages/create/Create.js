@@ -142,7 +142,7 @@ export default function Create() {
             <FormInput label='City' onChange={setCity} value={city} />
             <h3>Project Details</h3>
             <FormInput label='Start date' onChange={setStartDate} value={startDate} type='date'/>
-            <FormInput label='GST No' onChange={setGSTno} value={GSTno} />
+            <FormInput label='GST No' onChange={setGSTno} value={GSTno} req={false}/>
             <FormInput label='Sub Contract Fee' onChange={setSubContractFee} value={subContractFee} type='number'/>
             <FormInput label='Description' onChange={setDescription} value={description} />
 
@@ -261,7 +261,7 @@ export default function Create() {
   )
 }
 
-function FormInput({label, onChange, value, type, options}) {
+function FormInput({label, onChange, value, type, options, req}) {
   const handleInput = (value) => {
     onChange(value)
   }
@@ -271,7 +271,7 @@ function FormInput({label, onChange, value, type, options}) {
       <label>
         <span>{label}</span>
         <input 
-          required
+          required={req ? req : true}
           type={type ? type : 'text'}
           onChange={(e) => handleInput(e.target.value)}
           value={value} 
