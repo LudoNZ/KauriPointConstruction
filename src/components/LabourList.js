@@ -17,7 +17,7 @@ export default function LabourList({ labourList , team }) {
                 </div>
              )}
     
-            { Object.entries( labourList ).map( ([key, stage ]) => {
+            { Object.entries( reLabourList ).map( ([key, stage ]) => {
                 return (
                     <LabourStageCard key={key} stage={stage} team={team} />    
             )})}
@@ -113,14 +113,14 @@ function LabourStageCard({stage, team}) {
                 <div className='labourList-StageTask labourList-StageSum'>
                     <div className='task-container'>Sum Days:</div>
                     <div className='hours-container'>
-                        {totalDays.map((totalDay, key) => <span>{totalDay.days}</span>)}
+                        {totalDays.map((totalDay, key) => <span key={key}>{totalDay.days}</span>)}
                     </div>
                 </div>
                 <div className='labourList-StageTask labourList-StageSum'>
                 <div className='task-container'>Sum Cost:</div>
                     <div className='hours-container'>
                     {totalDays.map((totalDay, key) => 
-                        <span>${totalDay.cost}</span>
+                        <span key={key}>${totalDay.cost}</span>
                     )}
                     </div>
                 </div>
@@ -146,7 +146,7 @@ function LabourStageTask({ stage, team }){
                     <div className='labourList-StageTask' key={key}>
                         <div className='task-container'>{task.name}</div>
                         <div className='hours-container'> 
-                            <LabourTaskHours hoursPredicted={task.hoursPredicted} team={team}/>
+                            <UpdateLabourTaskHours hoursPredicted={task.hoursPredicted} team={team}/>
                         </div>
                     </div>
                     <div className='lineSeperator'><div></div></div>
@@ -172,6 +172,38 @@ function LabourTaskHours({ hoursPredicted, team}){
             })}
 
         </>
+    )
+}
+function UpdateLabourTaskHours({ hoursPredicted, team}){
+    //console.log('HOURS_PREDICTED:', hoursPredicted)
+    // console.log('TEAM:', team)
+
+    const [reHoursPredicted, setReHoursPredicted] = useState(hoursPredicted)
+
+    const handleUpdate = (role, value) => {
+        let tempReHoursPredicted = {...reHoursPredicted}
+        tempReHoursPredicted[role] = value
+        console.log('RE_HOURS: ', tempReHoursPredicted)
+        setReHoursPredicted(tempReHoursPredicted)
+    }
+
+    return (
+        //cycle through Team member list and assign estimated hours from each task
+        <div className='flex'>
+            {team.map((member, key) => {
+                let hours = reHoursPredicted[member.role] ? reHoursPredicted[member.role] : '-'
+                return (
+                    <label key={key} className="single-hour-container">
+                        <input  
+                            type='number' 
+                            onChange={(e) => {handleUpdate(member.role, e.target.value)}}
+                            value = {hours}
+                            step={0.25}
+                        ></input>
+                    </label>
+                )
+            })}
+        </div>
     )
 }
 
