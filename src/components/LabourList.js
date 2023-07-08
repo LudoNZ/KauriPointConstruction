@@ -9,11 +9,10 @@ let tempLabourList = {...reLabourList}
     console.log('dispatchLabourList type: ', action.type)
     switch (action.type) {
         case 'UPDATE_EXPECTED_HOURS':
-            console.log('PAYLOAD: ', action)
-            console.log('tempLabourList: ', tempLabourList)
-
+            // console.log('PAYLOAD: ', action)
+            // console.log('tempLabourList: ', tempLabourList)
             Object.entries(tempLabourList).forEach(([key, stage]) => {
-                console.log("key: ", key, ", stage: ", stage)
+                //console.log("key: ", key, ", stage: ", stage)
                 if(stage.name === action.payload.stage) {
                     console.log("DISPATCH UPDATING STAGE: ", stage)
                     stage.tasks.forEach(task => {
@@ -99,7 +98,6 @@ function checkMinTeam(labourList, team) {
     let missingRoles = []
 
     Object.entries(labourList).forEach(([key, stage]) => {
-        console.log('STAGE!!: ', stage)
         stage.tasks.forEach(task => {
             Object.entries(task.hoursPredicted).forEach(([role, prediction]) => {
                 //console.log('PREDICTION: ', role, prediction)
