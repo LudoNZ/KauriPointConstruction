@@ -92,7 +92,6 @@ export default function ProjectUpdateClientInfo({ project }) {
                 
                 <h3>Address:</h3>
                 <FormInput label='Line 1' onChange={setLine1} value={line1}/>
-                <FormInput label='Line 2' onChange={setLine2} value={line2}/>
                 <FormInput label='Suburb' onChange={setSuburb} value={suburb}/>
                 <FormInput label='City' onChange={setCity} value={city}/>
                 <div className="modal-footer">

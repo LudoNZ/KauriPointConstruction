@@ -35,7 +35,6 @@ export default function ProjectDetail({project}) {
         <p className="due-date">
           Start date: {startDate}
         </p>
-        <p>GST NO: {project.GSTno}</p>
         <p>Sub Contract Fee: {subContractFee}</p>
         <p>Descriptions:</p>
         <p className="details">{details}</p>

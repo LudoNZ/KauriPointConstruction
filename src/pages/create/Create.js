@@ -26,7 +26,6 @@ export default function Create() {
   const [phone, setPhone] = useState('')
   const [email, setEmail] = useState('')
   const [line1, setLine1] = useState('')
-  const [line2, setLine2] = useState('')
   const [suburb, setSuburb] = useState('')
   const [city, setCity] = useState('')
   
@@ -36,7 +35,6 @@ export default function Create() {
   const [tempLabourList, setTempLabourList] = useState([])
 
   const [startDate, setStartDate] = useState('')
-  const [GSTno, setGSTno] = useState('')
   const [subContractFee, setSubContractFee] = useState('')
   const [description, setDescription] = useState([])
   const [memberName, setMemberName ] = useState('') 
@@ -83,7 +81,6 @@ export default function Create() {
 
     const address = {
         line1,
-        line2,
         suburb,
         city,   
     }
@@ -97,7 +94,6 @@ export default function Create() {
       mainList: tempMain.value.mainList,
       labourList: tempLabourList.value.labourList,
       startDate: timestamp.fromDate(new Date(startDate)),
-      GSTno,
       subContractFee,
       description,
       team: teamList,
@@ -121,6 +117,10 @@ export default function Create() {
     }
   }
 
+  const handleSubContractFee = (value) =>  {
+    let restrictedValue = value > 1 ? value/100 : value
+    setSubContractFee(restrictedValue)
+  }
 
   return (
     <div className='page-container'>
@@ -137,13 +137,11 @@ export default function Create() {
             <FormInput label='Email' onChange={setEmail} value={email} />
             <h3>Address:</h3>
             <FormInput label='Line 1' onChange={setLine1} value={line1} />
-            <FormInput label='Line 2' onChange={setLine2} value={line2} />
             <FormInput label='Suburb' onChange={setSuburb} value={suburb} />
             <FormInput label='City' onChange={setCity} value={city} />
             <h3>Project Details</h3>
             <FormInput label='Start date' onChange={setStartDate} value={startDate} type='date'/>
-            <FormInput label='GST No' onChange={setGSTno} value={GSTno} req={false}/>
-            <FormInput label='Sub Contract Fee' onChange={setSubContractFee} value={subContractFee} type='number'/>
+            <FormInput label='Sub Contract Fee' onChange={handleSubContractFee} value={subContractFee} type='number' step={.01}/>
             <FormInput label='Description' onChange={setDescription} value={description} />
 
           <h3>Lists Templates</h3>
@@ -261,7 +259,7 @@ export default function Create() {
   )
 }
 
-function FormInput({label, onChange, value, type, options, req}) {
+function FormInput({label, onChange, value, type, options, step}) {
   const handleInput = (value) => {
     onChange(value)
   }
@@ -271,8 +269,9 @@ function FormInput({label, onChange, value, type, options, req}) {
       <label>
         <span>{label}</span>
         <input 
-          required={req ? req : true}
+          required
           type={type ? type : 'text'}
+          step={step ? step : 1 }
           onChange={(e) => handleInput(e.target.value)}
           value={value} 
         ></input>

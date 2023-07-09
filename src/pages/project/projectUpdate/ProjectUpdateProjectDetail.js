@@ -20,7 +20,6 @@ export default function ProjectUpdateProjectDetail({ project }) {
 
   const [projectStatus, setStatus] = useState(project.projectStatus)
   const [startDate, setStartDate] = useState(project.startDate.toDate().toISOString().substring(0, 10))
-  const [GSTno, setGSTno] = useState(project.GSTno)
   const [subContractFee, setSubContractFee] = useState(project.subContractFee)
   const [description, setDescription] = useState(project.description)
   const [memberName, setMemberName ] = useState('') 
@@ -57,7 +56,6 @@ export default function ProjectUpdateProjectDetail({ project }) {
 
     const updateProject = {
       projectStatus,
-      GSTno,
       subContractFee,
       description,
       team: teamList,
@@ -104,8 +102,7 @@ export default function ProjectUpdateProjectDetail({ project }) {
                 <form onSubmit={handleUpdate}>
 
                 <FormInput label='Start date' onChange={setStartDate} value={startDate} type='date'/>                
-                <FormInput label='GST No' onChange={setGSTno} value={GSTno} />
-                <FormInput label='Sub Contract Fee' onChange={setSubContractFee} value={subContractFee} type='number'/>
+                <FormInput label='Sub Contract Fee' onChange={setSubContractFee} value={subContractFee} type='number' step={0.01}/>
                 <FormInput label='Description' onChange={setDescription} value={description} />
                 <FormInput label='Status' onChange={setStatus} value={projectStatus} options={['open', 'close', 'upcoming']} />
                 
