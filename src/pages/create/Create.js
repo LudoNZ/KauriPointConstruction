@@ -211,7 +211,6 @@ export default function Create() {
                     type="text" 
                     id="name"
                     placeholder='name'
-                    required
                     value={memberName}
                     
                     onChange = {(e) => setMemberName(e.target.value)}
@@ -221,7 +220,6 @@ export default function Create() {
                     type="text" 
                     id="role" 
                     placeholder='role'
-                    required
                     value={memberRole}
                     onChange = {(e) => setMemberRole(e.target.value)}
                   >
@@ -238,7 +236,6 @@ export default function Create() {
                     type="text" 
                     id="rate"
                     placeholder='rate'
-                    required
                     value={memberRate}
                     onChange = {(e) => setMemberRate(e.target.value)}
                   />

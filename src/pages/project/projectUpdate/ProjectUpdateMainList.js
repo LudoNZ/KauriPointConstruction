@@ -277,10 +277,12 @@ function Stage({ stage, dispatch, userRole, switchUpdateMainlist }) {
   // console.log('stage: ',stage)
   return (
     <div className='mainlist-stageCard'>
-      <div onClick={handleExpand} className='mainlist-stageCard-header'>
-        {expandStages? <div className='arrow-down' /> : <div className='arrow-right' />}
+      <div className='mainlist-stageCard-header'>
+
+        <div onClick={handleExpand} 
+            className={expandStages ? 'arrow-down' : 'arrow-right' }/>
         <div className='stageCard-header-titleBar'>
-          <h3>{stage.name}</h3>
+          <h3 onClick={handleExpand}>{stage.name}</h3>
           <ProgressBar progress={stageProgress} warning={NextClaimProgress}/>
           { (switchUpdateMainlist && (userRole ==="admin") && expandStages) 
             && <div className='updateStage-footer'>
