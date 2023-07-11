@@ -6,9 +6,11 @@ import { FormInput } from '../../create/Create.js'
 
 // styles
 import './ProjectUpdate.css'
+import { ConvertLabourList } from '../../create/updateList'
 
 export default function ProjectUpdateClientInfo({ project }) {
   const { updateDocument, response } = useFirestore('projects')
+  // const { updateDocument, response } = useFirestore('taskLibrary')
   //const history = useHistory()
   const { id } = useParams()
   const location = useLocation()
@@ -22,7 +24,6 @@ export default function ProjectUpdateClientInfo({ project }) {
   const [ phone, setPhone ] = useState(project.phone)
   const [ email, setEmail ] = useState(project.email)
   const [line1, setLine1] = useState(project.address.line1)
-  const [line2, setLine2] = useState(project.address.line2)
   const [suburb, setSuburb] = useState(project.address.suburb)
   const [city, setCity] = useState(project.address.city)
 
@@ -38,7 +39,6 @@ export default function ProjectUpdateClientInfo({ project }) {
 
     const address = {
         line1,
-        line2,
         suburb,
         city,   
     }
@@ -51,6 +51,15 @@ export default function ProjectUpdateClientInfo({ project }) {
     }
 
     await updateDocument(id, updateProject)
+
+    // let labourList = {}
+
+    // let modLabourList = {
+    //   stages: ConvertLabourList(labourList)
+    // }
+
+    // console.log('UPDATING LABOUR LIST!!: , ', modLabourList)
+    // await updateDocument('labourList', modLabourList)
 
     if (!response.error) {
       handleClose()

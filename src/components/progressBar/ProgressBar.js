@@ -77,24 +77,21 @@ const calculateStageLabour = (stageTasks, team) => {
     }
     
 
-    //Object.entries(stageTasks).map(task => {
     stageTasks.forEach(task => {
-        Object.entries(task.hoursPredicted).forEach(
-            ([role, days]) => {
-                days = parseFloat(days)
-                if( days > 0) { 
-                    let payRate = 0.0
-                    result.team[role] ? result.team[role] += days : result.team[role] = days
-                    result.stageDays += days
+        Object.entries(task.hoursPredicted).forEach(([role, days]) => {
+            days = parseFloat(days)
+            if( days > 0) { 
+                let payRate = 0.0
+                result.team[role] ? result.team[role] += days : result.team[role] = days
+                result.stageDays += days
 
-                    team.forEach(member => { if(member.role === role) {payRate = member.rate} });
-                    //console.log('ROLE: ', role, ', DAYS: ', days, ', PAYRATE: ', payRate)
-                    result.stageCost += days * payRate
-                }
+                team.forEach(member => { if(member.role === role) {payRate = member.rate} });
+                //console.log('ROLE: ', role, ', DAYS: ', days, ', PAYRATE: ', payRate)
+                result.stageCost += days * payRate
             }
-        )
-    })
+        })
 
+    })
     //console.log('RESULT: ', result)
     return result
 }

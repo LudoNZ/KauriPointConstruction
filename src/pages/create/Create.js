@@ -31,8 +31,8 @@ export default function Create() {
   
   // const [financialSummary, setfinancialSummary] = useState([])
   const [projectList, setProjectList] = useState([])
-  const [tempMain, setTempMain] = useState([])
-  const [tempLabourList, setTempLabourList] = useState([])
+  const [tempMain, setTempMain] = useState(null)
+  const [tempLabourList, setTempLabourList] = useState(null)
 
   const [startDate, setStartDate] = useState('')
   const [subContractFee, setSubContractFee] = useState('')
@@ -91,8 +91,8 @@ export default function Create() {
       phone,
       email,
       address, 
-      mainList: tempMain.value.mainList,
-      labourList: tempLabourList.value.labourList,
+      mainList: tempMain ? tempMain.value.mainList : [],
+      labourList: tempLabourList ? tempLabourList.value.labourList: [],
       startDate: timestamp.fromDate(new Date(startDate)),
       subContractFee,
       description,
@@ -105,10 +105,10 @@ export default function Create() {
    
 
     //IMPORT PROJECT
-    //DUMP PROJECT HERE:
-    //project = {}
-    // **MODIFY EXCEL IMPORTED DATA**
-    //project = modifyData(project)
+    // //DUMP PROJECT HERE:
+    // project = {}}
+    // // **MODIFY EXCEL IMPORTED DATA**
+    // project = modifyData(project)
 
     await addDocument(project)
 

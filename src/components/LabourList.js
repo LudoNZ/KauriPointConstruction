@@ -5,16 +5,15 @@ import { useFirestore } from '../hooks/useFirestore';
 
 function labourListReducer(reLabourList, action) {
 //WORK IN PROGRESS
-let tempLabourList = {...reLabourList}
-    console.log('dispatchLabourList type: ', action.type)
+//console.log('reLabourList: ', reLabourList)
+
+let tempLabourList = [...reLabourList]
     switch (action.type) {
         case 'UPDATE_EXPECTED_HOURS':
             // console.log('PAYLOAD: ', action)
-            // console.log('tempLabourList: ', tempLabourList)
-            Object.entries(tempLabourList).forEach(([key, stage]) => {
-                //console.log("key: ", key, ", stage: ", stage)
+            tempLabourList.forEach( stage => {
                 if(stage.name === action.payload.stage) {
-                    console.log("DISPATCH UPDATING STAGE: ", stage)
+                    //console.log("DISPATCH UPDATING STAGE: ", stage)
                     stage.tasks.forEach(task => {
                         if(task.name === action.payload.task){
                             task.hoursPredicted = action.payload.hoursPredicted
@@ -23,20 +22,22 @@ let tempLabourList = {...reLabourList}
                 }
                 
             });
-
             return tempLabourList
         
+        case 'ADD_TASK':
+
+
         default:
             return reLabourList
     }
 }
 
 export default function LabourList({ project }) {
-    //console.log('TEAM: ', team)
+    //console.log('PROJECT: ', project, ' TEAM: ', team)
     const [reLabourList, dispatchLabourList] = useReducer(labourListReducer, project.labourList)
     const [switchUpdateLabourList, setSwitchUpdateLabourList] = useState(false)
     const { updateDocument, response } = useFirestore('projects')
-
+    
     let missingRoles = []
     missingRoles = checkMinTeam(project.labourList, project.team)
 
@@ -49,7 +50,7 @@ export default function LabourList({ project }) {
             labourList: reLabourList
         }
     
-        console.log('UPDATING LabourList: ', newLabourList)
+        //console.log('UPDATING LabourList: ', newLabourList)
         await updateDocument(project.id, newLabourList)
     
         if (!response.error) {
@@ -97,9 +98,9 @@ export default function LabourList({ project }) {
 function checkMinTeam(labourList, team) { 
     let missingRoles = []
 
-    Object.entries(labourList).forEach(([key, stage]) => {
+    labourList.forEach((stage) => {
         stage.tasks.forEach(task => {
-            Object.entries(task.hoursPredicted).forEach(([role, prediction]) => {
+            Object.keys(task.hoursPredicted).forEach((role) => {
                 //console.log('PREDICTION: ', role, prediction)
                 const match = matchTeam(role, team) 
                 if(!match) {
@@ -143,9 +144,10 @@ function LabourStageCard({stage, team, switchUpdateLabourList, dispatchLabourLis
         //console.log('MEMBER: ', member)
 
         let sumDays = 0.0
-
+        //console.log('STAGE: ', stage )
         stage.tasks.forEach( task => {
-            const hours = parseFloat(task.hoursPredicted[member.role]) ? parseFloat(task.hoursPredicted[member.role]) : 0
+            //console.log('TASK: ', task )
+            const hours =  parseFloat(task.hoursPredicted[member.role]) ? parseFloat(task.hoursPredicted[member.role]) : 0
             sumDays += hours
         });
         //console.log('SUM DAYS: ', member, sumDays)
@@ -225,7 +227,7 @@ function LabourStageTask({ stage, team, switchUpdateLabourList, handleTaskUpdate
     return (
         <>
             {Object.entries(stage).map( ([key, task]) => {
-
+                //console.log('TASK: ', task)
                 function handleHoursUpdate(hoursPredicted) {
                     const toUpdate = {  task: task.name,
                                         hoursPredicted: {...hoursPredicted},
@@ -256,8 +258,7 @@ function LabourStageTask({ stage, team, switchUpdateLabourList, handleTaskUpdate
 }
 
 function LabourTaskHours({ hoursPredicted, team}){
-    // console.log('HOURS_PREDICTED:', hoursPredicted)
-    // console.log('TEAM:', team)
+    // console.log('TEAM:', team, 'HOURS_PREDICTED:', hoursPredicted)
 
     return (
         //cycle through Team member list and assign estimated hours from each task
@@ -281,7 +282,6 @@ function UpdateLabourTaskHours({ hoursPredicted, team, handleHoursUpdate}){
     const handleUpdate = (role, value) => {
         let tempReHoursPredicted = {...reHoursPredicted}
         tempReHoursPredicted[role] = value
-        console.log('RE_HOURS: ', tempReHoursPredicted)
         setReHoursPredicted(tempReHoursPredicted)
         handleHoursUpdate(tempReHoursPredicted)
     }
