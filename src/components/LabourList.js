@@ -3,11 +3,12 @@ import './LabourList.css'
 import { calculateStageLabour } from './progressBar/ProgressBar';
 import { useFirestore } from '../hooks/useFirestore';
 import AddLabourTask from './LabourList_AddTask';
+import LabourListAddStage from './LabourList_AddStage';
 
 function labourListReducer(reLabourList, action) {
 //WORK IN PROGRESS
 //console.log('reLabourList: ', reLabourList)
-
+let stages
 let tempLabourList = [...reLabourList]
     switch (action.type) {
         case 'UPDATE_EXPECTED_HOURS':
@@ -24,6 +25,13 @@ let tempLabourList = [...reLabourList]
                 
             });
             return tempLabourList
+
+        case 'ADD_STAGE':
+            const name = action.payload.stage
+            const tasks = action.payload.tasks
+            // console.log('Reducer')
+            tempLabourList.push({ name, tasks })
+        return tempLabourList
         
         case 'ADD_TASK':
             console.log('REDUCER PAYLOAD: ', action.payload)
@@ -94,6 +102,8 @@ export default function LabourList({ project }) {
                                     />    
             )})}
 
+            <LabourListAddStage stage={project.labourList} dispatch={dispatchLabourList} />
+
             <div className='sticky-bottom'>
                 {switchUpdateLabourList 
                 ?
@@ -155,7 +165,7 @@ function LabourStageCard({stage, team, switchUpdateLabourList, dispatchLabourLis
 
     function calculateMemberDays(member) {
         //console.log('MEMBER: ', member)
-
+        console.log('!STAGE: ', stage )
         let sumDays = 0.0
         //console.log('STAGE: ', stage )
         stage.tasks.forEach( task => {
@@ -255,7 +265,7 @@ function LabourStageTask({ stage, team, switchUpdateLabourList, handleTaskUpdate
                 return(
                     <div key={key}>
                     <div className='labourList-StageTask' key={key}>
-                        <div className='task-container'>{task.name}</div>
+                        <div className='task-container'>{task.label ? task.label : task.name}</div>
                         <div className='hours-container'> 
                             { switchUpdateLabourList 
                                 ? <UpdateLabourTaskHours hoursPredicted={task.hoursPredicted} 

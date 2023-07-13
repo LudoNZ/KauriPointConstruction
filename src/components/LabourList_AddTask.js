@@ -6,7 +6,7 @@ import { FormInput } from '../pages/create/Create'
 
 export default function AddLabourTask ({stage, dispatch}) {
     const [showModal, setShowModal] = useState(false)
-    //const [formError, setFormError] = useState(null)
+    const [formError, setFormError] = useState(null)
 
       // Firebase
   const { error, document } = useDocument('taskLibrary' , "labourList")
@@ -17,7 +17,7 @@ export default function AddLabourTask ({stage, dispatch}) {
   const [stageName, setStageName] = useState('')
   const [task, setTask] = useState([])
 
-  const [taskName, setTaskName] =useState('')
+  const [taskLabel, setTaskLabel] =useState('')
 
   // Modal display functions
   const handleClose = () => {
@@ -36,9 +36,7 @@ export default function AddLabourTask ({stage, dispatch}) {
   useEffect(() => {
     if(selectedTask){
       const passTask = selectedTask
-      const passStage = selectedTask.stageName
       setTask(passTask)
-      setStageName(passStage)
     }
     // console.log('taskList',taskList);
     // console.log('stageName',stageName);
@@ -54,7 +52,6 @@ export default function AddLabourTask ({stage, dispatch}) {
 
       let stageTasks = allTasks.filter(singleStage => {
         const assess = singleStage.stageName.toLowerCase() === stage.name.toLowerCase()
-        console.log('singleStage.stageName: ', singleStage.stageName, 'stage.name: ', stage.name)
         return assess
       })
         console.log('STAGE_TASKS: ', stageTasks)
@@ -63,7 +60,8 @@ export default function AddLabourTask ({stage, dispatch}) {
       Object.entries(stageTasks).map(([key, stage]) => (
         selectedTasks = Object.entries(stage.tasks).map(([id, taskInfo]) => {
           // console.log('stageName', stage.stageName)
-          return { value: {...taskInfo}, label: taskInfo.name, stageName: stage.stageName}
+          setStageName(stage.stageName)
+          return { ...taskInfo, label: taskInfo.name}
         })
       ))
       const fileteredTasks = selectedTasks.filter(function(selectTask) {
@@ -75,10 +73,10 @@ export default function AddLabourTask ({stage, dispatch}) {
 
   function handleSubmit(e) {
     e.preventDefault()
-    // setFormError(null)
+    setFormError(null)
 
     const newTask = task
-    newTask.name = taskName
+    newTask.label = taskLabel
     newTask.hoursPredicted = {}
     console.log('ADDING_TASK: ', newTask)
     
@@ -90,7 +88,8 @@ export default function AddLabourTask ({stage, dispatch}) {
   function handleSelectedTask(task) {
     console.log('task: ', task)
     setSelectedTask(task)
-    setTaskName(task.label)
+    setTaskLabel(task.label)
+    setStageName(stage.name)
     
   }
 
@@ -135,9 +134,9 @@ export default function AddLabourTask ({stage, dispatch}) {
             <br />
             <div>
             
-            <FormInput label='Name' 
-                        value={taskName} 
-                        onChange={setTaskName}/>
+            <FormInput label='Label:' 
+                        value={taskLabel} 
+                        onChange={setTaskLabel}/>
             
             </div>
 
