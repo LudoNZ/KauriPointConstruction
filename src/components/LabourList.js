@@ -2,6 +2,7 @@ import React, {useState, useReducer} from 'react';
 import './LabourList.css'
 import { calculateStageLabour } from './progressBar/ProgressBar';
 import { useFirestore } from '../hooks/useFirestore';
+import AddLabourTask from './LabourList_AddTask';
 
 function labourListReducer(reLabourList, action) {
 //WORK IN PROGRESS
@@ -25,7 +26,19 @@ let tempLabourList = [...reLabourList]
             return tempLabourList
         
         case 'ADD_TASK':
-
+            console.log('REDUCER PAYLOAD: ', action.payload)
+            return reLabourList.map(stage => {
+                // console.log('action.payload.taskList', action.payload.taskList)
+                console.log('stage', stage)
+                if(stage.name.toString().toLowerCase() === action.payload.stageName.toString().toLowerCase() )
+                  return {
+                    ...stage,
+                    tasks: [
+                      ...stage.tasks, 
+                      action.payload.task,                 
+                    ]}
+                return { ...stage }
+            })
 
         default:
             return reLabourList
@@ -192,6 +205,11 @@ function LabourStageCard({stage, team, switchUpdateLabourList, dispatchLabourLis
 
 
             {/* sums for each team member for each stage */}
+
+            {switchUpdateLabourList && 
+            <AddLabourTask stage={stage} dispatch={dispatchLabourList}/>
+            }
+            
             {expandLabourStage &&
             (<>
                 <div className='labourList-StageTask labourList-StageSum'>
