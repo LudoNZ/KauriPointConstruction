@@ -57,8 +57,8 @@ export default function AddLabourTask ({stage, dispatch}) {
         console.log('STAGE_TASKS: ', stageTasks)
 
       let selectedTasks
-      Object.entries(stageTasks).map(([key, stage]) => (
-        selectedTasks = Object.entries(stage.tasks).map(([id, taskInfo]) => {
+      Object.values(stageTasks).map( stage => (
+        selectedTasks = Object.values(stage.tasks).map( taskInfo => {
           // console.log('stageName', stage.stageName)
           setStageName(stage.stageName)
           return { ...taskInfo, label: taskInfo.name}
@@ -88,11 +88,18 @@ export default function AddLabourTask ({stage, dispatch}) {
   function handleSelectedTask(task) {
     console.log('task: ', task)
     setSelectedTask(task)
-    setTaskLabel(task.label)
+    checkLabelIsUnique(task.label)
     setStageName(stage.name)
     
   }
 
+  function checkLabelIsUnique(label) {
+    setFormError(null)
+    stage.tasks.forEach(task => { if(task.label === label) {
+      const errorMessage = 'WARNING!: ' + task.label + 'is not unique!'
+      setFormError(errorMessage)}} )
+    setTaskLabel(label)
+  }
 
     return (
         <>
@@ -133,10 +140,10 @@ export default function AddLabourTask ({stage, dispatch}) {
               </label>
             <br />
             <div>
-            
+
             <FormInput label='Label:' 
                         value={taskLabel} 
-                        onChange={setTaskLabel}/>
+                        onChange={checkLabelIsUnique}/>
             
             </div>
 

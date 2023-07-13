@@ -12,12 +12,13 @@ let stages
 let tempLabourList = [...reLabourList]
     switch (action.type) {
         case 'UPDATE_EXPECTED_HOURS':
-            // console.log('PAYLOAD: ', action)
+            console.log('PAYLOAD: ', action)
             tempLabourList.forEach( stage => {
                 if(stage.name === action.payload.stage) {
                     //console.log("DISPATCH UPDATING STAGE: ", stage)
                     stage.tasks.forEach(task => {
-                        if(task.name === action.payload.task){
+                        const taskId = task.label ? task.label : task.name
+                        if(taskId === action.payload.task){
                             task.hoursPredicted = action.payload.hoursPredicted
                         }
                     });
@@ -102,7 +103,9 @@ export default function LabourList({ project }) {
                                     />    
             )})}
 
+            { switchUpdateLabourList &&
             <LabourListAddStage stage={project.labourList} dispatch={dispatchLabourList} />
+            }
 
             <div className='sticky-bottom'>
                 {switchUpdateLabourList 
@@ -165,7 +168,7 @@ function LabourStageCard({stage, team, switchUpdateLabourList, dispatchLabourLis
 
     function calculateMemberDays(member) {
         //console.log('MEMBER: ', member)
-        console.log('!STAGE: ', stage )
+        //console.log('!STAGE: ', stage )
         let sumDays = 0.0
         //console.log('STAGE: ', stage )
         stage.tasks.forEach( task => {
@@ -190,13 +193,13 @@ function LabourStageCard({stage, team, switchUpdateLabourList, dispatchLabourLis
     //Calculate stage labour
     const stageLabourHours = calculateStageLabour(stage.tasks, team)
 
-    function handleTaskUpdate(toUpdate) {
-        let stageUpdate = {  ...toUpdate,
+    function handleTaskUpdate(taskToUpdate) {
+        let updateTask = {  ...taskToUpdate,
                         stage: stage.name,
                     }
         //console.log('UPDATING: ', stageUpdate)
         dispatchLabourList({    type: 'UPDATE_EXPECTED_HOURS',
-                                payload: stageUpdate,
+                                payload: updateTask,
                                 })
     }
     return (
@@ -207,36 +210,34 @@ function LabourStageCard({stage, team, switchUpdateLabourList, dispatchLabourLis
                     {expandLabourStage && team.map((member) => {return <span key={member.role}>{member.role}</span>})}
                 </div>
             </div>
-            {expandLabourStage && <LabourStageTask stage={stage.tasks} 
-                                                team={team} 
-                                                switchUpdateLabourList={switchUpdateLabourList} 
-                                                handleTaskUpdate={handleTaskUpdate}
-                                                />}
-
-
-            {/* sums for each team member for each stage */}
-
-            {switchUpdateLabourList && 
-            <AddLabourTask stage={stage} dispatch={dispatchLabourList}/>
-            }
+            {expandLabourStage && 
             
-            {expandLabourStage &&
-            (<>
-                <div className='labourList-StageTask labourList-StageSum'>
-                    <div className='task-container'>Sum Days:</div>
-                    <div className='hours-container'>
-                        {totalDays.map((totalDay, key) => <span key={key}>{totalDay.days}</span>)}
+                <>
+                    <LabourStageTask stage={stage.tasks} 
+                                                    team={team} 
+                                                    switchUpdateLabourList={switchUpdateLabourList} 
+                                                    handleTaskUpdate={handleTaskUpdate}
+                                                    />
+                                                    
+                    {switchUpdateLabourList && 
+                    <AddLabourTask stage={stage} dispatch={dispatchLabourList}/>
+                    }
+                
+                    <div className='labourList-StageTask labourList-StageSum'>
+                        <div className='task-container'>Sum Days:</div>
+                        <div className='hours-container'>
+                            {totalDays.map((totalDay, key) => <span key={key}>{totalDay.days}</span>)}
+                        </div>
                     </div>
-                </div>
-                <div className='labourList-StageTask labourList-StageSum'>
-                <div className='task-container'>Sum Cost:</div>
-                    <div className='hours-container'>
-                    {totalDays.map((totalDay, key) => 
-                        <span key={key}>${totalDay.cost}</span>
-                    )}
+                    <div className='labourList-StageTask labourList-StageSum'>
+                    <div className='task-container'>Sum Cost:</div>
+                        <div className='hours-container'>
+                        {totalDays.map((totalDay, key) => 
+                            <span key={key}>${totalDay.cost}</span>
+                        )}
+                        </div>
                     </div>
-                </div>
-            </>)
+                </>
             }
 
             <div className='labourList-StageTask labourList-StageTotal'>
@@ -257,10 +258,10 @@ function LabourStageTask({ stage, team, switchUpdateLabourList, handleTaskUpdate
             {Object.entries(stage).map( ([key, task]) => {
                 //console.log('TASK: ', task)
                 function handleHoursUpdate(hoursPredicted) {
-                    const toUpdate = {  task: task.name,
+                    const taskToUpdate = {  task: task.label ? task.label : task.name,
                                         hoursPredicted: {...hoursPredicted},
                                         }
-                    handleTaskUpdate(toUpdate)
+                    handleTaskUpdate(taskToUpdate)
                 }
                 return(
                     <div key={key}>
