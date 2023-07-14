@@ -1,6 +1,6 @@
 import React, {useState, useReducer} from 'react';
 import './LabourList.css'
-import { calculateStageLabour } from './progressBar/ProgressBar';
+import { calculateStageLabour, sumLabourList } from './progressBar/ProgressBar';
 import { useFirestore } from '../hooks/useFirestore';
 import AddLabourTask from './LabourList_AddTask';
 import LabourListAddStage from './LabourList_AddStage';
@@ -106,6 +106,9 @@ export default function LabourList({ project }) {
             { switchUpdateLabourList &&
             <LabourListAddStage stage={project.labourList} dispatch={dispatchLabourList} />
             }
+            
+
+            <LabourListSummary project={project}/>
 
             <div className='sticky-bottom'>
                 {switchUpdateLabourList 
@@ -118,6 +121,19 @@ export default function LabourList({ project }) {
                 }
             </div>
         </>
+    )
+}
+
+function LabourListSummary({ project }) {
+    
+    const labourSums = sumLabourList(project)
+    console.log('labourSums: ', labourSums)
+    return (
+        <div className='flex'>
+            <h3>Labour List Summary:</h3>
+            <span>days:{labourSums.sumDays}</span>
+            <span>cost:{labourSums.sumCost}</span>
+        </div>
     )
 }
 

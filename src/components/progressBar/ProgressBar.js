@@ -76,7 +76,7 @@ const calculateStageLabour = (stageTasks, team) => {
         team: {},
     }
     
-
+    console.log('StageTasks: ', stageTasks)
     stageTasks.forEach(task => {
         Object.entries(task.hoursPredicted).forEach(([role, days]) => {
             days = parseFloat(days)
@@ -87,13 +87,28 @@ const calculateStageLabour = (stageTasks, team) => {
 
                 team.forEach(member => { if(member.role === role) {payRate = member.rate} });
                 //console.log('ROLE: ', role, ', DAYS: ', days, ', PAYRATE: ', payRate)
-                result.stageCost += days * payRate
+                result.stageCost += days * 9.5 * payRate
             }
         })
 
     })
     //console.log('RESULT: ', result)
     return result
+}
+
+function sumLabourList (project) {
+    let result = {
+        sumDays: 0.0,
+        sumCost: 0.0,
+    }
+project.labourList.forEach( stage => {
+ let stageSums = calculateStageLabour(stage.tasks, project.team)
+ result.sumDays += stageSums.stageDays
+ result.sumCost += stageSums.stageCost
+//  console.log('midSUMa: ', sum)
+})
+ return result
+
 }
 
 
@@ -113,4 +128,5 @@ export { ProgressBar,
         calculateStageProgress, 
         calculateProjectProgress,
         calculateStageLabour,
+        sumLabourList,
         }
