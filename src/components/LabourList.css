@@ -102,6 +102,11 @@
     padding: .1em .5em;    
 }
 
+.deleteStage{
+    margin-left: 3em;
+    color: var(--tertiary-color);
+}
+
 
 @media screen and (max-width: 900px) {
 

@@ -61,7 +61,13 @@ let tempLabourList = [...reLabourList]
                   })    
               }
             })
-        
+        case 'DELETE_STAGE':
+            console.log('payload', action.payload.stageName);
+            return reLabourList.filter(stage => stage.name !== action.payload.stageName)
+                .map(stage => {
+                return {...stage}
+            })
+            // return reStages
 
         default:
             return reLabourList
@@ -192,6 +198,10 @@ function LabourStageCard({stage, team, switchUpdateLabourList, dispatchLabourLis
         })        
     });
 
+    function handleDeleteStage() {
+        dispatchLabourList({ type: 'DELETE_STAGE', payload:{ stageName: stage.name }})
+      }
+
     function calculateMemberDays(member) {
         //console.log('MEMBER: ', member)
         //console.log('!STAGE: ', stage )
@@ -231,7 +241,10 @@ function LabourStageCard({stage, team, switchUpdateLabourList, dispatchLabourLis
     return (
         <div className='labourStageCard'>
             <div onClick={handleToggleStage} className='stage-container'>
-                <div className="stage-name-container">{stage.name}</div>
+                <div className="stage-name-container">{stage.name}
+                    {switchUpdateLabourList &&
+                        <button className={'deleteStage'} value={stage.name} onClick={handleDeleteStage}>- Delete Stage</button>}
+                </div>
                 <div className="stage-role-container">
                     {expandLabourStage && team.map((member) => {return <span key={member.role}>{member.role}</span>})}
                 </div>
