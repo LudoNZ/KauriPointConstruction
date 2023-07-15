@@ -17,6 +17,7 @@ import ProjectFinancialInfo from "./ProjectFinancialInfo"
 // styles
 import './Project.css'
 import ClaimsList from '../../components/Claims/ClaimsList'
+import ProjectUpdateMainList from './projectUpdate/ProjectUpdateMainList'
 
 
 export default function Project() {
@@ -24,6 +25,9 @@ export default function Project() {
   const { error, document } = useDocument('projects' , id)
   const { user, authIsReady } = useAuthContext()
   const [ switchList, SetSwitchList ] = useState("MAIN_LIST")
+  const [switchUpdateLabourList, setSwitchUpdateLabourList] = useState(false)
+  const [switchUpdateMainList, setSwitchUpdateMainList] = useState(false)
+
   
   const userRole = useUserRole(user)
   // console.log(userRole)
@@ -40,6 +44,13 @@ export default function Project() {
     SetSwitchList(listName)
   }
 
+  const reSwitchUpdateLabourList = () => {
+    setSwitchUpdateLabourList(!switchUpdateLabourList)
+  }
+  const handleSwitchUpdateMainlist = () => {
+    setSwitchUpdateMainList(!switchUpdateMainList)
+  }
+  
   return (
     <div className='page-container'>
       <Sidebar />
@@ -53,24 +64,27 @@ export default function Project() {
           {/* Financial details */}
           <ProjectFinancialInfo project={document} />
 
-          <div className='listSelector'>
-            <button onClick={ () => handleSwitchList("MAIN_LIST") } className="btn" id={switchList === "MAIN_LIST" ? 'btn-active' : 'btn-disabled'}>MainList</button>
-            <button onClick={ () => handleSwitchList("LABOUR_LIST") } className="btn" id={switchList === "LABOUR_LIST" ?'btn-active' : 'btn-disabled'}>LabourList</button>
-            <button onClick={ () => handleSwitchList("CLAIM_LIST") } className="btn" id={switchList === "CLAIM_LIST" ? 'btn-active' : 'btn-disabled'}>Claims</button>
-          </div>
+          <div className={ !switchUpdateMainList ? (!switchUpdateLabourList ? 'tabs': 'tabs shrink') : 'tabs shrink'} >
+            <div className='listSelector'>
+              <button onClick={ () => handleSwitchList("MAIN_LIST") } className="btn" id={switchList === "MAIN_LIST" ? 'btn-active' : 'btn-disabled'}>MainList</button>
+              <button onClick={ () => handleSwitchList("LABOUR_LIST") } className="btn" id={switchList === "LABOUR_LIST" ?'btn-active' : 'btn-disabled'}>LabourList</button>
+              <button onClick={ () => handleSwitchList("CLAIM_LIST") } className="btn" id={switchList === "CLAIM_LIST" ? 'btn-active' : 'btn-disabled'}>Claims</button>
+            </div>
+            {switchUpdateLabourList && <span className='updating-alert'>!! SAVE LabourList CHANGES RECOMMENDED !!</span>}
+            {switchUpdateMainList && <span className='updating-alert'>!! SAVE Main List CHANGES RECOMMENDED !!</span>}
+          </div>        
           
           {(switchList === "MAIN_LIST") && 
             <>
+              <ProjectUpdateMainList project={document} SetSwitchUpdateMainlist={handleSwitchUpdateMainlist} switchUpdateMainlist={switchUpdateMainList}/>
+              
               <ProjectDetail project={document} />
               <ProjectUpdateProjectDetail project={document} />
             </>
           }
-          {(switchList === "LABOUR_LIST") && <ProjectLabourList project={document} />}
+          {(switchList === "LABOUR_LIST") && <ProjectLabourList project={document} setSwitchUpdateLabourList={reSwitchUpdateLabourList} switchUpdateLabourList={switchUpdateLabourList}/>}
 
           {(switchList === "CLAIM_LIST") && <ClaimsList project={document}/>}
-
-          
-        
 
         </div>
       </div>

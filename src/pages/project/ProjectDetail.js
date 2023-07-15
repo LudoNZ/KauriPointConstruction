@@ -2,9 +2,6 @@ import React, { useState } from "react"
 import { useAuthContext } from '../../hooks/useAuthContext'
 import { useUserRole } from '../../hooks/useUserRole'
 
-import ProjectUpdateMainList from "./projectUpdate/ProjectUpdateMainList"
-
-
 // styles
 import './ProjectDetail.css'
 //import CreateMainList from "../create/CreateMainList"
@@ -17,19 +14,12 @@ export default function ProjectDetail({project}) {
   const startDate = project.startDate ? project.startDate.toDate().toDateString() : "undefined"
   const details = project.description ? project.description : '-' 
   const subContractFee = project.subContractFee ? project.subContractFee * 100 + '%' : '-'
-  const [ switchUpdateMainlist, SetSwitchUpdateMainlist ] = useState(false)
-
-  // Switches for Main and Labour components
-  const handleSwitchUpdateMainlist = () => {
-    SetSwitchUpdateMainlist(!switchUpdateMainlist)
-  }
 
 
   return (
     <div className="project-detail">
       <div className="project-summary">
         
-        <ProjectUpdateMainList project={project} SetSwitchUpdateMainlist={handleSwitchUpdateMainlist} switchUpdateMainlist={switchUpdateMainlist}/>
 
         <h3 className="project-detail-header">Project Detail</h3>
         <p className="due-date">

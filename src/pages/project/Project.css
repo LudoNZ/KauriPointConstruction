@@ -69,6 +69,28 @@
     width: 10em;
   }
 
+.shrink{
+  font-size: .5rem;
+  padding: .5em;
+  border: orange 4px dashed;
+}
+
+.updating-alert{
+  align-self: center;
+  margin: auto;
+  font-size: 1.1rem;
+}
+
+.tabs{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.listSelector{
+  width: 100%;
+}
+
 @media screen and (max-width: 400px) {
   .page-container{
     flex-direction: column;

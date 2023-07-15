@@ -54,30 +54,26 @@ let tempLabourList = [...reLabourList]
     }
 }
 
-export default function LabourList({ project }) {
+export default function LabourList({ project, switchUpdateLabourList, setSwitchUpdateLabourList }) {
     //console.log('PROJECT: ', project, ' TEAM: ', team)
     const [reLabourList, dispatchLabourList] = useReducer(labourListReducer, project.labourList)
-    const [switchUpdateLabourList, setSwitchUpdateLabourList] = useState(false)
     const { updateDocument, response } = useFirestore('projects')
     
     let missingRoles = []
     missingRoles = checkMinTeam(project.labourList, project.team)
 
-    const switchUpdate = () => {
-        setSwitchUpdateLabourList(!switchUpdateLabourList)
-    }
-
     const handleSubmit = async() => {
         const newLabourList = {
             labourList: reLabourList
         }
+        setSwitchUpdateLabourList()
     
         //console.log('UPDATING LabourList: ', newLabourList)
         await updateDocument(project.id, newLabourList)
     
         if (!response.error) {
             //history.push('/')
-            switchUpdate()
+            setSwitchUpdateLabourList()
           }
       }
       
@@ -117,7 +113,7 @@ export default function LabourList({ project }) {
                     <button  onClick={() => {handleSubmit()}} className="btn " id="btn_right">Save All Changes</button>
                 </>
                 : 
-                <button className='btn-white' onClick={() => {switchUpdate()}}>+ Update Labour List</button>  
+                <button className='btn-white' onClick={setSwitchUpdateLabourList}>+ Update Labour List</button>  
                 }
             </div>
         </>
