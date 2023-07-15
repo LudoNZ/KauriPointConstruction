@@ -48,6 +48,20 @@ let tempLabourList = [...reLabourList]
                     ]}
                 return { ...stage }
             })
+        case 'DELETE_TASK_ITEM':
+            return reLabourList.map(stage => {
+                // console.log('action.payload.task', action.payload.task)
+                // console.log('stage.tasks', stage.tasks)
+              return {   
+                ...stage,
+                tasks: 
+                  stage.tasks.filter(task => (task.label ? task.label : task.name) !== (action.payload.task.label ? action.payload.task.label : action.payload.task.name) )
+                    .map(task => {
+                      return {...task}
+                  })    
+              }
+            })
+        
 
         default:
             return reLabourList
@@ -229,6 +243,7 @@ function LabourStageCard({stage, team, switchUpdateLabourList, dispatchLabourLis
                                                     team={team} 
                                                     switchUpdateLabourList={switchUpdateLabourList} 
                                                     handleTaskUpdate={handleTaskUpdate}
+                                                    dispatchLabourList={dispatchLabourList}
                                                     />
                                                     
                     {switchUpdateLabourList && 
@@ -262,8 +277,7 @@ function LabourStageCard({stage, team, switchUpdateLabourList, dispatchLabourLis
 }
 
 
-function LabourStageTask({ stage, team, switchUpdateLabourList, handleTaskUpdate }){
-    
+function LabourStageTask({ stage, team, switchUpdateLabourList, handleTaskUpdate, dispatchLabourList }){
     
     return (
         <>
@@ -275,10 +289,17 @@ function LabourStageTask({ stage, team, switchUpdateLabourList, handleTaskUpdate
                                         }
                     handleTaskUpdate(taskToUpdate)
                 }
+                function handleDelete() {
+                    dispatchLabourList({ type:"DELETE_TASK_ITEM", payload:{ task: task }})  
+                    }
+                
                 return(
                     <div key={key}>
                     <div className='labourList-StageTask' key={key}>
-                        <div className='task-container'>{task.label ? task.label : task.name}</div>
+                        <div className='task-container'>{task.label ? task.label : task.name}
+                            { switchUpdateLabourList && 
+                                <span className='delete btn-red' onClick={handleDelete}>X</span>}
+                        </div>
                         <div className='hours-container'> 
                             { switchUpdateLabourList 
                                 ? <UpdateLabourTaskHours hoursPredicted={task.hoursPredicted} 
