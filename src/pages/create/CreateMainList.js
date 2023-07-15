@@ -17,16 +17,7 @@ export default function CreateMainList() {
               "name": stageName,
               "tasks":
               Object.entries(stages).map(([stage, tasks]) => {
-                  return {
-                    "code": tasks.code,
-                    "task": tasks.task,
-                    "details": tasks.details,
-                    "subcontractedamount": tasks.subcontractedamount,
-                    "calculatedamount": tasks.calculatedamount,
-                    "subcontractor":tasks.subcontractor,
-                    "quoteEstimateOrProvision": tasks.quote,
-                    "comments": tasks.comments
-                  }
+                  return {...task}
                 })
           }
         mainList.push(task)

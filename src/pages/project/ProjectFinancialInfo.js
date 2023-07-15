@@ -45,6 +45,7 @@ function FinancialData({label, value}) {
 }
 
 function numberWithCommas(x) {
+  x = parseFloat(x)
   x = x.toFixed(2);
   x = x.toString();
   var pattern = /(-?\d+)(\d{3})/;

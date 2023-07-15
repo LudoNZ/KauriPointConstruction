@@ -3,7 +3,7 @@ import { useAuthContext } from '../../../hooks/useAuthContext'
 import { useUserRole } from '../../../hooks/useUserRole'
 import { useFirestore } from '../../../hooks/useFirestore'
 
-import { ProgressBar, calculateStageProgress, calculateTaskClaimed } from '../../../components/progressBar/ProgressBar'
+import { ProgressBar, calculateStageProgress, calculateTaskClaimed, sumLabourList } from '../../../components/progressBar/ProgressBar'
 import { numberWithCommas } from '../ProjectFinancialInfo'
 
 import UpdateTaskStatus from './components/UpdateTaskStatus'
@@ -25,6 +25,7 @@ export const ACTIONS = {
     DELETE_TASK_ITEM: 'delete_task_item',
     RESET: 'reset',
     MAKE_CLAIM: 'make_claim',
+    REFRESH_LABOUR_LIST: 'REFRESH_LABOUR_LIST',
 }
 
 function mainListReducer(reStages, action) {
@@ -48,6 +49,21 @@ function mainListReducer(reStages, action) {
 
       return stageTask
 
+    case ACTIONS.REFRESH_LABOUR_LIST:
+      stageTask = [...reStages]
+      stageTask.forEach(stage => {
+        if (stage.name === 'Labour') {
+          stage.tasks.forEach(task => {
+            if(task.task === 'Labour'){
+            const newAmount = action.payload.sumCost
+            task.budgetamount = newAmount
+            task.subcontractedamount = newAmount
+            }
+          })
+        }
+      })
+      console.log('refreshed stageTask: ', stageTask)
+      return stageTask
 
     case ACTIONS.CREATE_STAGE:
       stageTask = [...reStages]
@@ -81,7 +97,7 @@ function mainListReducer(reStages, action) {
     // Change task details
     case ACTIONS.CHANGE_STATUS:
       stageTask = [...reStages]
-
+    console.log('CHANGING STATUS action: ', action)
       const deleteTask =  stageTask.map(stage => {
         // console.log('action.payload.task', action.payload.task)
         // console.log('stage.tasks', stage.tasks)
@@ -97,17 +113,7 @@ function mainListReducer(reStages, action) {
       // console.log('deleteTask', deleteTask) 
       // const newTaskArr = action.payload.task
       newTask = {
-        ...action.payload.task,
-        // ...action.payload.taskDetails.map(singleItem => {return singleItem})
-        subcontractor: action.payload.subcontractor,
-        details: action.payload.details,
-        subcontractedamount: action.payload.subcontractedamount,
-        calculatedamount: action.payload.calculatedamount,
-        status: action.payload.status,
-        quoteEstimateOrProvision: action.payload.quoteEstimateOrProvision
-        // ...action.payload.task,
-        //status: action.payload.task.status,
-        //calculatedamount: action.payload.task.calculatedamount
+        ...action.payload.task
       }
 
       console.log('new Task',newTask)
@@ -172,32 +178,38 @@ const TaskSectionData = ({label, value}) => {
   )
 }
 
-function TaskSection({task}) {
+function TaskSection({task, fee}) {
   return (
       <div className='TaskSection'>
-          <TaskSectionData label='Code' value={task.code}/>
+          <TaskSectionData label='Budget amount' value={numberWithCommas(task.budgetamount)}/>
           <TaskSectionData label='Details' value={task.details}/>
           <TaskSectionData label='Quote, Estimate or Provision' value={task.quoteEstimateOrProvision}/>
+          {task.customPercentage 
+            ? <TaskSectionData label='custom Fee %' value={numberWithCommas(task.customPercentage -1)}/>
+            : <TaskSectionData label='project Fee %' value={fee * 100}/>
+          }
           <TaskSectionData label='comment' value={task.comment}/>
       </div>
   )
 }
 
 // function TaskDetails({stageKey, index, task, dispatch}) {
-function TaskDetails({stageName, index, task, dispatch, switchUpdateMainlist}) {
+function TaskDetails({stageName, index, task, dispatch, switchUpdateMainlist, fee}) {
   const [expandTask, setExpandTask] = useState(false) 
-
+  const subcontractedamount = parseFloat(task.subcontractedamount)
   const handleExpandTask = ()=>{
       setExpandTask(!expandTask)
   }
   const taskName = task.task ? task.task : ' -'
   const subContractor = task.subcontractor ? task.subcontractor : " -"
-  const calculatedamount= task.calculatedamount ? numberWithCommas(parseFloat(task.calculatedamount)) : ' -'
+  const calculatedamount= parseFloat(task.customPercentage 
+                                            ? (subcontractedamount * task.customPercentage)
+                                            : subcontractedamount * (1 + fee))
   const status = task.status ? task.status : ' -'
   const claimed = calculateTaskClaimed(task) > 0 ? numberWithCommas(calculateTaskClaimed(task)) : '-'
-  const percentageComplete = (calculateTaskClaimed(task) / parseFloat(task.calculatedamount)) * 100
+  const percentageComplete = (calculateTaskClaimed(task) / calculatedamount) * 100
   const nextClaim = task.nextClaim ? parseFloat(task.nextClaim) : 0
-  const percentageClaimed = ( ( calculateTaskClaimed(task) + nextClaim ) / parseFloat(task.calculatedamount)) * 100
+  const percentageClaimed = ( ( calculateTaskClaimed(task) + nextClaim ) / calculatedamount) * 100
 
   return (
       <>
@@ -213,25 +225,25 @@ function TaskDetails({stageName, index, task, dispatch, switchUpdateMainlist}) {
             {switchUpdateMainlist && 
               <ClaimOnTask stageName={stageName} index={index} task={task} dispatch={dispatch}/>
             }
-            <span className=''>{claimed} / {calculatedamount}</span>
+            <span className=''>{claimed} / {numberWithCommas(calculatedamount)}</span>
           </div>
           
           
           
             {switchUpdateMainlist 
-              ? <UpdateTaskStatus stageName={stageName} index={index} task={task} dispatch={dispatch} />
+              ? <UpdateTaskStatus stageName={stageName} index={index} task={task} dispatch={dispatch} fee={fee}/>
               : <span className='mainlist-taskHeader-status'>{status} </span>
             }
               
       </div>
       <div>
-      {expandTask && <TaskSection task={task}/>}
+      {expandTask && <TaskSection task={task} fee={fee}/>}
       </div>
       </>
   )
 }
 
-function Tasks ({ stageName, stage, dispatch, switchUpdateMainlist }) { 
+function Tasks ({ stageName, stage, dispatch, switchUpdateMainlist, fee }) { 
 return(
   
     <div className='mainList-stageTasks'>
@@ -249,6 +261,7 @@ return(
                           task={task}
                           dispatch={dispatch}
                           switchUpdateMainlist={switchUpdateMainlist}
+                          fee={fee}
                           />
           )
       })}
@@ -257,7 +270,7 @@ return(
 }
 
 // function Stage({ stageKey, stage, dispatch }) {
-function Stage({ stage, dispatch, userRole, switchUpdateMainlist }) {
+function Stage({ stage, dispatch, userRole, switchUpdateMainlist, fee}) {
   const [expandStages, setCollapseStages] = useState(false)
   
   function handleExpand() { setCollapseStages(!expandStages)}
@@ -294,7 +307,11 @@ function Stage({ stage, dispatch, userRole, switchUpdateMainlist }) {
         </div>
       </div>
 
-      {expandStages && <Tasks stageName={stage.name} stage={stage.tasks} dispatch={dispatch} switchUpdateMainlist={switchUpdateMainlist} />}
+      {expandStages && <Tasks stageName={stage.name} 
+                              stage={stage.tasks} 
+                              dispatch={dispatch} 
+                              switchUpdateMainlist={switchUpdateMainlist} 
+                              fee={fee}/>}
       
     </div>
   )
@@ -310,11 +327,25 @@ export default function ProjectUpdateMainList({project, SetSwitchUpdateMainlist,
   const [reStages, dispatch] = useReducer(mainListReducer, stages)
   const { updateDocument, response } = useFirestore('projects')
 
+
+  const updateLabour = () => {
+    const labourListSums = sumLabourList(project)
+    const wrap = {
+      type: ACTIONS.REFRESH_LABOUR_LIST,
+      payload: labourListSums
+    }
+    dispatch(wrap)
+  }
+
   const handleSubmit = async(e) => {
     e.preventDefault()
+    updateLabour()
     const mainList = {
         mainList: reStages
     }
+
+    //UPDATE LABOUR
+
 
     console.log('UPDATING MAINLIST:', mainList)
     await updateDocument(project.id, mainList)
@@ -329,7 +360,8 @@ export default function ProjectUpdateMainList({project, SetSwitchUpdateMainlist,
     dispatch({ type: ACTIONS.RESET, payload: passMainlist})
     SetSwitchUpdateMainlist()
   }
-  
+  const fee = parseFloat(project.subContractFee)
+
   console.log("reStages", reStages)
   
   return (
@@ -338,7 +370,13 @@ export default function ProjectUpdateMainList({project, SetSwitchUpdateMainlist,
       <div className="update-mainlist">    
       { Object.entries(reStages).map( ([key, stage]) => {
         // console.log('stageKey',key)
-        return <Stage stage={stage} dispatch={dispatch} key={key} userRole={userRole} switchUpdateMainlist={switchUpdateMainlist}/>
+        return (<Stage stage={stage} 
+                      dispatch={dispatch} 
+                      key={key} 
+                      userRole={userRole} 
+                      switchUpdateMainlist={switchUpdateMainlist} 
+                      fee={fee}
+                      />)
       })}
       <AddStage stage={stages} dispatch={dispatch} />
       <CreateNewStage stage={stages} dispatch={dispatch} />

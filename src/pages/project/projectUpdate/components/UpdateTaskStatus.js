@@ -8,9 +8,10 @@ import Modal from "react-overlays/Modal"
 // styles
 import '../ProjectUpdate.css'
 import { FormInput } from '../../../create/Create'
+import { numberWithCommas } from '../../ProjectFinancialInfo'
 
 // export default function UpdateTaskStatus({stageKey, index, task, dispatch}) {
-export default function UpdateTaskStatus({stageName, index, task, dispatch}) {
+export default function UpdateTaskStatus({stageName, index, task, dispatch, fee}) {
   const [showModal, setShowModal] = useState(false)
   const [formError, setFormError] = useState(null)
 
@@ -19,7 +20,8 @@ export default function UpdateTaskStatus({stageName, index, task, dispatch}) {
   const [details, setDetails] = useState(task.details)
   const [subcontractor, setSubcontractor] = useState(task.subcontractor)
   const [subcontractedamount, setSubcontractedamount] = useState(task.subcontractedamount)
-  const [calculatedamount, setCalculatedamount] = useState(task.calculatedamount)
+  const [customPercentage, setCustomPercentage] = useState(task.customPercentage ? task.customPercentage : 0.0)
+  const [calculatedamount, setCalculatedamount] = useState(task.customPercentage ? task.customPercentage * subcontractedamount : fee * subcontractedamount)
   const [status, setStatus] = useState(task.status? task.status : "Open" )
   const [quoteEstimateOrProvision, setQuoteEstimateOrProvision] = useState(task.quoteEstimateOrProvision ? task.quoteEstimateOrProvision : "" )
   
@@ -34,38 +36,32 @@ export default function UpdateTaskStatus({stageName, index, task, dispatch}) {
     setFormError(null)
     handleClose()
 
-    // const taskDetails = [
-    //   { subcontractor: subcontractor },
-    //   { details: details},
-    //   { subcontractedamount: subcontractedamount},
-    //   { calculatedamount: calculatedamount},
-    //   { status: status},
-    //   { quoteEstimateOrProvision: quoteEstimateOrProvision},
-    // ]
-   
-    // task.subcontractor = subcontractor
-    // task.details = details
-    // task.subcontractedamount = subcontractedamount
-    // task.calculatedamount = calculatedamount
-    // task.status = status
-    // task.quoteEstimateOrProvision = quoteEstimateOrProvision
+    const updatedTask = {
+      ...task,
+      details: details,
+      subcontractor: subcontractor,
+      subcontractedamount: subcontractedamount,
+      customPercentage: customPercentage,
+      calculatedamount: calculatedamount,
+      status: status,
+      quoteEstimateOrProvision: quoteEstimateOrProvision,
+    }
+    if(parseFloat(customPercentage) === 0){ delete updatedTask.customPercentage }
 
     dispatch({ 
       type: ACTIONS.CHANGE_STATUS, 
       payload:{ stageName:stageName,
                 index:index,
-                task: task,
-                subcontractor: subcontractor,
-                details: details,
-                subcontractedamount: subcontractedamount,
-                calculatedamount: calculatedamount,
-                status: status,
-                quoteEstimateOrProvision: quoteEstimateOrProvision,
+                task: updatedTask, 
               }
     })
     //console.log('task', task);
     // updateTaskInDocument(id, stageKey, index, tempCulatedamount, tempStatus)
     // dispatch({ type: ACTIONS.CHANGE_STATUS, payload:{ task: task.task }})
+  }
+  function handleSubcontractedamount(value) {
+    setSubcontractedamount(value)
+    setCalculatedamount(task.customPercentage ? (100*task.customPercentage) * value : (1+fee) * value)
   }
 
   function handleDelete(e) {
@@ -115,10 +111,11 @@ export default function UpdateTaskStatus({stageName, index, task, dispatch}) {
                           onChange={setSubcontractor} />
               <FormInput label='Subcontracted Amount' 
                           value={subcontractedamount} 
-                          onChange={setSubcontractedamount} />
-              <FormInput label='Charge Amount' 
-                          value={calculatedamount} 
-                          onChange={setCalculatedamount} />
+                          onChange={handleSubcontractedamount} />
+              <div className='calculatedAmount'><span>calculated:</span><span>${ numberWithCommas(calculatedamount)}</span></div>
+              <FormInput label='custom Fee % multiplier' 
+                          value={customPercentage} 
+                          onChange={setCustomPercentage} />
               <FormInput label='Status' 
                           value={status} 
                           options={['open', 'closed']}
@@ -127,7 +124,6 @@ export default function UpdateTaskStatus({stageName, index, task, dispatch}) {
                           value={quoteEstimateOrProvision} 
                           options={[ 'estimate', 'quote', 'provision']}
                           onChange={ option => setQuoteEstimateOrProvision(option) } />
-              
               
             </div>
             
