@@ -68,6 +68,8 @@ let tempLabourList = [...reLabourList]
                 return {...stage}
             })
             // return reStages
+        case 'RESET':
+            return action.payload
 
         default:
             return reLabourList
@@ -76,9 +78,10 @@ let tempLabourList = [...reLabourList]
 
 export default function LabourList({ project, switchUpdateLabourList, setSwitchUpdateLabourList }) {
     //console.log('PROJECT: ', project, ' TEAM: ', team)
-    const [reLabourList, dispatchLabourList] = useReducer(labourListReducer, project.labourList)
+    const preserveLabourList = [...project.labourList]
+    const [reLabourList, dispatchLabourList] = useReducer(labourListReducer, preserveLabourList)
     const { updateDocument, response } = useFirestore('projects')
-    
+
     let missingRoles = []
     missingRoles = checkMinTeam(project.labourList, project.team)
 
@@ -96,7 +99,12 @@ export default function LabourList({ project, switchUpdateLabourList, setSwitchU
             setSwitchUpdateLabourList()
           }
       }
-      
+
+      const handleReset = () => {
+        dispatchLabourList({ type: 'RESET', payload: preserveLabourList})
+        setSwitchUpdateLabourList()
+        window.location.reload();
+      }
 
     return (
         <>
@@ -131,6 +139,7 @@ export default function LabourList({ project, switchUpdateLabourList, setSwitchU
                 ?
                 <>
                     <button  onClick={() => {handleSubmit()}} className="btn " id="btn_right">Save All Changes</button>
+                    <button onClick={handleReset} className="btn-cancel" id="btn_right">Discard Changes</button>
                 </>
                 : 
                 <button className='btn-white' onClick={setSwitchUpdateLabourList}>+ Update Labour List</button>  
