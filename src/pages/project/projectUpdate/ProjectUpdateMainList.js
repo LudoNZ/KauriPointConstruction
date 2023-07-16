@@ -280,7 +280,7 @@ function Stage({ stage, dispatch, userRole, switchUpdateMainlist, fee}) {
     dispatch({ type: ACTIONS.DELETE_STAGE, payload:{ stageName: stageName }})
   }
 
-  const stageFinancials = calculateStageProgress(stage)
+  const stageFinancials = calculateStageProgress(stage, fee)
   const stageCost = stageFinancials.totalCost
   const stageClaimed = stageFinancials.totalClaimed
   const stageProgress = (stageClaimed / stageCost) * 100
@@ -305,6 +305,10 @@ function Stage({ stage, dispatch, userRole, switchUpdateMainlist, fee}) {
             }
             
         </div>
+            <div className='mainlist-stageTotals'>
+              <span className='numerator'>${numberWithCommas(stageClaimed)}</span>
+              <span> / ${numberWithCommas(stageCost)}</span>
+            </div>
       </div>
 
       {expandStages && <Tasks stageName={stage.name} 

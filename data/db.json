@@ -1,429 +1,1762 @@
-{
-  "projects": [
-    {
-      "id": 1,
-      "name": "49 St Stephens Ave - Unit 14",
-      "startDate": "16/01/2023",
-      "GSTno": "133-514-384",
-      "clientName": "Stephen Katz",
-      "subContractFee": "0.1",
-      "address": {
-        "line1": "49 St Stephens ave",
-        "suburb": "Parnell",
-        "city": "Auckland"
-      },
-      "team": {
-        "1": {
-          "name": "Simon",
-          "role": "Foreman",
-          "rate": "70"
-        },
-        "2": {
-          "name": "Cameron",
-          "role": "Builder 1",
-          "rate": "65"
-        },
-        "3": {
-          "name": "Chaz",
-          "role": "Apprentice 1",
-          "rate": "45"
-        },
-        "4": {
-          "name": "Isaac",
-          "role": "Apprentice 2",
-          "rate": "40"
-        }
-      },
-      "mainList": {
-        "Preliminary and General": {
-          "1": {
-            "code": "A-300",
-            "task": "Hire Costs (Tools & Machinery)",
-            "details": "The provision of machinery, tools, consumables, plant hire and vehicles needed for the work",
-            "subcontractedamount": "200",
-            "calculatedamount": "220",
-            "subcontractor": "KPC",
-            "quote,estimateorprovision": "Provision",
-            "comments": "",
-            "budgetamount": "220",
-            "stilltoclaim": "0",
-            "complete": "1",
-            "status": "",
-            "comment": "",
-            "claims": {
-              "claim1": "120",
-              "claim3": "100"
-            }
-          },
-          "2": {
-            "code": "A-310",
-            "task": "Hire Costs (Mobile Scaffold) ",
-            "details": "Hireage for mobile scaffold and work platforms",
-            "subcontractedamount": "200",
-            "calculatedamount": "220",
-            "subcontractor": "KPC",
-            "quote,estimateorprovision": "Provision",
-            "comments": "",
-            "budgetamount": "220",
-            "stilltoclaim": "0",
-            "complete": "1",
-            "status": "",
-            "comment": "",
-            "claims": {
-              "claim1": "120",
-              "claim3": "100"
-            }
-          },
-          "3": {
-            "code": "A-360",
-            "task": "Port-a-loo",
-            "details": "On site toilet costs",
-            "subcontractedamount": "250",
-            "calculatedamount": "275",
-            "subcontractor": "Prestige",
-            "quote,estimateorprovision": "Estimate",
-            "comments": "",
-            "budgetamount": "275",
-            "stilltoclaim": "100",
-            "complete": "1",
-            "status": "Open",
-            "comment": "",
-            "claims": {
-              "claim1": "75",
-              "claim3": "100"
-            }
-          }
-        },
-        "Plumbing & Drainage": {
-          "4": {
-            "code": "J-110",
-            "task": "Plumbing General",
-            "details": "Sub contractor for all first and Second fix plumbing systems ",
-            "subcontractedamount": "3043.76",
-            "calculatedamount": "3256.8232",
-            "subcontractor": "Pinnacle Plumbing",
-            "quote,estimateorprovision": "Quote",
-            "comments": "As per provided quote 23/01/23",
-            "budgetamount": "3256.8232",
-            "stilltoclaim": "256.8232",
-            "complete": "1",
-            "status": "Open",
-            "comment": "",
-            "claims": {
-              "claim2": "3000"
-            }
-          }
-        },
-        "Materials": {
-          "5": {
-            "code": " ",
-            "task": "Total Materials before Variation",
-            "details": " ",
-            "subcontractedamount": "4246.19",
-            "calculatedamount": "4670.809",
-            "subcontractor": "KPC",
-            "quote,estimateorprovision": "Estimate",
-            "comments": "",
-            "budgetamount": "4670.809",
-            "stilltoclaim": "2670.809",
-            "complete": "1",
-            "status": "Open",
-            "comment": "",
-            "claims": {
-              "claim1": "0",
-              "claim2": "1000",
-              "claim3": "1000"
-            }
-          },
-          "6": {
-            "code": "V-300",
-            "task": "Variation 1  ",
-            "details": " ",
-            "subcontractedamount": "0",
-            "calculatedamount": "0",
-            "subcontractor": "",
-            "quote,estimateorprovision": "",
-            "comments": "",
-            "budgetamount": "0",
-            "stilltoclaim": "0",
-            "complete": "0",
-            "status": "Closed",
-            "comment": "",
-            "claims": {
-              "claim1": "0"
-            }
-          },
-          "7": {
-            "code": "V-301",
-            "task": "Variation 2",
-            "details": " ",
-            "subcontractedamount": "0",
-            "calculatedamount": "0",
-            "subcontractor": "",
-            "quote,estimateorprovision": "",
-            "comments": "",
-            "budgetamount": "0",
-            "stilltoclaim": "0",
-            "complete": "0",
-            "status": "Closed",
-            "comment": "",
-            "claims": {
-              "claim1": "0"
-            }
-          }
-        },
-        "Labour": {
-          "8": {
-            "code": "W-100",
-            "task": "Labour",
-            "details": "Labour total",
-            "subcontractedamount": "",
-            "calculatedamount": "16696.25",
-            "subcontractor": "KPC",
-            "quote,estimateorprovision": "Estimate",
-            "comments": "",
-            "budgetamount": "16696.25",
-            "stilltoclaim": "4696.25",
-            "complete": "0.718724264430636",
-            "status": "Open",
-            "comment": "",
-            "claims": {
-              "claim1": "3000",
-              "claim2": "3000",
-              "claim3": "3000",
-              "claim4": "3000",
-              "claim5": "0"
-            }
-          },
-          "9": {
-            "code": "W-150",
-            "task": "Variation 1  ",
-            "details": "Labour total",
-            "subcontractedamount": "",
-            "calculatedamount": "0",
-            "subcontractor": "KPC",
-            "quote,estimateorprovision": "",
-            "comments": "",
-            "budgetamount": "0",
-            "stilltoclaim": "0",
-            "complete": "0",
-            "status": "Closed",
-            "comment": "",
-            "claims": {
-              "claim1": "0",
-              "claim2": "0",
-              "claim3": "0",
-              "claim4": "0",
-              "claim5": "0"
-            }
-          },
-          "10": {
-            "code": "W-151",
-            "task": "Variation 2",
-            "details": "Labour total",
-            "subcontractedamount": "",
-            "calculatedamount": "0",
-            "subcontractor": "KPC",
-            "quote,estimateorprovision": "",
-            "comments": "",
-            "budgetamount": "0",
-            "stilltoclaim": "0",
-            "complete": "0",
-            "status": "Closed",
-            "comment": "",
-            "claims": {
-              "claim1": "0",
-              "claim2": "0",
-              "claim3": "0",
-              "claim4": "0",
-              "claim5": "0"
-            }
-          }
-        }
-      },
-      "labourList": {
-        "GENERAL": {
-          "1": {
-            "name": "SITE SET UP & SAFETY",
-            "hoursPredicted": {
-              "Foreman": "0.5",
-              "Builder 1": "",
-              "Apprentice 1": "",
-              "Apprentice 2": "0.5"
-            }
-          },
-          "2": {
-            "name": "DEMOLITION / SALVAGE WORKS",
-            "hoursPredicted": {
-              "Foreman": "2",
-              "Builder 1": "",
-              "Apprentice 1": "",
-              "Apprentice 2": "2"
-            }
-          },
-          "3": {
-            "name": "PROFILE AND SETOUT ",
-            "hoursPredicted": {
-              "Foreman": "0.5",
-              "Builder 1": "",
-              "Apprentice 1": "",
-              "Apprentice 2": "0.5"
-            }
-          }
-        },
-        "1ST FIX CARPENTRY WORKS START": {
-          "4": {
-            "name": "GENERAL FRAMING                                 ",
-            "hoursPredicted": {
-              "Foreman": "2",
-              "Builder 1": "",
-              "Apprentice 1": " ",
-              "Apprentice 2": "2"
-            }
-          },
-          "5": {
-            "name": "INSTALL 18MM COMPRESSED SHEET TO F/F BATHROOM FLOORS",
-            "hoursPredicted": {
-              "Foreman": "0.5",
-              "Builder 1": "",
-              "Apprentice 1": "",
-              "Apprentice 2": "0.5"
-            }
-          },
-          "6": {
-            "name": "STRAPPING BLOCK WALLS",
-            "hoursPredicted": {
-              "Foreman": "1",
-              "Builder 1": "",
-              "Apprentice 1": "",
-              "Apprentice 2": "1"
-            }
-          },
-          "7": {
-            "name": "REMOVE WINDOW AND REPLACE WITH PLY",
-            "hoursPredicted": {
-              "Foreman": "0.5",
-              "Builder 1": " ",
-              "Apprentice 1": " ",
-              "Apprentice 2": " "
-            }
-          },
-          "8": {
-            "name": "INSULATE WALLS",
-            "hoursPredicted": {
-              "Foreman": "0.5",
-              "Builder 1": "",
-              "Apprentice 1": "",
-              "Apprentice 2": "0.5"
-            }
-          },
-          "9": {
-            "name": "BUZZ & STRAIGHTEN INTERNAL WALLS ",
-            "hoursPredicted": {
-              "Foreman": "1",
-              "Builder 1": "",
-              "Apprentice 1": "",
-              "Apprentice 2": "1"
-            }
-          },
-          "10": {
-            "name": "INSTALL SLIDERS AND DOORS",
-            "hoursPredicted": {
-              "Foreman": "1",
-              "Builder 1": "",
-              "Apprentice 1": "",
-              "Apprentice 2": "1"
-            }
-          },
-          "11": {
-            "name": "INSTALL GIB",
-            "hoursPredicted": {
-              "Foreman": "1.5",
-              "Builder 1": "",
-              "Apprentice 1": "",
-              "Apprentice 2": "1.5"
-            }
-          }
-        },
-        "2ND FIX CARPENTRY WORKS START": {
-          "12": {
-            "name": "FINISHING LINES & DETAILING",
-            "hoursPredicted": {
-              "Foreman": "2.5",
-              "Builder 1": " ",
-              "Apprentice 1": " ",
-              "Apprentice 2": "2.5"
-            }
-          },
-          "13": {
-            "name": "INSTALL BATHROOM FIXTURES",
-            "hoursPredicted": {
-              "Foreman": "0.25",
-              "Builder 1": "",
-              "Apprentice 1": "",
-              "Apprentice 2": "0.25"
-            }
-          },
-          "14": {
-            "name": "INSTALL DOOR HARDWARE",
-            "hoursPredicted": {
-              "Foreman": "1",
-              "Builder 1": "",
-              "Apprentice 1": "",
-              "Apprentice 2": "1"
-            }
-          }
-        },
-        "MISC. WORKS": {
-          "15": {
-            "name": "ADJUSTMENTS TO INTERIOR DOORS",
-            "hoursPredicted": {
-              "Foreman": "0.25",
-              "Builder 1": "",
-              "Apprentice 1": "",
-              "Apprentice 2": "0.25"
-            }
-          },
-          "16": {
-            "name": "INSTALL PRIVACY FILM",
-            "hoursPredicted": {
-              "Foreman": "0.25",
-              "Builder 1": "",
-              "Apprentice 1": "",
-              "Apprentice 2": ""
-            }
-          },
-          "17": {
-            "name": "FINAL SITE CLEAN",
-            "hoursPredicted": {
-              "Foreman": "0.5",
-              "Builder 1": "",
-              "Apprentice 1": "",
-              "Apprentice 2": "0.5"
-            }
-          },
-          "18": {
-            "name": "DELIVERIES, UNLOADING, MOVING & STACKING MATERIALS AROUND SITE",
-            "hoursPredicted": {
-              "Foreman": "0.5",
-              "Builder 1": "",
-              "Apprentice 1": "",
-              "Apprentice 2": "0.5"
-            }
-          }
-        }
-      }
+[
+  {
+  "name":"Bannerman Road",
+  "startDate":"16/02/2023",
+  "GSTno":"133-514-384",
+  "clientName":"Brad & Renai Hagstrom",
+  "subContractFee":"0.2",
+  "address":{
+  "line1":"46 Bannerman rd",
+  "suburb":"Western Springs ",
+  "city":"Auckland"
+  },
+  "team":{
+  "1":{
+  "name":"Simon",
+  "role":"Foreman",
+  "rate":"70"
+  },
+  "2":{
+  "name":"Troy",
+  "role":"Builder 1",
+  "rate":"70"
+  },
+  "3":{
+  "name":"Cam",
+  "role":"Builder 2",
+  "rate":"70"
+  },
+  "4":{
+  "name":"Isaac",
+  "role":"Apprentice 1",
+  "rate":"40"
+  }
+  },
+  "mainList":{
+  "1":{
+  "Preliminary and General":{
+  "1":{
+  "code":"A-130",
+  "task":"Programme",
+  "details":"Preparing and Updating the programme",
+  "subcontractedamount":"140",
+  "calculatedamount":"168",
+  "subcontractor":"KPC",
+  "quoteestimateorprovision":"Quote",
+  "comments":"",
+  "budgetamount":"168",
+  "stilltoclaim":"14",
+  "complete":"0.916666666666667",
+  "status":"Open",
+  "comment":"",
+  "claims":{
+  "4":"154"
+  }
+  },
+  "2":{
+  "code":"A-140",
+  "task":"Insurances",
+  "details":"Contract works and public liability",
+  "subcontractedamount":"400",
+  "calculatedamount":"480",
+  "subcontractor":"KPC",
+  "quoteestimateorprovision":"Quote",
+  "comments":"",
+  "budgetamount":"440",
+  "stilltoclaim":"0",
+  "complete":"1",
+  "status":"Open",
+  "comment":"",
+  "claims":{
+  "4":"110",
+  "9":"330"
+  }
+  },
+  "3":{
+  "code":"A-190",
+  "task":"Surveying",
+  "details":"Setting out the work to the correct lines and levels, with progressive checking for accuracy",
+  "subcontractedamount":"2000",
+  "calculatedamount":"2400",
+  "subcontractor":"Fluker Surveyors",
+  "quoteestimateorprovision":"Estimate",
+  "comments":"",
+  "budgetamount":"2400",
+  "stilltoclaim":"490.4",
+  "complete":"0.795666666666667",
+  "status":"Open",
+  "comment":"",
+  "claims":{
+  "1":"1045",
+  "2":"864.6"
+  }
+  },
+  "4":{
+  "code":"A-230",
+  "task":"Signage",
+  "details":"On site signage requirments",
+  "subcontractedamount":"120",
+  "calculatedamount":"144",
+  "subcontractor":"KPC",
+  "quoteestimateorprovision":"Quote",
+  "comments":"",
+  "budgetamount":"144",
+  "stilltoclaim":"144",
+  "complete":"0",
+  "status":"Open",
+  "comment":"",
+  "claims":{
+  
+  }
+  },
+  "5":{
+  "code":"A-240",
+  "task":"Health and Safety",
+  "details":"Protective clothing and equipment, General management of health and safety, First aid and site treatment facilities",
+  "subcontractedamount":"300",
+  "calculatedamount":"360",
+  "subcontractor":"KPC",
+  "quoteestimateorprovision":"Quote",
+  "comments":"",
+  "budgetamount":"360",
+  "stilltoclaim":"30",
+  "complete":"0.916666666666667",
+  "status":"Open",
+  "comment":"",
+  "claims":{
+  "1":"170.5",
+  "8":"159.5"
+  }
+  },
+  "6":{
+  "code":"A-260",
+  "task":"Delivery Fees",
+  "details":"Costs for delivery or courier of products and materials",
+  "subcontractedamount":"576",
+  "calculatedamount":"691.2",
+  "subcontractor":"KPC",
+  "quoteestimateorprovision":"Provision",
+  "comments":"",
+  "budgetamount":"691.2",
+  "stilltoclaim":"-292.11",
+  "complete":"1.42261284722222",
+  "status":"Open",
+  "comment":"",
+  "claims":{
+  "3":"258.5",
+  "5":"316.8",
+  "6":"144",
+  "7":"158.41",
+  "9":"105.6"
+  }
+  },
+  "7":{
+  "code":"A-280",
+  "task":"Crane/ HIAB hire",
+  "details":"Allowance of machine lifting",
+  "subcontractedamount":"500",
+  "calculatedamount":"600",
+  "subcontractor":"KPC",
+  "quoteestimateorprovision":"Provision",
+  "comments":"",
+  "budgetamount":"600",
+  "stilltoclaim":"441.6",
+  "complete":"0.264",
+  "status":"Open",
+  "comment":"",
+  "claims":{
+  "8":"158.4"
+  }
+  },
+  "8":{
+  "code":"A-310",
+  "task":"Onsite and Offsite Storage",
+  "details":"Hireage for 20ft shipping container and site lock ups",
+  "subcontractedamount":"195",
+  "calculatedamount":"234",
+  "subcontractor":"KPC",
+  "quoteestimateorprovision":"Quote",
+  "comments":"",
+  "budgetamount":"234",
+  "stilltoclaim":"19.5",
+  "complete":"0.916666666666667",
+  "status":"Open",
+  "comment":"",
+  "claims":{
+  "9":"214.5"
+  }
+  },
+  "9":{
+  "code":"A-350",
+  "task":"Rubbish Removal",
+  "details":"Rubbish and waste handling on and off site, provision of facilities for storage, sorting, transport, recycling and disposal",
+  "subcontractedamount":"2000",
+  "calculatedamount":"2400",
+  "subcontractor":"KPC",
+  "quoteestimateorprovision":"Estimate",
+  "comments":"",
+  "budgetamount":"2400",
+  "stilltoclaim":"1189.58",
+  "complete":"0.504341666666667",
+  "status":"Open",
+  "comment":"",
+  "claims":{
+  "1":"143",
+  "4":"341",
+  "5":"427.67",
+  "9":"639.75"
+  }
+  },
+  "10":{
+  "code":"A-360",
+  "task":"Port-a-loo",
+  "details":"On site toilet costs",
+  "subcontractedamount":"750",
+  "calculatedamount":"900",
+  "subcontractor":"KPC",
+  "quoteestimateorprovision":"Estimate",
+  "comments":"",
+  "budgetamount":"900",
+  "stilltoclaim":"165.65",
+  "complete":"0.815944444444444",
+  "status":"Open",
+  "comment":"",
+  "claims":{
+  "1":"85.55",
+  "4":"199.63",
+  "8":"199.63",
+  "10":"249.54"
+  }
+  },
+  "11":{
+  "code":"A-370",
+  "task":"Subscriptions",
+  "details":"Subscriptions, Project management tools, Forman phone/ipad",
+  "subcontractedamount":"200",
+  "calculatedamount":"240",
+  "subcontractor":"KPC",
+  "quoteestimateorprovision":"Quote",
+  "comments":"",
+  "budgetamount":"240",
+  "stilltoclaim":"20",
+  "complete":"0.916666666666667",
+  "status":"Open",
+  "comment":"",
+  "claims":{
+  "4":"110",
+  "8":"220"
+  }
+  },
+  "12":{
+  "code":"A-380",
+  "task":"Office Consumables/Printing",
+  "details":"Stationary, office + Ammenities consumables as required",
+  "subcontractedamount":"240",
+  "calculatedamount":"288",
+  "subcontractor":"KPC",
+  "quoteestimateorprovision":"Estimate",
+  "comments":"",
+  "budgetamount":"288",
+  "stilltoclaim":"156",
+  "complete":"0.458333333333333",
+  "status":"Open",
+  "comment":"",
+  "claims":{
+  "5":"132"
+  }
+  }
+  }
+  },
+  "2":{
+  "Equipment & Machinery":{
+  "13":{
+  "code":"AA-100",
+  "task":"Mobile Scaffold - 4.6x1.4x0.6",
+  "details":"Hireage cost for equipment or machinery",
+  "subcontractedamount":"1600",
+  "calculatedamount":"1920",
+  "subcontractor":"KPC",
+  "quoteestimateorprovision":"Estimate",
+  "comments":"",
+  "budgetamount":"1920",
+  "stilltoclaim":"1700",
+  "complete":"0.114583333333333",
+  "status":"Open",
+  "comment":"",
+  "claims":{
+  "4":"220",
+  "5":"220"
+  }
+  },
+  "14":{
+  "code":"AA-110",
+  "task":"Work Bench",
+  "details":"Hireage cost for equipment or machinery",
+  "subcontractedamount":"400",
+  "calculatedamount":"480",
+  "subcontractor":"KPC",
+  "quoteestimateorprovision":"Estimate",
+  "comments":"",
+  "budgetamount":"480",
+  "stilltoclaim":"260",
+  "complete":"0.458333333333333",
+  "status":"Open",
+  "comment":"",
+  "claims":{
+  "8":"220"
+  }
+  },
+  "15":{
+  "code":"AA-120",
+  "task":"5m Alumium Plank",
+  "details":"Hireage cost for equipment or machinery",
+  "subcontractedamount":"400",
+  "calculatedamount":"480",
+  "subcontractor":"KPC",
+  "quoteestimateorprovision":"Estimate",
+  "comments":"",
+  "budgetamount":"480",
+  "stilltoclaim":"480",
+  "complete":"0",
+  "status":"Open",
+  "comment":"",
+  "claims":{
+  
+  }
+  },
+  "16":{
+  "code":"AA-140",
+  "task":"Submersible Pump",
+  "details":"Hireage cost for equipment or machinery",
+  "subcontractedamount":"200",
+  "calculatedamount":"240",
+  "subcontractor":"KPC",
+  "quoteestimateorprovision":"Provision",
+  "comments":"",
+  "budgetamount":"240",
+  "stilltoclaim":"240",
+  "complete":"0",
+  "status":"Open",
+  "comment":"",
+  "claims":{
+  
+  }
+  },
+  "17":{
+  "code":"AA-160",
+  "task":"Site Shelter",
+  "details":"Hireage cost for equipment or machinery",
+  "subcontractedamount":"400",
+  "calculatedamount":"480",
+  "subcontractor":"KPC",
+  "quoteestimateorprovision":"Estimate",
+  "comments":"",
+  "budgetamount":"480",
+  "stilltoclaim":"480",
+  "complete":"0",
+  "status":"Open",
+  "comment":"",
+  "claims":{
+  
+  }
+  },
+  "18":{
+  "code":"AA-170",
+  "task":"Dehumidifier",
+  "details":"Hireage cost for equipment or machinery",
+  "subcontractedamount":"",
+  "calculatedamount":"0",
+  "subcontractor":"KPC",
+  "quoteestimateorprovision":"",
+  "comments":"",
+  "budgetamount":"0",
+  "stilltoclaim":"0",
+  "complete":"0",
+  "status":"Closed",
+  "comment":"",
+  "claims":{
+  "7":"344.38"
+  }
+  },
+  "19":{
+  "code":"AA-180",
+  "task":"Concrete Breaker",
+  "details":"Hireage cost for equipment or machinery",
+  "subcontractedamount":"120",
+  "calculatedamount":"144",
+  "subcontractor":"KPC",
+  "quoteestimateorprovision":"Estimate",
+  "comments":"",
+  "budgetamount":"144",
+  "stilltoclaim":"12",
+  "complete":"0.916666666666667",
+  "status":"Open",
+  "comment":"",
+  "claims":{
+  "2":"66",
+  "4":"66",
+  "7":"66"
+  }
+  },
+  "20":{
+  "code":"AA-190",
+  "task":"Plate Compactor",
+  "details":"Hireage cost for equipment or machinery",
+  "subcontractedamount":"200",
+  "calculatedamount":"240",
+  "subcontractor":"KPC",
+  "quoteestimateorprovision":"Estimate",
+  "comments":"",
+  "budgetamount":"240",
+  "stilltoclaim":"130",
+  "complete":"0.458333333333333",
+  "status":"Open",
+  "comment":"",
+  "claims":{
+  "2":"110"
+  }
+  }
+  }
+  },
+  "3":{
+  "Site Works":{
+  "21":{
+  "code":"B-180",
+  "task":"Tree and Vegetation removal",
+  "details":"Clearing and disposing of green waste",
+  "subcontractedamount":"600",
+  "calculatedamount":"720",
+  "subcontractor":"Reform Earthworks",
+  "quoteestimateorprovision":"Estimate",
+  "comments":"",
+  "budgetamount":"720",
+  "stilltoclaim":"60",
+  "complete":"0.916666666666667",
+  "status":"Closed",
+  "comment":"",
+  "claims":{
+  "2":"660"
+  }
+  },
+  "22":{
+  "code":"B-190",
+  "task":"Temporary Roading/ Site Access",
+  "details":"Costs associated with putting in a temporary metal road or similar",
+  "subcontractedamount":"",
+  "calculatedamount":"0",
+  "subcontractor":"",
+  "quoteestimateorprovision":"",
+  "comments":"",
+  "budgetamount":"0",
+  "stilltoclaim":"0",
+  "complete":"0",
+  "status":"Closed",
+  "comment":"",
+  "claims":{
+  
+  }
+  },
+  "23":{
+  "code":"B-200",
+  "task":"Excavation",
+  "details":"Excavating to required levels",
+  "subcontractedamount":"0",
+  "calculatedamount":"0",
+  "subcontractor":"Narrellan Pools",
+  "quoteestimateorprovision":" ",
+  "comments":"",
+  "budgetamount":"0",
+  "stilltoclaim":"-1814.99",
+  "complete":"0",
+  "status":"Closed",
+  "comment":"",
+  "claims":{
+  "2":"1814.99"
+  }
+  },
+  "24":{
+  "code":"B-210",
+  "task":"Trenching Services",
+  "details":"Excavating service trenches and haunching with fines",
+  "subcontractedamount":"1000",
+  "calculatedamount":"1200",
+  "subcontractor":"Reform Earthworks",
+  "quoteestimateorprovision":"Estimate",
+  "comments":"",
+  "budgetamount":"1200",
+  "stilltoclaim":"100",
+  "complete":"0",
+  "status":"Closed",
+  "comment":"",
+  "claims":{
+  "2":"1100"
+  }
+  },
+  "25":{
+  "code":"B-260",
+  "task":"Truck Hire",
+  "details":"Hired vehicle for moving fill not associated with main excavation",
+  "subcontractedamount":"600",
+  "calculatedamount":"720",
+  "subcontractor":"Reform Earthworks",
+  "quoteestimateorprovision":"Provision",
+  "comments":"",
+  "budgetamount":"720",
+  "stilltoclaim":"60",
+  "complete":"0.916666666666667",
+  "status":"Closed",
+  "comment":"",
+  "claims":{
+  "2":"660"
+  }
+  },
+  "26":{
+  "code":"B-350",
+  "task":"Timber Retaining Walls ",
+  "details":"Constructing timber retaining walls",
+  "subcontractedamount":"",
+  "calculatedamount":"0",
+  "subcontractor":"Reform Earthworks",
+  "quoteestimateorprovision":"Variation",
+  "comments":"For removal of clay spoil from retaining wall post holes",
+  "budgetamount":"0",
+  "stilltoclaim":"-440",
+  "complete":"0",
+  "status":"Closed",
+  "comment":"",
+  "claims":{
+  "4":"440"
+  }
+  }
+  }
+  },
+  "4":{
+  "Concrete Works":{
+  "27":{
+  "code":"C-150",
+  "task":"Blocklaying",
+  "details":"Cost of block laying sub-contractor",
+  "subcontractedamount":"11663",
+  "calculatedamount":"13995.6",
+  "subcontractor":"West Auckland Brick & Block",
+  "quoteestimateorprovision":"Quote",
+  "comments":"",
+  "budgetamount":"13995.6",
+  "stilltoclaim":"44.1",
+  "complete":"0.996849009688759",
+  "status":"Open",
+  "comment":"",
+  "claims":{
+  "4":"13951.5"
+  }
+  },
+  "28":{
+  "code":"C-210",
+  "task":"Concrete Supply, Place and Finish",
+  "details":"Placement and finishing - Sub contractor",
+  "subcontractedamount":"5986.15",
+  "calculatedamount":"7183.38",
+  "subcontractor":"West End Concrete",
+  "quoteestimateorprovision":"Quote",
+  "comments":"",
+  "budgetamount":"7183.38",
+  "stilltoclaim":"149.63",
+  "complete":"0.979169972909689",
+  "status":"Open",
+  "comment":"",
+  "claims":{
+  "3":"6584.77",
+  "9":"448.98"
+  }
+  },
+  "29":{
+  "code":"C-230",
+  "task":"Concrete Cutting",
+  "details":"Expansion cuts, demolition cuts",
+  "subcontractedamount":"",
+  "calculatedamount":"0",
+  "subcontractor":"",
+  "quoteestimateorprovision":"",
+  "comments":"",
+  "budgetamount":"0",
+  "stilltoclaim":"-443.2",
+  "complete":"0",
+  "status":"Closed",
+  "comment":"",
+  "claims":{
+  "2":"443.2"
+  }
+  }
+  }
+  },
+  "5":{
+  "Waterproofing":{
+  "30":{
+  "code":"D-120",
+  "task":"TPO ",
+  "details":"TPO supply and install",
+  "subcontractedamount":"12690",
+  "calculatedamount":"15228",
+  "subcontractor":"Masterproof",
+  "quoteestimateorprovision":"",
+  "comments":"",
+  "budgetamount":"15228",
+  "stilltoclaim":"2193",
+  "complete":"0.855988967691095",
+  "status":"Open",
+  "comment":"",
+  "claims":{
+  "5":"13035"
+  }
+  },
+  "31":{
+  "code":"D-130",
+  "task":"Mulseal",
+  "details":"Supply and install of mulseal/ black seal or similar",
+  "subcontractedamount":"250",
+  "calculatedamount":"300",
+  "subcontractor":"KPC",
+  "quoteestimateorprovision":"Provision",
+  "comments":"",
+  "budgetamount":"300",
+  "stilltoclaim":"190.9",
+  "complete":"0.363666666666667",
+  "status":"Open",
+  "comment":"",
+  "claims":{
+  "2":"109.1"
+  }
+  },
+  "32":{
+  "code":"D-140",
+  "task":"Mapelastic smart",
+  "details":"Supply and install of mapelastic smart waterproofing system",
+  "subcontractedamount":"432",
+  "calculatedamount":"518.4",
+  "subcontractor":"KPC",
+  "quoteestimateorprovision":"Provision",
+  "comments":"",
+  "budgetamount":"518.4",
+  "stilltoclaim":"324.86",
+  "complete":"0.373341049382716",
+  "status":"Open",
+  "comment":"",
+  "claims":{
+  "3":"193.54"
+  }
+  }
+  }
+  },
+  "6":{
+  "Structural Steel & Flashings":{
+  "33":{
+  "code":"E-100",
+  "task":"Structural Steel Supply",
+  "details":"Fabrication, Supply of all structural steel ",
+  "subcontractedamount":"5000",
+  "calculatedamount":"6000",
+  "subcontractor":"Impact Steel",
+  "quoteestimateorprovision":"Estimate",
+  "comments":"",
+  "budgetamount":"6000",
+  "stilltoclaim":"995",
+  "complete":"0.834166666666667",
+  "status":"Open",
+  "comment":"",
+  "claims":{
+  "3":"5005"
+  }
+  },
+  "34":{
+  "code":"E-119",
+  "task":"Custom Roof Flashing",
+  "details":"Supply and install of custom roof flashings",
+  "subcontractedamount":"",
+  "calculatedamount":"0",
+  "subcontractor":"Custom Flashings",
+  "quoteestimateorprovision":"Estimate",
+  "comments":"",
+  "budgetamount":"0",
+  "stilltoclaim":"0",
+  "complete":"0",
+  "status":"Closed",
+  "comment":"",
+  "claims":{
+  
+  }
+  },
+  "35":{
+  "code":"E-160",
+  "task":"Rainheads",
+  "details":"Custom Rain heads",
+  "subcontractedamount":"400",
+  "calculatedamount":"480",
+  "subcontractor":"Impact Steel",
+  "quoteestimateorprovision":"Estimate",
+  "comments":"",
+  "budgetamount":"480",
+  "stilltoclaim":"480",
+  "complete":"0",
+  "status":"Open",
+  "comment":"",
+  "claims":{
+  
+  }
+  },
+  "36":{
+  "code":"E-180",
+  "task":"Powder Coating",
+  "details":"Transport and powder coating cost",
+  "subcontractedamount":"2000",
+  "calculatedamount":"2400",
+  "subcontractor":"Impact Steel",
+  "quoteestimateorprovision":"Estimate",
+  "comments":"",
+  "budgetamount":"2400",
+  "stilltoclaim":"2400",
+  "complete":"0",
+  "status":"Open",
+  "comment":"",
+  "claims":{
+  
+  }
+  }
+  }
+  },
+  "7":{
+  "Roofing":{
+  "37":{
+  "code":"F-120",
+  "task":"Downpipes",
+  "details":"Supply and installation of downpipes  system",
+  "subcontractedamount":"250",
+  "calculatedamount":"300",
+  "subcontractor":"KPC",
+  "quoteestimateorprovision":"Estimate",
+  "comments":"",
+  "budgetamount":"300",
+  "stilltoclaim":"300",
+  "complete":"0",
+  "status":"Open",
+  "comment":"",
+  "claims":{
+  
+  }
+  }
+  }
+  },
+  "8":{
+  "Windows & Doors":{
+  "38":{
+  "code":"H-110",
+  "task":"Aluminium Joinery Supply",
+  "details":"Supply of aluminium joinery system",
+  "subcontractedamount":"17847.5",
+  "calculatedamount":"19096.825",
+  "subcontractor":"Rylock",
+  "quoteestimateorprovision":"Quote",
+  "comments":"",
+  "budgetamount":"19096.825",
+  "stilltoclaim":"-2579.415",
+  "complete":"1.13507035855437",
+  "status":"Open",
+  "comment":"",
+  "claims":{
+  "3":"10838.12",
+  "7":"10838.12"
+  }
+  }
+  }
+  },
+  "9":{
+  "Plumbing & Drainage":{
+  "39":{
+  "code":"J-110",
+  "task":"Plumbing General",
+  "details":"Sub contractor for all first and Second fix plumbing systems ",
+  "subcontractedamount":"10378.62",
+  "calculatedamount":"11105.1234",
+  "subcontractor":"Pinnacle Plumbing",
+  "quoteestimateorprovision":"Quote",
+  "comments":"",
+  "budgetamount":"11105.1234",
+  "stilltoclaim":"8355.1234",
+  "complete":"0.247633448179423",
+  "status":"Open",
+  "comment":"",
+  "claims":{
+  "3":"2750"
+  }
+  },
+  "40":{
+  "code":"J-160",
+  "task":"Fittings and Accessories",
+  "details":"Selected fittings and accessories for plumbed areas",
+  "subcontractedamount":"3500",
+  "calculatedamount":"3745",
+  "subcontractor":"",
+  "quoteestimateorprovision":"Estimate",
+  "comments":"For Consideration",
+  "budgetamount":"3745",
+  "stilltoclaim":"3745",
+  "complete":"0",
+  "status":"Open",
+  "comment":"",
+  "claims":{
+  
+  }
+  },
+  "41":{
+  "code":"J-180",
+  "task":"Drainlaying",
+  "details":"Sub contractor for all first and Second fix Drainage systems",
+  "subcontractedamount":"6000",
+  "calculatedamount":"6420",
+  "subcontractor":"DrainCo",
+  "quoteestimateorprovision":"Estimate",
+  "comments":"Preliminary Cost - To Be Updated",
+  "budgetamount":"6420",
+  "stilltoclaim":"1316",
+  "complete":"0.795015576323988",
+  "status":"Open",
+  "comment":"",
+  "claims":{
+  "7":"5104"
+  }
+  }
+  }
+  },
+  "10":{
+  "Electrical & Mechanical ":{
+  "42":{
+  "code":"K-100",
+  "task":"Electrical ",
+  "details":"Sub contractor for all first and second fix electrical systems ",
+  "subcontractedamount":"10431.72",
+  "calculatedamount":"11161.9404",
+  "subcontractor":"Hoffmann Electrics",
+  "quoteestimateorprovision":"Quote",
+  "comments":"",
+  "budgetamount":"11161.9404",
+  "stilltoclaim":"1045.8904",
+  "complete":"0.906298514190239",
+  "status":"Open",
+  "comment":"",
+  "claims":{
+  "1":"190.8",
+  "5":"3863.53",
+  "8":"2530.01",
+  "10":"3531.71"
+  }
+  },
+  "43":{
+  "code":"K-210",
+  "task":"Under Floor Heating",
+  "details":"Sub contractor for all first and second fix Under Floor Heating systems ",
+  "subcontractedamount":"",
+  "calculatedamount":"0",
+  "subcontractor":"",
+  "quoteestimateorprovision":"",
+  "comments":"",
+  "budgetamount":"0",
+  "stilltoclaim":"0",
+  "complete":"0",
+  "status":"Closed",
+  "comment":"",
+  "claims":{
+  "9":"693"
+  }
+  }
+  }
+  },
+  "11":{
+  "Insulation & Interior Linings":{
+  "44":{
+  "code":"L-160",
+  "task":"Gib Stopping",
+  "details":"Sub contractor for gib stopping",
+  "subcontractedamount":"3207.6",
+  "calculatedamount":"3432.132",
+  "subcontractor":"Sevin Decorating",
+  "quoteestimateorprovision":"Quote",
+  "comments":"",
+  "budgetamount":"3432.132",
+  "stilltoclaim":"3432.132",
+  "complete":"0",
+  "status":"Open",
+  "comment":"",
+  "claims":{
+  
+  }
+  },
+  "45":{
+  "code":"L-200",
+  "task":"VIlla and Soffit Joint Stopping",
+  "details":"Subcontractor for stopping villa joints in tiled areas and soffit joints where required",
+  "subcontractedamount":"500",
+  "calculatedamount":"600",
+  "subcontractor":"Sevin Decorating",
+  "quoteestimateorprovision":"Estimate",
+  "comments":"",
+  "budgetamount":"600",
+  "stilltoclaim":"600",
+  "complete":"0",
+  "status":"Open",
+  "comment":"",
+  "claims":{
+  
+  }
+  }
+  }
+  },
+  "12":{
+  "Tiling":{
+  "46":{
+  "code":"P-110",
+  "task":"Waterproofing",
+  "details":"Supply and install waterproofing",
+  "subcontractedamount":"1500",
+  "calculatedamount":"1800",
+  "subcontractor":"Cando Tiling",
+  "quoteestimateorprovision":"Quote",
+  "comments":"",
+  "budgetamount":"1800",
+  "stilltoclaim":"1800",
+  "complete":"0",
+  "status":"Open",
+  "comment":"",
+  "claims":{
+  
+  }
+  },
+  "47":{
+  "code":"P-120",
+  "task":"Tile Supply",
+  "details":"Supply and delivery of selected tiles",
+  "subcontractedamount":"",
+  "calculatedamount":"0",
+  "subcontractor":"",
+  "quoteestimateorprovision":"",
+  "comments":"For Consideration",
+  "budgetamount":"0",
+  "stilltoclaim":"0",
+  "complete":"0",
+  "status":"Closed",
+  "comment":"",
+  "claims":{
+  
+  }
+  },
+  "48":{
+  "code":"P-130",
+  "task":"Tiling",
+  "details":"Sub-contractor for tiling, grout and silicone ",
+  "subcontractedamount":"2570",
+  "calculatedamount":"2749.9",
+  "subcontractor":"Cando Tiling",
+  "quoteestimateorprovision":"Quote",
+  "comments":"",
+  "budgetamount":"2749.9",
+  "stilltoclaim":"2749.9",
+  "complete":"0",
+  "status":"Open",
+  "comment":"",
+  "claims":{
+  
+  }
+  },
+  "49":{
+  "code":"P-140",
+  "task":"Silicone Joints ",
+  "details":"Provisional amount for specific silicone work",
+  "subcontractedamount":"100",
+  "calculatedamount":"120",
+  "subcontractor":"Cando Tiling",
+  "quoteestimateorprovision":"Quote",
+  "comments":"",
+  "budgetamount":"120",
+  "stilltoclaim":"120",
+  "complete":"0",
+  "status":"Open",
+  "comment":"",
+  "claims":{
+  
+  }
+  }
+  }
+  },
+  "13":{
+  "Flooring":{
+  "50":{
+  "code":"Q-100",
+  "task":"Timber flooring supply",
+  "details":"Supply and deliver timber floor boards",
+  "subcontractedamount":"",
+  "calculatedamount":"0",
+  "subcontractor":"",
+  "quoteestimateorprovision":"",
+  "comments":"",
+  "budgetamount":"0",
+  "stilltoclaim":"0",
+  "complete":"0",
+  "status":"Closed",
+  "comment":"",
+  "claims":{
+  
+  }
+  },
+  "51":{
+  "code":"Q-110",
+  "task":"Timber Flooring",
+  "details":"Sub contractor to install timber floor boards",
+  "subcontractedamount":"4000",
+  "calculatedamount":"4800",
+  "subcontractor":"Cando Flooring",
+  "quoteestimateorprovision":"Quote",
+  "comments":"",
+  "budgetamount":"4800",
+  "stilltoclaim":"832",
+  "complete":"0.826666666666667",
+  "status":"Open",
+  "comment":"",
+  "claims":{
+  "10":"3968"
+  }
+  },
+  "52":{
+  "code":"Q-130",
+  "task":"Grinding & Leveling ",
+  "details":"Provision for floor level prior to install",
+  "subcontractedamount":"1000",
+  "calculatedamount":"1200",
+  "subcontractor":"KPC",
+  "quoteestimateorprovision":"Provision",
+  "comments":"",
+  "budgetamount":"1200",
+  "stilltoclaim":"654.95",
+  "complete":"0.454208333333333",
+  "status":"Open",
+  "comment":"",
+  "claims":{
+  "10":"545.05"
+  }
+  },
+  "53":{
+  "code":"Q-150",
+  "task":"Carpet",
+  "details":"Supply and install of carpet and underlay including garage carpet",
+  "subcontractedamount":"",
+  "calculatedamount":"0",
+  "subcontractor":"",
+  "quoteestimateorprovision":"",
+  "comments":"",
+  "budgetamount":"0",
+  "stilltoclaim":"-1372.61",
+  "complete":"0",
+  "status":"Closed",
+  "comment":"",
+  "claims":{
+  "9":"1372.61"
+  }
+  }
+  }
+  },
+  "14":{
+  "Painting & Decorating":{
+  "54":{
+  "code":"R-110",
+  "task":"Interior Painting",
+  "details":"Sub contractor for all internal prep and painting ",
+  "subcontractedamount":"5394",
+  "calculatedamount":"5771.58",
+  "subcontractor":"Sevin Decorating",
+  "quoteestimateorprovision":"Quote",
+  "comments":"",
+  "budgetamount":"5771.58",
+  "stilltoclaim":"1340.74",
+  "complete":"0.767699659365373",
+  "status":"Open",
+  "comment":"",
+  "claims":{
+  "3":"2000",
+  "9":"2430.84"
+  }
+  },
+  "55":{
+  "code":"R-120",
+  "task":"Exterior Painting",
+  "details":"Sub contractor for all exterior prep and painting",
+  "subcontractedamount":"6918",
+  "calculatedamount":"7402.26",
+  "subcontractor":"Sevin Decorating",
+  "quoteestimateorprovision":"Quote",
+  "comments":"",
+  "budgetamount":"7402.26",
+  "stilltoclaim":"1849.95",
+  "complete":"0.750083082734192",
+  "status":"Open",
+  "comment":"",
+  "claims":{
+  "3":"3121.47",
+  "9":"2430.84"
+  }
+  },
+  "56":{
+  "code":"R-130",
+  "task":"Painting Touch-ups ",
+  "details":"Provision for touch-ups",
+  "subcontractedamount":"400",
+  "calculatedamount":"480",
+  "subcontractor":"Sevin Decorating",
+  "quoteestimateorprovision":"Provision",
+  "comments":"",
+  "budgetamount":"480",
+  "stilltoclaim":"480",
+  "complete":"0",
+  "status":"Open",
+  "comment":"",
+  "claims":{
+  
+  }
+  }
+  }
+  },
+  "15":{
+  "Glazing":{
+  "57":{
+  "code":"S-110",
+  "task":"Shower Glass",
+  "details":"Supply and install of shower glass",
+  "subcontractedamount":"1795.83",
+  "calculatedamount":"2154.996",
+  "subcontractor":"360 Glass",
+  "quoteestimateorprovision":"Quote",
+  "comments":"",
+  "budgetamount":"2154.996",
+  "stilltoclaim":"2154.996",
+  "complete":"0",
+  "status":"Open",
+  "comment":"",
+  "claims":{
+  
+  }
+  }
+  }
+  },
+  "16":{
+  "Materials":{
+  "58":{
+  "code":"V-230",
+  "task":"Doors and Hardware",
+  "details":"",
+  "subcontractedamount":"0",
+  "calculatedamount":"0",
+  "subcontractor":"",
+  "quoteestimateorprovision":"",
+  "comments":"",
+  "budgetamount":"0",
+  "stilltoclaim":"0",
+  "complete":"0",
+  "status":" ",
+  "comment":"",
+  "claims":{
+  "7":"363.47"
+  }
+  },
+  "59":{
+  "code":" ",
+  "task":"Total Materials before Variation",
+  "details":" As per Placemakers take-off + allowance for general wasteage and consumables",
+  "subcontractedamount":"33380",
+  "calculatedamount":"40056",
+  "subcontractor":"KPC",
+  "quoteestimateorprovision":"Estimate",
+  "comments":"",
+  "budgetamount":"40056",
+  "stilltoclaim":"344.76",
+  "complete":"0.991393049730378",
+  "status":"Open",
+  "comment":"",
+  "claims":{
+  "1":"1320.92",
+  "2":"5971.97",
+  "3":"6841.24",
+  "4":"2218.81",
+  "5":"12352.35",
+  "6":"6368.94",
+  "7":"448.24",
+  "8":"2718.48",
+  "9":"1454.43",
+  "10":"15.86"
+  }
+  },
+  "60":{
+  "code":"V-300",
+  "task":"Variation 1 - Retaining + Stairs",
+  "details":" ",
+  "subcontractedamount":"0",
+  "calculatedamount":"0",
+  "subcontractor":"",
+  "quoteestimateorprovision":"",
+  "comments":"",
+  "budgetamount":"0",
+  "stilltoclaim":"0",
+  "complete":"0",
+  "status":"Closed",
+  "comment":"",
+  "claims":{
+  "4":"799.45",
+  "5":"-16.2",
+  "7":"860.67",
+  "8":"3155.68"
+  }
+  },
+  "61":{
+  "code":"V-301",
+  "task":"Variation 2 - Pumphouse + Fence",
+  "details":" ",
+  "subcontractedamount":"0",
+  "calculatedamount":"0",
+  "subcontractor":"",
+  "quoteestimateorprovision":"",
+  "comments":"",
+  "budgetamount":"0",
+  "stilltoclaim":"0",
+  "complete":"0",
+  "status":"Closed",
+  "comment":"",
+  "claims":{
+  "1":"0",
+  "8":"511.94",
+  "9":"358.87",
+  "10":"612.16"
+  }
+  }
+  }
+  },
+  "17":{
+  "Labour":{
+  "62":{
+  "code":"W-100",
+  "task":"Labour",
+  "details":"Labour total as per provided Labour List",
+  "subcontractedamount":"",
+  "calculatedamount":"85690",
+  "subcontractor":"KPC",
+  "quoteestimateorprovision":"Estimate",
+  "comments":"",
+  "budgetamount":"85690",
+  "stilltoclaim":"4333.8",
+  "complete":"0.949424670323258",
+  "status":"Open",
+  "comment":"",
+  "claims":{
+  "1":"7670",
+  "2":"11580",
+  "3":"14552.5",
+  "4":"7667.5",
+  "5":"8282.5",
+  "6":"10213.7",
+  "7":"9642.5",
+  "8":"6945",
+  "9":"3857.5",
+  "10":"945"
+  }
+  },
+  "63":{
+  "code":"W-150",
+  "task":"Variation 1  - Retaining + Stairs",
+  "details":"Labour total",
+  "subcontractedamount":"",
+  "calculatedamount":"0",
+  "subcontractor":"KPC",
+  "quoteestimateorprovision":"",
+  "comments":"",
+  "budgetamount":"0",
+  "stilltoclaim":"0",
+  "complete":"0",
+  "status":"Closed",
+  "comment":"",
+  "claims":{
+  "1":"0",
+  "2":"0",
+  "3":"0",
+  "4":"2030",
+  "5":"0",
+  "6":"0",
+  "7":"2372.5",
+  "8":"1300"
+  }
+  },
+  "64":{
+  "code":"W-151",
+  "task":"Variation 2 - Pumphouse + Fence",
+  "details":"Labour total",
+  "subcontractedamount":"",
+  "calculatedamount":"0",
+  "subcontractor":"KPC",
+  "quoteestimateorprovision":"",
+  "comments":"",
+  "budgetamount":"0",
+  "stilltoclaim":"0",
+  "complete":"0",
+  "status":"Closed",
+  "comment":"",
+  "claims":{
+  "1":"0",
+  "2":"0",
+  "3":"0",
+  "4":"0",
+  "5":"0",
+  "8":"175",
+  "9":"1207.5",
+  "10":"1951.25"
+  }
+  }
+  }
+  }
+  },
+  "labourList":{
+    "1":{
+    "GENERAL":{
+    "1":{
+    "name":"PROJECT ADMIN./ MEETINGS/ ORDERING MATERIALS/ DRAWING DETAILS ETC..",
+    "hoursPredicted":{
+    "Foreman":"1"
+    }
     },
+    "2":{
+    "name":"WORK WITH & ATTENDANCE OF SUB-TRADES & SITE MANAGEMENT",
+    "hoursPredicted":{
+    "Foreman":"2"
+    }
+    },
+    "3":{
+    "name":"CHECK EXTERIOR JOINERY SHOP DRAWINGS",
+    "hoursPredicted":{
+    "Foreman":"0.25"
+    }
+    },
+    "4":{
+    "name":"TILE SET OUTS ",
+    "hoursPredicted":{
+    "Foreman":"0.25"
+    }
+    },
+    "5":{
+    "name":"COUNCIL MEETINGS AND INSPECTIONS",
+    "hoursPredicted":{
+    "Foreman":"0.5"
+    }
+    },
+    "6":{
+    "name":"SITE SET UP & SAFETY",
+    "hoursPredicted":{
+    "Foreman":"1",
+    "Builder 1":"1",
+    "Apprentice 1":"1"
+    }
+    },
+    "7":{
+    "name":"DEMOLITION / SALVAGE WORKS",
+    "hoursPredicted":{
+    "Foreman":"1",
+    "Builder 1":"1",
+    "Apprentice 1":"1"
+    }
+    },
+    "8":{
+    "name":"COVER AND PROTECT EXISTING HOUSE",
+    "hoursPredicted":{
+    "Foreman":"0.5",
+    "Builder 1":"0.5",
+    "Apprentice 1":"0.5"
+    }
+    },
+    "9":{
+    "name":"PROFILE AND SETOUT ",
+    "hoursPredicted":{
+    "Foreman":"1",
+    "Apprentice 1":"1"
+    }
+    }
+    }
+    },
+    "2":{
+    "SITE & CONCRETE WORKS":{
+    "10":{
+    "name":"EXCAVATION WORKS",
+    "hoursPredicted":{
+    "Foreman":"1.5",
+    "Builder 1":"1",
+    "Apprentice 1":"1.5"
+    }
+    },
+    "11":{
+    "name":"FOOTING REO",
+    "hoursPredicted":{
+    "Foreman":"1",
+    "Builder 1":"1",
+    "Apprentice 1":"1"
+    }
+    },
+    "12":{
+    "name":"SET FOOTIING SHS",
+    "hoursPredicted":{
+    "Foreman":"0.5",
+    "Apprentice 1":"0.5"
+    }
+    },
+    "13":{
+    "name":"POUR AND PLACE FOOTINGS",
+    "hoursPredicted":{
+    "Foreman":"1",
+    "Builder 1":"1",
+    "Apprentice 1":"1"
+    }
+    },
+    "14":{
+    "name":"PLACE AND COMPACT HARDFILL/DRAINAGE METAL",
+    "hoursPredicted":{
+    "Foreman":"1",
+    "Builder 1":"1",
+    "Apprentice 1":"1"
+    }
+    },
+    "15":{
+    "name":"BOX SLAB",
+    "hoursPredicted":{
+    "Foreman":"2",
+    "Builder 1":"2",
+    "Apprentice 1":"2"
+    }
+    },
+    "16":{
+    "name":"LAY DPM",
+    "hoursPredicted":{
+    "Foreman":"0.5",
+    "Apprentice 1":"0.5"
+    }
+    },
+    "17":{
+    "name":"LAY POLYSTYRENE PODS",
+    "hoursPredicted":{
+    "Foreman":"0.5",
+    "Apprentice 1":"0.5"
+    }
+    },
+    "18":{
+    "name":"INSTALL REO",
+    "hoursPredicted":{
+    "Foreman":"1",
+    "Builder 1":"1",
+    "Apprentice 1":"1"
+    }
+    },
+    "19":{
+    "name":"BOX REBATES",
+    "hoursPredicted":{
+    "Foreman":"0.5",
+    "Builder 1":"0.5",
+    "Apprentice 1":"0.5"
+    }
+    },
+    "20":{
+    "name":"POUR AND CURE SLAB",
+    "hoursPredicted":{
+    "Foreman":"1",
+    "Builder 1":"1",
+    "Apprentice 1":"1"
+    }
+    },
+    "21":{
+    "name":"STRIP BOXING, CLEAN CONCRETE",
+    "hoursPredicted":{
+    "Foreman":"0.5",
+    "Apprentice 1":"0.5"
+    }
+    }
+    }
+    },
+    "3":{
+    "1ST FIX CARPENTRY WORKS START":{
+    "22":{
+    "name":"EXTERIOR WALL FRAMING",
+    "hoursPredicted":{
+    "Foreman":"2",
+    "Builder 1":"2",
+    "Apprentice 1":"2"
+    }
+    },
+    "23":{
+    "name":"GENERAL FRAMING                                 ",
+    "hoursPredicted":{
+    "Foreman":"1.5",
+    "Builder 1":"1.5",
+    "Apprentice 1":"1.5"
+    }
+    },
+    "24":{
+    "name":"INSTALL PFC BEAMS",
+    "hoursPredicted":{
+    "Foreman":"1",
+    "Builder 1":"1",
+    "Apprentice 1":"1"
+    }
+    },
+    "25":{
+    "name":"WALL AND BEAM HARDWARE",
+    "hoursPredicted":{
+    "Foreman":"1",
+    "Builder 1":"1",
+    "Apprentice 1":"1"
+    }
+    },
+    "26":{
+    "name":"PACK BEAMS",
+    "hoursPredicted":{
+    "Foreman":"1",
+    "Apprentice 1":"1"
+    }
+    },
+    "27":{
+    "name":"INSTALLING RAFTERS AND NOGS",
+    "hoursPredicted":{
+    "Foreman":"3",
+    "Builder 1":"3",
+    "Apprentice 1":"3"
+    }
+    },
+    "28":{
+    "name":"PARAPET FRAMING",
+    "hoursPredicted":{
+    "Foreman":"1",
+    "Builder 1":"1",
+    "Apprentice 1":"1"
+    }
+    },
+    "29":{
+    "name":"INSTALL FURRINGS ",
+    "hoursPredicted":{
+    "Foreman":"2",
+    "Builder 1":"2",
+    "Apprentice 1":"2"
+    }
+    },
+    "30":{
+    "name":"FRAME GUTTER",
+    "hoursPredicted":{
+    "Builder 1":"1",
+    "Apprentice 1":"1"
+    }
+    },
+    "31":{
+    "name":"INSTALL ROOF PLY",
+    "hoursPredicted":{
+    "Foreman":"1.5",
+    "Builder 1":"1.5",
+    "Apprentice 1":"1.5"
+    }
+    },
+    "32":{
+    "name":"WRAP WALLS & TAPE ALL OPENINGS ",
+    "hoursPredicted":{
+    "Foreman":"1",
+    "Apprentice 1":"1"
+    }
+    },
+    "33":{
+    "name":"INSTALL ALUMINIUM JOINERY",
+    "hoursPredicted":{
+    "Foreman":"1",
+    "Builder 1":"2",
+    "Apprentice 1":"2"
+    }
+    },
+    "34":{
+    "name":"INSTALL CAVITY SYSTEM",
+    "hoursPredicted":{
+    "Foreman":"1",
+    "Builder 1":"1",
+    "Apprentice 1":"1"
+    }
+    },
+    "35":{
+    "name":"INSTALL WEATHERBOARD SYSTEM",
+    "hoursPredicted":{
+    "Foreman":"2",
+    "Builder 1":"3",
+    "Apprentice 1":"3"
+    }
+    },
+    "36":{
+    "name":"INSTALL JAMES HARDIES EASY LAP SYSTEM",
+    "hoursPredicted":{
+    "Foreman":"1",
+    "Builder 1":"1",
+    "Apprentice 1":"1"
+    }
+    },
+    "37":{
+    "name":"FRAME AND LINE SOFFIT",
+    "hoursPredicted":{
+    "Foreman":"1.5",
+    "Builder 1":"1",
+    "Apprentice 1":"1.5"
+    }
+    },
+    "38":{
+    "name":"INTERIOR SETOUT",
+    "hoursPredicted":{
+    "Foreman":"0.5"
+    }
+    },
+    "39":{
+    "name":"FRAME INTERNAL WALLS",
+    "hoursPredicted":{
+    "Foreman":"1",
+    "Builder 1":"1",
+    "Apprentice 1":"1"
+    }
+    },
+    "40":{
+    "name":"INSTALL INTERIOR DOORS",
+    "hoursPredicted":{
+    "Foreman":"0.5"
+    }
+    },
+    "41":{
+    "name":"EXTERIOR FINISHING",
+    "hoursPredicted":{
+    "Foreman":"1.5",
+    "Builder 1":"1",
+    "Apprentice 1":"1"
+    }
+    },
+    "42":{
+    "name":"INSULATE WALLS AND CEILING",
+    "hoursPredicted":{
+    "Foreman":"1",
+    "Apprentice 1":"1"
+    }
+    },
+    "43":{
+    "name":"INSTALL WALL HARDWARE",
+    "hoursPredicted":{
+    "Apprentice 1":"1"
+    }
+    },
+    "44":{
+    "name":"BUZZ & STRAIGHTEN INTERNAL WALLS ",
+    "hoursPredicted":{
+    "Foreman":"1",
+    "Builder 1":"1"
+    }
+    },
+    "45":{
+    "name":"INSTALL GIB",
+    "hoursPredicted":{
+    "Foreman":"2",
+    "Builder 1":"2",
+    "Apprentice 1":"2"
+    }
+    }
+    }
+    },
+    "4":{
+    "2ND FIX CARPENTRY WORKS START":{
+    "46":{
+    "name":"FINISHING LINES & DETAILING",
+    "hoursPredicted":{
+    "Foreman":"3",
+    "Builder 1":"3",
+    "Apprentice 1":"3"
+    }
+    },
+    "47":{
+    "name":"INSTALL BATHROOM FIXTURES",
+    "hoursPredicted":{
+    "Foreman":"0.5"
+    }
+    },
+    "48":{
+    "name":"FINAL DETAILING",
+    "hoursPredicted":{
+    "Foreman":"1",
+    "Builder 1":"1",
+    "Apprentice 1":"1"
+    }
+    }
+    }
+    },
+    "5":{
+    "LANDSCAPE WORKS":{
+    
+    }
+    },
+    "6":{
+    "MISC. WORKS":{
+    "49":{
+    "name":"SET UP TEMPORARY ACCESS & SCAFFOLD SYSTEMS",
+    "hoursPredicted":{
+    "Foreman":"1",
+    "Apprentice 1":"1"
+    }
+    },
+    "50":{
+    "name":"TEMP. COVER & PROTECT FLOOR SURFACES",
+    "hoursPredicted":{
+    "Apprentice 1":"0.5"
+    }
+    },
+    "51":{
+    "name":"WATERBLASTING DRIVE & ROAD",
+    "hoursPredicted":{
+    "Apprentice 1":"0.5"
+    }
+    },
+    "52":{
+    "name":"FINAL SITE CLEAN",
+    "hoursPredicted":{
+    "Foreman":"1",
+    "Apprentice 1":"1"
+    }
+    },
+    "53":{
+    "name":"DELIVERIES, UNLOADING, MOVING & STACKING MATERIALS AROUND SITE",
+    "hoursPredicted":{
+    "Foreman":"1",
+    "Apprentice 1":"1"
+    }
+    },
+    "54":{
+    "name":"TOOL & PLANT MAINTENANCE",
+    "hoursPredicted":{
+    "Builder 1":"0.5",
+    "Apprentice 1":"0.5"
+    }
+    },
+    "55":{
+    "name":"PERFECTING DETAILS",
+    "hoursPredicted":{
+    "Foreman":"0.5"
+    }
+    }
+    }
+    }
+    }
+    
+    },
+
     {
-      "id":2,
-      "name":"Bannerman Road",
-      "startDate":"16/02/2023",
+      "name":"Peary Rd",
+      "startDate":"10/07/2023",
       "GSTno":"133-514-384",
-      "clientName":"Brad & Renai Hagstrom",
+      "clientName":"Kerry Findlay & Lynne O'Sullivan",
       "subContractFee":"0.1",
       "address":{
-      "line1":"46 Bannerman rd",
-      "suburb":"Western Springs ",
+      "line1":"129 Peary Rd",
+      "suburb":"Mt Eden",
       "city":"Auckland"
       },
       "team":{
@@ -445,91 +1778,20 @@
       "4":{
       "name":"Isaac",
       "role":"Apprentice 1",
-      "rate":"40"
+      "rate":"45"
       }
       },
       "mainList":{
+      "1":{
       "Preliminary and General":{
       "1":{
-      "code":"A-130",
-      "task":"Programme",
-      "details":"Preparing and Updating the programme",
-      "subcontractedamount":"140",
-      "calculatedamount":"154",
-      "subcontractor":"KPC",
-      "quote,estimateorprovision":"Quote",
-      "comments":"",
-      "budgetamount":"154",
-      "stilltoclaim":"154",
-      "complete":"",
-      "status":"",
-      "comment":"",
-      "claims":{
-      
-      }
-      },
-      "2":{
-      "code":"A-140",
-      "task":"Insurances",
-      "details":"Contract works and public liability",
-      "subcontractedamount":"400",
-      "calculatedamount":"440",
-      "subcontractor":"KPC",
-      "quote,estimateorprovision":"Quote",
-      "comments":"",
-      "budgetamount":"440",
-      "stilltoclaim":"440",
-      "complete":"",
-      "status":"",
-      "comment":"",
-      "claims":{
-      
-      }
-      },
-      "3":{
-      "code":"A-190",
-      "task":"Surveying",
-      "details":"Setting out the work to the correct lines and levels, with progressive checking for accuracy",
-      "subcontractedamount":"2000",
-      "calculatedamount":"2200",
-      "subcontractor":"Fluker Surveyors",
-      "quote,estimateorprovision":"Estimate",
-      "comments":"",
-      "budgetamount":"2200",
-      "stilltoclaim":"2200",
-      "complete":"",
-      "status":"",
-      "comment":"",
-      "claims":{
-      
-      }
-      },
-      "4":{
-      "code":"A-230",
-      "task":"Signage",
-      "details":"On site signage requirments",
-      "subcontractedamount":"120",
-      "calculatedamount":"132",
-      "subcontractor":"KPC",
-      "quote,estimateorprovision":"Quote",
-      "comments":"",
-      "budgetamount":"132",
-      "stilltoclaim":"132",
-      "complete":"",
-      "status":"",
-      "comment":"",
-      "claims":{
-      
-      }
-      },
-      "5":{
-      "code":"A-240",
-      "task":"Health and Safety",
-      "details":"Protective clothing and equipment, General management of health and safety, First aid and site treatment facilities",
+      "code":"A-110",
+      "task":"Project Costing",
+      "details":"Producing quotes, quantity surveying and obtaining sub-contractor quotes",
       "subcontractedamount":"300",
       "calculatedamount":"330",
       "subcontractor":"KPC",
-      "quote,estimateorprovision":"Quote",
+      "quoteestimateorprovision":"Quote",
       "comments":"",
       "budgetamount":"330",
       "stilltoclaim":"330",
@@ -540,14 +1802,140 @@
       
       }
       },
+      "2":{
+      "code":"A-130",
+      "task":"Programme",
+      "details":"Preparing and Updating the programme",
+      "subcontractedamount":"140",
+      "calculatedamount":"154",
+      "subcontractor":"KPC",
+      "quoteestimateorprovision":"Quote",
+      "comments":"",
+      "budgetamount":"154",
+      "stilltoclaim":"154",
+      "complete":"",
+      "status":"",
+      "comment":"",
+      "claims":{
+      
+      }
+      },
+      "3":{
+      "code":"A-140",
+      "task":"Insurances",
+      "details":"Contract works and public liability",
+      "subcontractedamount":"400",
+      "calculatedamount":"440",
+      "subcontractor":"KPC",
+      "quoteestimateorprovision":"Quote",
+      "comments":"",
+      "budgetamount":"440",
+      "stilltoclaim":"440",
+      "complete":"",
+      "status":"",
+      "comment":"",
+      "claims":{
+      
+      }
+      },
+      "4":{
+      "code":"A-170",
+      "task":"Administration",
+      "details":"Project related documentation, office administration",
+      "subcontractedamount":"400",
+      "calculatedamount":"440",
+      "subcontractor":"KPC",
+      "quoteestimateorprovision":"Quote",
+      "comments":"",
+      "budgetamount":"440",
+      "stilltoclaim":"440",
+      "complete":"",
+      "status":"",
+      "comment":"",
+      "claims":{
+      
+      }
+      },
+      "5":{
+      "code":"A-190",
+      "task":"Surveying",
+      "details":"Setting out the work to the correct lines and levels, with progressive checking for accuracy",
+      "subcontractedamount":"1000",
+      "calculatedamount":"1100",
+      "subcontractor":"Fluker Surveyors",
+      "quoteestimateorprovision":"Estimate",
+      "comments":"",
+      "budgetamount":"1100",
+      "stilltoclaim":"1100",
+      "complete":"",
+      "status":"",
+      "comment":"",
+      "claims":{
+      
+      }
+      },
       "6":{
+      "code":"A-200",
+      "task":"Engineering",
+      "details":"On site enginnering queries and detailing as/if required",
+      "subcontractedamount":"1000",
+      "calculatedamount":"1100",
+      "subcontractor":"",
+      "quoteestimateorprovision":"Provisional",
+      "comments":"",
+      "budgetamount":"1100",
+      "stilltoclaim":"1100",
+      "complete":"",
+      "status":"",
+      "comment":"",
+      "claims":{
+      
+      }
+      },
+      "7":{
+      "code":"A-230",
+      "task":"Signage",
+      "details":"On site signage requirments",
+      "subcontractedamount":"120",
+      "calculatedamount":"132",
+      "subcontractor":"KPC",
+      "quoteestimateorprovision":"Quote",
+      "comments":"",
+      "budgetamount":"132",
+      "stilltoclaim":"132",
+      "complete":"",
+      "status":"",
+      "comment":"",
+      "claims":{
+      
+      }
+      },
+      "8":{
+      "code":"A-240",
+      "task":"Health and Safety",
+      "details":"Protective clothing and equipment, General management of health and safety, First aid and site treatment facilities",
+      "subcontractedamount":"300",
+      "calculatedamount":"330",
+      "subcontractor":"KPC",
+      "quoteestimateorprovision":"Quote",
+      "comments":"",
+      "budgetamount":"330",
+      "stilltoclaim":"330",
+      "complete":"",
+      "status":"",
+      "comment":"",
+      "claims":{
+      
+      }
+      },
+      "9":{
       "code":"A-260",
       "task":"Delivery Fees",
       "details":"Costs for delivery or courier of products and materials",
       "subcontractedamount":"576",
       "calculatedamount":"633.6",
       "subcontractor":"KPC",
-      "quote,estimateorprovision":"Provision",
+      "quoteestimateorprovision":"Provision",
       "comments":"",
       "budgetamount":"633.6",
       "stilltoclaim":"633.6",
@@ -558,14 +1946,14 @@
       
       }
       },
-      "7":{
+      "10":{
       "code":"A-280",
       "task":"Crane/ HIAB hire",
       "details":"Allowance of machine lifting",
       "subcontractedamount":"500",
       "calculatedamount":"550",
       "subcontractor":"KPC",
-      "quote,estimateorprovision":"Provision",
+      "quoteestimateorprovision":"Provision",
       "comments":"",
       "budgetamount":"550",
       "stilltoclaim":"550",
@@ -576,14 +1964,32 @@
       
       }
       },
-      "8":{
+      "11":{
+      "code":"A-300",
+      "task":"Hire Costs (Tools & Machinery)",
+      "details":"The provision of machinery, tools, consumables, plant hire and vehicles needed for the work",
+      "subcontractedamount":"500",
+      "calculatedamount":"550",
+      "subcontractor":"KPC",
+      "quoteestimateorprovision":"Estimate",
+      "comments":"",
+      "budgetamount":"550",
+      "stilltoclaim":"550",
+      "complete":"",
+      "status":"",
+      "comment":"",
+      "claims":{
+      
+      }
+      },
+      "12":{
       "code":"A-310",
       "task":"Onsite and Offsite Storage",
       "details":"Hireage for 20ft shipping container and site lock ups",
       "subcontractedamount":"195",
       "calculatedamount":"214.5",
       "subcontractor":"KPC",
-      "quote,estimateorprovision":"Quote",
+      "quoteestimateorprovision":"Quote",
       "comments":"",
       "budgetamount":"214.5",
       "stilltoclaim":"214.5",
@@ -594,14 +2000,14 @@
       
       }
       },
-      "9":{
+      "13":{
       "code":"A-350",
       "task":"Rubbish Removal",
       "details":"Rubbish and waste handling on and off site, provision of facilities for storage, sorting, transport, recycling and disposal",
       "subcontractedamount":"2000",
       "calculatedamount":"2200",
       "subcontractor":"KPC",
-      "quote,estimateorprovision":"Estimate",
+      "quoteestimateorprovision":"Estimate",
       "comments":"",
       "budgetamount":"2200",
       "stilltoclaim":"2200",
@@ -612,14 +2018,14 @@
       
       }
       },
-      "10":{
+      "14":{
       "code":"A-360",
       "task":"Port-a-loo",
       "details":"On site toilet costs",
       "subcontractedamount":"750",
       "calculatedamount":"825",
       "subcontractor":"KPC",
-      "quote,estimateorprovision":"Estimate",
+      "quoteestimateorprovision":"Estimate",
       "comments":"",
       "budgetamount":"825",
       "stilltoclaim":"825",
@@ -630,14 +2036,14 @@
       
       }
       },
-      "11":{
+      "15":{
       "code":"A-370",
       "task":"Subscriptions",
       "details":"Subscriptions, Project management tools, Forman phone/ipad",
       "subcontractedamount":"200",
       "calculatedamount":"220",
       "subcontractor":"KPC",
-      "quote,estimateorprovision":"Quote",
+      "quoteestimateorprovision":"Quote",
       "comments":"",
       "budgetamount":"220",
       "stilltoclaim":"220",
@@ -648,14 +2054,14 @@
       
       }
       },
-      "12":{
+      "16":{
       "code":"A-380",
       "task":"Office Consumables/Printing",
       "details":"Stationary, office + Ammenities consumables as required",
       "subcontractedamount":"240",
       "calculatedamount":"264",
       "subcontractor":"KPC",
-      "quote,estimateorprovision":"Estimate",
+      "quoteestimateorprovision":"Estimate",
       "comments":"",
       "budgetamount":"264",
       "stilltoclaim":"264",
@@ -666,106 +2072,72 @@
       
       }
       }
+      }
       },
+      "2":{
       "Equipment & Machinery":{
-      "13":{
+      "17":{
       "code":"AA-100",
       "task":"Mobile Scaffold - 4.6x1.4x0.6",
       "details":"Hireage cost for equipment or machinery",
       "subcontractedamount":"1600",
       "calculatedamount":"1760",
       "subcontractor":"KPC",
-      "quote,estimateorprovision":"Estimate",
+      "quoteestimateorprovision":"Estimate",
       "comments":"",
       "budgetamount":"1760",
-      "stilltoclaim":"1160",
-      "complete":"0.340909090909091",
+      "stilltoclaim":"1760",
+      "complete":"0",
       "status":"Open",
       "comment":"",
       "claims":{
-      "claim1":"600"
+      
       }
       },
-      "14":{
+      "18":{
       "code":"AA-110",
       "task":"Work Bench",
       "details":"Hireage cost for equipment or machinery",
       "subcontractedamount":"400",
       "calculatedamount":"440",
       "subcontractor":"KPC",
-      "quote,estimateorprovision":"Estimate",
+      "quoteestimateorprovision":"Estimate",
       "comments":"",
       "budgetamount":"440",
-      "stilltoclaim":"0",
-      "complete":"1",
+      "stilltoclaim":"440",
+      "complete":"0",
       "status":"Open",
       "comment":"",
       "claims":{
-      "claim1":"440"
+      
       }
       },
-      "15":{
+      "19":{
       "code":"AA-120",
       "task":"5m Alumium Plank",
       "details":"Hireage cost for equipment or machinery",
       "subcontractedamount":"400",
       "calculatedamount":"440",
       "subcontractor":"KPC",
-      "quote,estimateorprovision":"Estimate",
+      "quoteestimateorprovision":"Estimate",
       "comments":"",
       "budgetamount":"440",
-      "stilltoclaim":"0",
-      "complete":"1",
+      "stilltoclaim":"440",
+      "complete":"0",
       "status":"Open",
       "comment":"",
       "claims":{
-      "claim1":"440"
+      
       }
       },
-      "16":{
-      "code":"AA-140",
-      "task":"Submersible Pump",
-      "details":"Hireage cost for equipment or machinery",
-      "subcontractedamount":"200",
-      "calculatedamount":"220",
-      "subcontractor":"KPC",
-      "quote,estimateorprovision":"Provision",
-      "comments":"",
-      "budgetamount":"220",
-      "stilltoclaim":"160",
-      "complete":"0.272727272727273",
-      "status":"Open",
-      "comment":"",
-      "claims":{
-      "claim1":"60"
-      }
-      },
-      "17":{
-      "code":"AA-160",
-      "task":"Site Shelter",
-      "details":"Hireage cost for equipment or machinery",
-      "subcontractedamount":"400",
-      "calculatedamount":"440",
-      "subcontractor":"KPC",
-      "quote,estimateorprovision":"Estimate",
-      "comments":"",
-      "budgetamount":"440",
-      "stilltoclaim":"0",
-      "complete":"1",
-      "status":"Open",
-      "comment":"",
-      "claims":{
-      "claim1":"440"
-      }
-      },
-      "18":{
-      "code":"AA-180",
-      "task":"Concrete Breaker",
+      "20":{
+      "code":"AA-130",
+      "task":"Concrete Mixer",
       "details":"Hireage cost for equipment or machinery",
       "subcontractedamount":"120",
       "calculatedamount":"132",
       "subcontractor":"KPC",
-      "quote,estimateorprovision":"Estimate",
+      "quoteestimateorprovision":"Provision",
       "comments":"",
       "budgetamount":"132",
       "stilltoclaim":"132",
@@ -776,14 +2148,104 @@
       
       }
       },
-      "19":{
+      "21":{
+      "code":"AA-140",
+      "task":"Submersible Pump",
+      "details":"Hireage cost for equipment or machinery",
+      "subcontractedamount":"200",
+      "calculatedamount":"220",
+      "subcontractor":"KPC",
+      "quoteestimateorprovision":"Provision",
+      "comments":"",
+      "budgetamount":"220",
+      "stilltoclaim":"220",
+      "complete":"0",
+      "status":"Open",
+      "comment":"",
+      "claims":{
+      
+      }
+      },
+      "22":{
+      "code":"AA-160",
+      "task":"Site Shelter",
+      "details":"Hireage cost for equipment or machinery",
+      "subcontractedamount":"400",
+      "calculatedamount":"440",
+      "subcontractor":"KPC",
+      "quoteestimateorprovision":"Estimate",
+      "comments":"",
+      "budgetamount":"440",
+      "stilltoclaim":"440",
+      "complete":"0",
+      "status":"Open",
+      "comment":"",
+      "claims":{
+      
+      }
+      },
+      "23":{
+      "code":"AA-161",
+      "task":"Quick Drive Gun",
+      "details":"Hireage cost for equipment or machinery",
+      "subcontractedamount":"120",
+      "calculatedamount":"132",
+      "subcontractor":"KPC",
+      "quoteestimateorprovision":"Estimate",
+      "comments":"",
+      "budgetamount":"132",
+      "stilltoclaim":"132",
+      "complete":"0",
+      "status":"Open",
+      "comment":"",
+      "claims":{
+      
+      }
+      },
+      "24":{
+      "code":"AA-162",
+      "task":"Specialist Air Tools",
+      "details":"Hireage cost for equipment or machinery",
+      "subcontractedamount":"200",
+      "calculatedamount":"220",
+      "subcontractor":"KPC",
+      "quoteestimateorprovision":"Estimate",
+      "comments":"",
+      "budgetamount":"220",
+      "stilltoclaim":"220",
+      "complete":"0",
+      "status":"Open",
+      "comment":"",
+      "claims":{
+      
+      }
+      },
+      "25":{
+      "code":"AA-180",
+      "task":"Concrete Breaker",
+      "details":"Hireage cost for equipment or machinery",
+      "subcontractedamount":"120",
+      "calculatedamount":"132",
+      "subcontractor":"KPC",
+      "quoteestimateorprovision":"Estimate",
+      "comments":"",
+      "budgetamount":"132",
+      "stilltoclaim":"132",
+      "complete":"0",
+      "status":"Open",
+      "comment":"",
+      "claims":{
+      
+      }
+      },
+      "26":{
       "code":"AA-190",
       "task":"Plate Compactor",
       "details":"Hireage cost for equipment or machinery",
       "subcontractedamount":"200",
       "calculatedamount":"220",
       "subcontractor":"KPC",
-      "quote,estimateorprovision":"Estimate",
+      "quoteestimateorprovision":"Estimate",
       "comments":"",
       "budgetamount":"220",
       "stilltoclaim":"220",
@@ -794,149 +2256,21 @@
       
       }
       }
+      }
       },
+      "3":{
       "Site Works":{
-      "20":{
-      "code":"B-180",
-      "task":"Tree and Vegetation removal",
-      "details":"Clearing and disposing of green waste",
-      "subcontractedamount":"600",
-      "calculatedamount":"660",
-      "subcontractor":"Reform Earthworks",
-      "quote,estimateorprovision":"Estimate",
-      "comments":"",
-      "budgetamount":"660",
-      "stilltoclaim":"0",
-      "complete":"1",
-      "status":"Open",
-      "comment":"",
-      "claims":{
-      "claim1":"660"
-      }
-      },
-      "21":{
-      "code":"B-190",
-      "task":"Temporary Roading/ Site Access",
-      "details":"Costs associated with putting in a temporary metal road or similar",
-      "subcontractedamount":"",
-      "calculatedamount":"0",
-      "subcontractor":"",
-      "quote,estimateorprovision":"",
-      "comments":"",
-      "budgetamount":"0",
-      "stilltoclaim":"0",
-      "complete":"0",
-      "status":"Closed",
-      "comment":"",
-      "claims":{
-      
-      }
-      },
-      "22":{
-      "code":"B-200",
-      "task":"Excavation",
-      "details":"Excavating to required levels",
-      "subcontractedamount":"0",
-      "calculatedamount":"0",
-      "subcontractor":"Narrellan Pools",
-      "quote,estimateorprovision":" ",
-      "comments":"",
-      "budgetamount":"0",
-      "stilltoclaim":"0",
-      "complete":"0",
-      "status":"Closed",
-      "comment":"",
-      "claims":{
-      
-      }
-      },
-      "23":{
-      "code":"B-210",
-      "task":"Trenching Services",
-      "details":"Excavating service trenches and haunching with fines",
-      "subcontractedamount":"1000",
-      "calculatedamount":"1100",
-      "subcontractor":"Reform Earthworks",
-      "quote,estimateorprovision":"Estimate",
-      "comments":"",
-      "budgetamount":"1100",
-      "stilltoclaim":"300",
-      "complete":"0.727272727272727",
-      "status":"Open",
-      "comment":"",
-      "claims":{
-      "claim1":"800"
-      }
-      },
-      "24":{
-      "code":"B-260",
-      "task":"Truck Hire",
-      "details":"Hired vehicle for moving fill not associated with main excavation",
-      "subcontractedamount":"600",
-      "calculatedamount":"660",
-      "subcontractor":"Reform Earthworks",
-      "quote,estimateorprovision":"Provision",
-      "comments":"",
-      "budgetamount":"660",
-      "stilltoclaim":"660",
-      "complete":"0",
-      "status":"Open",
-      "comment":"",
-      "claims":{
-      
-      }
-      }
-      },
-      "Concrete Works":{
-      "25":{
-      "code":"C-150",
-      "task":"Blocklaying",
-      "details":"Cost of block laying sub-contractor",
-      "subcontractedamount":"11663",
-      "calculatedamount":"12829.3",
-      "subcontractor":"West Auckland Brick & Block",
-      "quote,estimateorprovision":"Quote",
-      "comments":"",
-      "budgetamount":"12829.3",
-      "stilltoclaim":"0",
-      "complete":"1",
-      "status":"Open",
-      "comment":"",
-      "claims":{
-      "claim1":"12829.3"
-      }
-      },
-      "26":{
-      "code":"C-210",
-      "task":"Concrete Supply, Place and Finish",
-      "details":"Placement and finishing - Sub contractor",
-      "subcontractedamount":"5986.15",
-      "calculatedamount":"6584.765",
-      "subcontractor":"West End Concrete",
-      "quote,estimateorprovision":"Quote",
-      "comments":"",
-      "budgetamount":"6584.765",
-      "stilltoclaim":"-0.005",
-      "complete":"1.00000075932854",
-      "status":"Open",
-      "comment":"",
-      "claims":{
-      "claim1":"6584.77"
-      }
-      }
-      },
-      "Waterproofing":{
       "27":{
-      "code":"D-120",
-      "task":"TPO ",
-      "details":"TPO supply and install",
-      "subcontractedamount":"12690",
-      "calculatedamount":"13959",
-      "subcontractor":"Masterproof",
-      "quote,estimateorprovision":"",
+      "code":"B-110",
+      "task":"Reinforcing",
+      "details":"Cost of supply and delivery of ground works reo",
+      "subcontractedamount":"500",
+      "calculatedamount":"550",
+      "subcontractor":"Reform Earthworks",
+      "quoteestimateorprovision":"Estimate",
       "comments":"",
-      "budgetamount":"13959",
-      "stilltoclaim":"13959",
+      "budgetamount":"550",
+      "stilltoclaim":"550",
       "complete":"0",
       "status":"Open",
       "comment":"",
@@ -945,72 +2279,70 @@
       }
       },
       "28":{
-      "code":"D-130",
-      "task":"Mulseal",
-      "details":"Supply and install of mulseal/ black seal or similar",
-      "subcontractedamount":"250",
-      "calculatedamount":"275",
-      "subcontractor":"KPC",
-      "quote,estimateorprovision":"Provision",
+      "code":"B-130",
+      "task":"Demolition",
+      "details":"Demolishing to ground including footings and ground surfaces",
+      "subcontractedamount":"",
+      "calculatedamount":"0",
+      "subcontractor":"Reform Earthworks",
+      "quoteestimateorprovision":"Estimate",
       "comments":"",
-      "budgetamount":"275",
-      "stilltoclaim":"275",
+      "budgetamount":"0",
+      "stilltoclaim":"0",
       "complete":"0",
-      "status":"Open",
+      "status":"Closed",
       "comment":"",
       "claims":{
       
       }
       },
       "29":{
-      "code":"D-140",
-      "task":"Mapelastic smart",
-      "details":"Supply and install of mapelastic smart waterproofing system",
-      "subcontractedamount":"432",
-      "calculatedamount":"475.2",
-      "subcontractor":"KPC",
-      "quote,estimateorprovision":"Provision",
+      "code":"B-180",
+      "task":"Tree and Vegetation removal",
+      "details":"Clearing and disposing of green waste",
+      "subcontractedamount":"500",
+      "calculatedamount":"550",
+      "subcontractor":"Reform Earthworks",
+      "quoteestimateorprovision":"Estimate",
       "comments":"",
-      "budgetamount":"475.2",
-      "stilltoclaim":"475.2",
+      "budgetamount":"550",
+      "stilltoclaim":"550",
       "complete":"0",
       "status":"Open",
       "comment":"",
       "claims":{
       
       }
-      }
       },
-      "Structural Steel & Flashings":{
       "30":{
-      "code":"E-100",
-      "task":"Structural Steel Supply",
-      "details":"Fabrication, Supply of all structural steel ",
-      "subcontractedamount":"2500",
-      "calculatedamount":"2750",
-      "subcontractor":"Impact Steel",
-      "quote,estimateorprovision":"Estimate",
-      "comments":"Preliminary Cost - To Be Updated",
-      "budgetamount":"2750",
-      "stilltoclaim":"2750",
+      "code":"B-190",
+      "task":"Temporary Roading/ Site Access",
+      "details":"Costs associated with putting in a temporary metal road or similar",
+      "subcontractedamount":"",
+      "calculatedamount":"0",
+      "subcontractor":"Reform Earthworks",
+      "quoteestimateorprovision":"",
+      "comments":"",
+      "budgetamount":"0",
+      "stilltoclaim":"0",
       "complete":"0",
-      "status":"Open",
+      "status":"Closed",
       "comment":"",
       "claims":{
       
       }
       },
       "31":{
-      "code":"E-119",
-      "task":"Custom Roof Flashing",
-      "details":"Supply and install of custom roof flashings",
-      "subcontractedamount":"2500",
-      "calculatedamount":"2750",
-      "subcontractor":"Impact Steel",
-      "quote,estimateorprovision":"Estimate",
-      "comments":"Preliminary Cost - To Be Updated",
-      "budgetamount":"2750",
-      "stilltoclaim":"2750",
+      "code":"B-200",
+      "task":"Excavation",
+      "details":"Excavating to required levels",
+      "subcontractedamount":"7000",
+      "calculatedamount":"7700",
+      "subcontractor":"Reform Earthworks",
+      "quoteestimateorprovision":"Estimate ",
+      "comments":"",
+      "budgetamount":"7700",
+      "stilltoclaim":"7700",
       "complete":"0",
       "status":"Open",
       "comment":"",
@@ -1019,16 +2351,16 @@
       }
       },
       "32":{
-      "code":"E-160",
-      "task":"Rainheads",
-      "details":"Custom Rain heads",
-      "subcontractedamount":"400",
-      "calculatedamount":"440",
-      "subcontractor":"Impact Steel",
-      "quote,estimateorprovision":"Estimate",
-      "comments":"Preliminary Cost - To Be Updated",
-      "budgetamount":"440",
-      "stilltoclaim":"440",
+      "code":"B-210",
+      "task":"Trenching Services",
+      "details":"Excavating service trenches and haunching with fines",
+      "subcontractedamount":"1000",
+      "calculatedamount":"1100",
+      "subcontractor":"Reform Earthworks",
+      "quoteestimateorprovision":"Estimate",
+      "comments":"",
+      "budgetamount":"1100",
+      "stilltoclaim":"1100",
       "complete":"0",
       "status":"Open",
       "comment":"",
@@ -1037,167 +2369,67 @@
       }
       },
       "33":{
-      "code":"E-180",
-      "task":"Powder Coating",
-      "details":"Transport and powder coating cost",
-      "subcontractedamount":"2000",
-      "calculatedamount":"2200",
-      "subcontractor":"Impact Steel",
-      "quote,estimateorprovision":"Estimate",
-      "comments":"Preliminary Cost - To Be Updated",
-      "budgetamount":"2200",
-      "stilltoclaim":"2200",
-      "complete":"0",
-      "status":"Open",
-      "comment":"",
-      "claims":{
-      
-      }
-      }
-      },
-      "Roofing":{
-      "34":{
-      "code":"F-120",
-      "task":"Downpipes",
-      "details":"Supply and installation of downpipes  system",
-      "subcontractedamount":"250",
-      "calculatedamount":"275",
-      "subcontractor":"KPC",
-      "quote,estimateorprovision":"Estimate",
-      "comments":"",
-      "budgetamount":"275",
-      "stilltoclaim":"275",
-      "complete":"0",
-      "status":"Open",
-      "comment":"",
-      "claims":{
-      
-      }
-      }
-      },
-      "Windows & Doors":{
-      "35":{
-      "code":"H-110",
-      "task":"Aluminium Joinery Supply",
-      "details":"Supply of aluminium joinery system",
-      "subcontractedamount":"17847.5",
-      "calculatedamount":"19096.825",
-      "subcontractor":"Rylock",
-      "quote,estimateorprovision":"Quote",
-      "comments":"",
-      "budgetamount":"19096.825",
-      "stilltoclaim":"19096.825",
-      "complete":"0",
-      "status":"Open",
-      "comment":"",
-      "claims":{
-      
-      }
-      }
-      },
-      "Plumbing & Drainage":{
-      "36":{
-      "code":"J-110",
-      "task":"Plumbing General",
-      "details":"Sub contractor for all first and Second fix plumbing systems ",
-      "subcontractedamount":"10378.62",
-      "calculatedamount":"11105.1234",
-      "subcontractor":"Pinnacle Plumbing",
-      "quote,estimateorprovision":"Quote",
-      "comments":"",
-      "budgetamount":"11105.1234",
-      "stilltoclaim":"11105.1234",
-      "complete":"0",
-      "status":"Open",
-      "comment":"",
-      "claims":{
-      
-      }
-      },
-      "37":{
-      "code":"J-160",
-      "task":"Fittings and Accessories",
-      "details":"Selected fittings and accessories for plumbed areas",
-      "subcontractedamount":"3500",
-      "calculatedamount":"3745",
-      "subcontractor":"",
-      "quote,estimateorprovision":"Estimate",
-      "comments":"For Consideration",
-      "budgetamount":"3745",
-      "stilltoclaim":"3745",
-      "complete":"0",
-      "status":"Open",
-      "comment":"",
-      "claims":{
-      
-      }
-      },
-      "38":{
-      "code":"J-180",
-      "task":"Drainlaying",
-      "details":"Sub contractor for all first and Second fix Drainage systems",
-      "subcontractedamount":"6000",
-      "calculatedamount":"6420",
-      "subcontractor":"DrainCo",
-      "quote,estimateorprovision":"Estimate",
-      "comments":"Preliminary Cost - To Be Updated",
-      "budgetamount":"6420",
-      "stilltoclaim":"6420",
-      "complete":"0",
-      "status":"Open",
-      "comment":"",
-      "claims":{
-      
-      }
-      }
-      },
-      "Electrical & Mechanical ":{
-      "39":{
-      "code":"K-100",
-      "task":"Electrical ",
-      "details":"Sub contractor for all first and second fix electrical systems ",
-      "subcontractedamount":"10431.72",
-      "calculatedamount":"11161.9404",
-      "subcontractor":"Hoffmann Electrics",
-      "quote,estimateorprovision":"Quote",
-      "comments":"",
-      "budgetamount":"11161.9404",
-      "stilltoclaim":"11161.9404",
-      "complete":"0",
-      "status":"Open",
-      "comment":"",
-      "claims":{
-      
-      }
-      }
-      },
-      "Insulation & Interior Linings":{
-      "40":{
-      "code":"L-160",
-      "task":"Gib Stopping",
-      "details":"Sub contractor for gib stopping",
-      "subcontractedamount":"3207.6",
-      "calculatedamount":"3432.132",
-      "subcontractor":"Sevin Decorating",
-      "quote,estimateorprovision":"Quote",
-      "comments":"",
-      "budgetamount":"3432.132",
-      "stilltoclaim":"3432.132",
-      "complete":"0",
-      "status":"Open",
-      "comment":"",
-      "claims":{
-      
-      }
-      },
-      "41":{
-      "code":"L-200",
-      "task":"VIlla and Soffit Joint Stopping",
-      "details":"Subcontractor for stopping villa joints in tiled areas and soffit joints where required",
+      "code":"B-230",
+      "task":"Backfilling ",
+      "details":"Backfilling to trenches, constructed works, benching, batters and compaction",
       "subcontractedamount":"500",
       "calculatedamount":"550",
-      "subcontractor":"Sevin Decorating",
-      "quote,estimateorprovision":"Estimate",
+      "subcontractor":"Reform Earthworks",
+      "quoteestimateorprovision":"Estimate",
+      "comments":"",
+      "budgetamount":"550",
+      "stilltoclaim":"550",
+      "complete":"0",
+      "status":"Open",
+      "comment":"",
+      "claims":{
+      
+      }
+      },
+      "34":{
+      "code":"B-260",
+      "task":"Truck Hire",
+      "details":"Hired vehicle for moving fill not associated with main excavation",
+      "subcontractedamount":"1000",
+      "calculatedamount":"1100",
+      "subcontractor":"Reform Earthworks",
+      "quoteestimateorprovision":"Provision",
+      "comments":"",
+      "budgetamount":"1100",
+      "stilltoclaim":"1100",
+      "complete":"0",
+      "status":"Open",
+      "comment":"",
+      "claims":{
+      
+      }
+      },
+      "35":{
+      "code":"B-351",
+      "task":"Geotechnical Inspections",
+      "details":"Inspection of ground conditions as required",
+      "subcontractedamount":"1000",
+      "calculatedamount":"1100",
+      "subcontractor":"Reform Earthworks",
+      "quoteestimateorprovision":"Provision",
+      "comments":"",
+      "budgetamount":"1100",
+      "stilltoclaim":"1100",
+      "complete":"0",
+      "status":"Open",
+      "comment":"",
+      "claims":{
+      
+      }
+      },
+      "36":{
+      "code":"B-360",
+      "task":"Site Drainage",
+      "details":"Cost to supply and install Nova coils , sub soil drains",
+      "subcontractedamount":"500",
+      "calculatedamount":"550",
+      "subcontractor":"Reform Earthworks",
+      "quoteestimateorprovision":"Estimate",
       "comments":"",
       "budgetamount":"550",
       "stilltoclaim":"550",
@@ -1208,16 +2440,54 @@
       
       }
       }
+      }
       },
-      "Tiling":{
-      "42":{
-      "code":"P-110",
-      "task":"Waterproofing",
-      "details":"Supply and install waterproofing",
+      "4":{
+      "Concrete Works":{
+      "37":{
+      "code":"C-150",
+      "task":"Blocklaying",
+      "details":"Cost of block laying sub-contractor",
+      "subcontractedamount":"7000",
+      "calculatedamount":"7700",
+      "subcontractor":"West Auckland Brick & Block",
+      "quoteestimateorprovision":"Quote",
+      "comments":"",
+      "budgetamount":"7700",
+      "stilltoclaim":"7700",
+      "complete":"0",
+      "status":"Open",
+      "comment":"",
+      "claims":{
+      
+      }
+      },
+      "38":{
+      "code":"C-210",
+      "task":"Concrete Supply, Place and Finish",
+      "details":"Placement and finishing - Sub contractor",
+      "subcontractedamount":"2000",
+      "calculatedamount":"2200",
+      "subcontractor":"KPC",
+      "quoteestimateorprovision":"Estimate",
+      "comments":"",
+      "budgetamount":"2200",
+      "stilltoclaim":"2200",
+      "complete":"0",
+      "status":"Open",
+      "comment":"",
+      "claims":{
+      
+      }
+      },
+      "39":{
+      "code":"C-220",
+      "task":"Concrete Pump",
+      "details":"Line pump, boom pump for onsite concrete ",
       "subcontractedamount":"1500",
       "calculatedamount":"1650",
-      "subcontractor":"Cando Tiling",
-      "quote,estimateorprovision":"Quote",
+      "subcontractor":"NS Pumps",
+      "quoteestimateorprovision":"Estimate",
       "comments":"",
       "budgetamount":"1650",
       "stilltoclaim":"1650",
@@ -1227,107 +2497,95 @@
       "claims":{
       
       }
+      }
+      }
       },
-      "43":{
-      "code":"P-120",
-      "task":"Tile Supply",
-      "details":"Supply and delivery of selected tiles",
-      "subcontractedamount":"",
-      "calculatedamount":"0",
-      "subcontractor":"",
-      "quote,estimateorprovision":"",
-      "comments":"For Consideration",
-      "budgetamount":"0",
-      "stilltoclaim":"0",
+      "5":{
+      "Waterproofing":{
+      "40":{
+      "code":"D-120",
+      "task":"TPO ",
+      "details":"TPO supply and install",
+      "subcontractedamount":"11250",
+      "calculatedamount":"12375",
+      "subcontractor":"Masterproof",
+      "quoteestimateorprovision":"Quote",
+      "comments":"",
+      "budgetamount":"12375",
+      "stilltoclaim":"12375",
       "complete":"0",
-      "status":"Closed",
+      "status":"Open",
+      "comment":"",
+      "claims":{
+      
+      }
+      },
+      "41":{
+      "code":"D-130",
+      "task":"Mulseal",
+      "details":"Supply and install of mulseal/ black seal or similar",
+      "subcontractedamount":"400",
+      "calculatedamount":"440",
+      "subcontractor":"KPC",
+      "quoteestimateorprovision":"Provision",
+      "comments":"",
+      "budgetamount":"440",
+      "stilltoclaim":"440",
+      "complete":"0",
+      "status":"Open",
+      "comment":"",
+      "claims":{
+      
+      }
+      },
+      "42":{
+      "code":"D-140",
+      "task":"Mapelastic smart",
+      "details":"Supply and install of mapelastic smart waterproofing system",
+      "subcontractedamount":"432",
+      "calculatedamount":"475.2",
+      "subcontractor":"KPC",
+      "quoteestimateorprovision":"Provision",
+      "comments":"",
+      "budgetamount":"475.2",
+      "stilltoclaim":"475.2",
+      "complete":"0",
+      "status":"Open",
+      "comment":"",
+      "claims":{
+      
+      }
+      }
+      }
+      },
+      "6":{
+      "Structural Steel & Flashings":{
+      "43":{
+      "code":"E-119",
+      "task":"Custom Roof Flashing",
+      "details":"Supply and install of custom roof flashings",
+      "subcontractedamount":"5000",
+      "calculatedamount":"5500",
+      "subcontractor":"Homesmart ",
+      "quoteestimateorprovision":"Estimate",
+      "comments":"",
+      "budgetamount":"5500",
+      "stilltoclaim":"5500",
+      "complete":"0",
+      "status":"Open",
       "comment":"",
       "claims":{
       
       }
       },
       "44":{
-      "code":"P-130",
-      "task":"Tiling",
-      "details":"Sub-contractor for tiling, grout and silicone ",
-      "subcontractedamount":"2570",
-      "calculatedamount":"2749.9",
-      "subcontractor":"Cando Tiling",
-      "quote,estimateorprovision":"Quote",
-      "comments":"",
-      "budgetamount":"2749.9",
-      "stilltoclaim":"2749.9",
-      "complete":"0",
-      "status":"Open",
-      "comment":"",
-      "claims":{
-      
-      }
-      },
-      "45":{
-      "code":"P-140",
-      "task":"Silicone Joints ",
-      "details":"Provisional amount for specific silicone work",
-      "subcontractedamount":"100",
-      "calculatedamount":"110",
-      "subcontractor":"Cando Tiling",
-      "quote,estimateorprovision":"Quote",
-      "comments":"",
-      "budgetamount":"110",
-      "stilltoclaim":"110",
-      "complete":"0",
-      "status":"Open",
-      "comment":"",
-      "claims":{
-      
-      }
-      }
-      },
-      "Flooring":{
-      "46":{
-      "code":"Q-100",
-      "task":"Timber flooring supply",
-      "details":"Supply and deliver timber floor boards",
-      "subcontractedamount":"",
-      "calculatedamount":"0",
-      "subcontractor":"",
-      "quote,estimateorprovision":"",
-      "comments":"",
-      "budgetamount":"0",
-      "stilltoclaim":"0",
-      "complete":"0",
-      "status":"Closed",
-      "comment":"",
-      "claims":{
-      
-      }
-      },
-      "47":{
-      "code":"Q-110",
-      "task":"Timber Flooring",
-      "details":"Sub contractor to install timber floor boards",
-      "subcontractedamount":"4000",
-      "calculatedamount":"4400",
-      "subcontractor":"Cando Flooring",
-      "quote,estimateorprovision":"Quote",
-      "comments":"",
-      "budgetamount":"4400",
-      "stilltoclaim":"4400",
-      "complete":"0",
-      "status":"Open",
-      "comment":"",
-      "claims":{
-      
-      }
-      },
-      "48":{
-      "code":"Q-130",
-      "task":"Grinding & Leveling ",
-      "details":"Provision for floor level prior to install",
+      "code":"E-180",
+      "task":"Powder Coating",
+      "details":"Transport and powder coating cost",
       "subcontractedamount":"1000",
       "calculatedamount":"1100",
-      "subcontractor":"KPC",
-      "quote,estimateorprovision":"Provision",
+      "subcontractor":"Homesmart ",
+      "quoteestimateorprovision":"Estimate",
       "comments":"",
       "budgetamount":"1100",
       "stilltoclaim":"1100",
@@ -1338,19 +2596,21 @@
       
       }
       }
+      }
       },
-      "Painting & Decorating":{
-      "49":{
-      "code":"R-110",
-      "task":"Interior Painting",
-      "details":"Sub contractor for all internal prep and painting ",
-      "subcontractedamount":"5394",
-      "calculatedamount":"5771.58",
-      "subcontractor":"Sevin Decorating",
-      "quote,estimateorprovision":"Quote",
+      "7":{
+      "Roofing":{
+      "45":{
+      "code":"F-100",
+      "task":"Roofing",
+      "details":"Supply and installation of roofing system",
+      "subcontractedamount":"1500",
+      "calculatedamount":"1650",
+      "subcontractor":"Homesmart ",
+      "quoteestimateorprovision":"Estimate ",
       "comments":"",
-      "budgetamount":"5771.58",
-      "stilltoclaim":"5771.58",
+      "budgetamount":"1650",
+      "stilltoclaim":"1650",
       "complete":"0",
       "status":"Open",
       "comment":"",
@@ -1358,17 +2618,97 @@
       
       }
       },
-      "50":{
-      "code":"R-120",
-      "task":"Exterior Painting",
-      "details":"Sub contractor for all exterior prep and painting",
-      "subcontractedamount":"6918",
-      "calculatedamount":"7402.26",
-      "subcontractor":"Sevin Decorating",
-      "quote,estimateorprovision":"Quote",
+      "46":{
+      "code":"F-110",
+      "task":"Spouting",
+      "details":"Supply and installation of souting/ guttering  system",
+      "subcontractedamount":"4193.43",
+      "calculatedamount":"4612.773",
+      "subcontractor":"KPC",
+      "quoteestimateorprovision":"Estimate",
       "comments":"",
-      "budgetamount":"7402.26",
-      "stilltoclaim":"7402.26",
+      "budgetamount":"4612.773",
+      "stilltoclaim":"4612.773",
+      "complete":"0",
+      "status":"Open",
+      "comment":"",
+      "claims":{
+      
+      }
+      },
+      "47":{
+      "code":"F-120",
+      "task":"Downpipes",
+      "details":"Supply and installation of downpipes  system",
+      "subcontractedamount":"250",
+      "calculatedamount":"275",
+      "subcontractor":"KPC",
+      "quoteestimateorprovision":"Estimate",
+      "comments":"",
+      "budgetamount":"275",
+      "stilltoclaim":"275",
+      "complete":"0",
+      "status":"Open",
+      "comment":"",
+      "claims":{
+      
+      }
+      }
+      }
+      },
+      "8":{
+      "Windows & Doors":{
+      "48":{
+      "code":"H-120",
+      "task":"Timber Joinery Supply",
+      "details":"Supply of timber joinery system",
+      "subcontractedamount":"20609.26",
+      "calculatedamount":"22670.186",
+      "subcontractor":"Ryock",
+      "quoteestimateorprovision":"Quote ",
+      "comments":"",
+      "budgetamount":"22670.186",
+      "stilltoclaim":"22670.186",
+      "complete":"0",
+      "status":"Open",
+      "comment":"",
+      "claims":{
+      
+      }
+      },
+      "49":{
+      "code":"H-200",
+      "task":"Door/Window Hardware Supply",
+      "details":"Supply of all hardware associated with internal doors/ window latch systems",
+      "subcontractedamount":"1000",
+      "calculatedamount":"1100",
+      "subcontractor":"KPC",
+      "quoteestimateorprovision":"Estimate",
+      "comments":"",
+      "budgetamount":"1100",
+      "stilltoclaim":"1100",
+      "complete":"0",
+      "status":"Open",
+      "comment":"",
+      "claims":{
+      
+      }
+      }
+      }
+      },
+      "9":{
+      "Plumbing & Drainage":{
+      "50":{
+      "code":"J-110",
+      "task":"Plumbing General",
+      "details":"Sub contractor for all first and Second fix plumbing systems ",
+      "subcontractedamount":"1506.89",
+      "calculatedamount":"1657.579",
+      "subcontractor":"Pinnacle Plumbing",
+      "quoteestimateorprovision":"Quote",
+      "comments":"",
+      "budgetamount":"1657.579",
+      "stilltoclaim":"1657.579",
       "complete":"0",
       "status":"Open",
       "comment":"",
@@ -1377,13 +2717,401 @@
       }
       },
       "51":{
+      "code":"J-160",
+      "task":"Fittings and Accessories",
+      "details":"Selected fittings and accessories for plumbed areas",
+      "subcontractedamount":"2500",
+      "calculatedamount":"2750",
+      "subcontractor":"Pinnacle Plumbing",
+      "quoteestimateorprovision":"Estimate",
+      "comments":"For Consideration",
+      "budgetamount":"2750",
+      "stilltoclaim":"2750",
+      "complete":"0",
+      "status":"Open",
+      "comment":"",
+      "claims":{
+      
+      }
+      }
+      }
+      },
+      "10":{
+      "Electrical & Mechanical ":{
+      "52":{
+      "code":"K-100",
+      "task":"Electrical ",
+      "details":"Sub contractor for all first and second fix electrical systems ",
+      "subcontractedamount":"9486.4",
+      "calculatedamount":"10435.04",
+      "subcontractor":"Hoffmann Electrics",
+      "quoteestimateorprovision":"Quote",
+      "comments":"",
+      "budgetamount":"10435.04",
+      "stilltoclaim":"10435.04",
+      "complete":"0",
+      "status":"Open",
+      "comment":"",
+      "claims":{
+      
+      }
+      },
+      "53":{
+      "code":"K-111",
+      "task":"Switchboard Upgrade",
+      "details":"Supply and install a new switchboard as required",
+      "subcontractedamount":"1650",
+      "calculatedamount":"1815",
+      "subcontractor":"",
+      "quoteestimateorprovision":"",
+      "comments":"",
+      "budgetamount":"1815",
+      "stilltoclaim":"",
+      "complete":"",
+      "status":"",
+      "comment":"",
+      "claims":{
+      
+      }
+      }
+      }
+      },
+      "11":{
+      "Insulation & Interior Linings":{
+      "54":{
+      "code":"L-160",
+      "task":"Gib Stopping",
+      "details":"Sub contractor for gib stopping",
+      "subcontractedamount":"4000",
+      "calculatedamount":"4400",
+      "subcontractor":"Sevin Decorating",
+      "quoteestimateorprovision":"Estimate",
+      "comments":"",
+      "budgetamount":"4400",
+      "stilltoclaim":"4400",
+      "complete":"0",
+      "status":"Open",
+      "comment":"",
+      "claims":{
+      
+      }
+      }
+      }
+      },
+      "12":{
+      "Interior Cabinetry & Kitchens":{
+      "55":{
+      "code":"M-100",
+      "task":"Kitchen Cabinetry ",
+      "details":"Supply and install of kitchen cabinetry",
+      "subcontractedamount":"12000",
+      "calculatedamount":"13200",
+      "subcontractor":"Moda",
+      "quoteestimateorprovision":"Estimate",
+      "comments":"",
+      "budgetamount":"13200",
+      "stilltoclaim":"13200",
+      "complete":"0",
+      "status":"Open",
+      "comment":"",
+      "claims":{
+      
+      }
+      },
+      "56":{
+      "code":"M-140",
+      "task":"Wardrobes",
+      "details":"Supply and install of wardrobes",
+      "subcontractedamount":"1500",
+      "calculatedamount":"1650",
+      "subcontractor":"KPC",
+      "quoteestimateorprovision":"Estimate",
+      "comments":"",
+      "budgetamount":"1650",
+      "stilltoclaim":"1650",
+      "complete":"0",
+      "status":"Open",
+      "comment":"",
+      "claims":{
+      
+      }
+      },
+      "57":{
+      "code":"M-150",
+      "task":"Bench Tops ",
+      "details":"Supply and install of bench tops ",
+      "subcontractedamount":"3000",
+      "calculatedamount":"3300",
+      "subcontractor":"Moda",
+      "quoteestimateorprovision":"Estimate",
+      "comments":"",
+      "budgetamount":"3300",
+      "stilltoclaim":"3300",
+      "complete":"0",
+      "status":"Open",
+      "comment":"",
+      "claims":{
+      
+      }
+      },
+      "58":{
+      "code":"M-170",
+      "task":"Appliances ",
+      "details":"Supply of selected appliances",
+      "subcontractedamount":"",
+      "calculatedamount":"0",
+      "subcontractor":"",
+      "quoteestimateorprovision":"",
+      "comments":"For Consideration",
+      "budgetamount":"0",
+      "stilltoclaim":"0",
+      "complete":"0",
+      "status":"Closed",
+      "comment":"",
+      "claims":{
+      
+      }
+      },
+      "59":{
+      "code":"M-180",
+      "task":"Cabinetry Handles",
+      "details":"Supply and install of selected cabinetry handles ",
+      "subcontractedamount":"200",
+      "calculatedamount":"220",
+      "subcontractor":"KPC",
+      "quoteestimateorprovision":"Estimate",
+      "comments":"",
+      "budgetamount":"220",
+      "stilltoclaim":"220",
+      "complete":"0",
+      "status":"Open",
+      "comment":"",
+      "claims":{
+      
+      }
+      }
+      }
+      },
+      "13":{
+      "Fireplaces ":{
+      "60":{
+      "code":"N-100",
+      "task":"Fireplace Supply",
+      "details":"Supply of selected fireplace",
+      "subcontractedamount":"8000",
+      "calculatedamount":"8800",
+      "subcontractor":"Pinnacle Plumbing",
+      "quoteestimateorprovision":"Estimate",
+      "comments":"",
+      "budgetamount":"8800",
+      "stilltoclaim":"8800",
+      "complete":"0",
+      "status":"Open",
+      "comment":"",
+      "claims":{
+      
+      }
+      },
+      "61":{
+      "code":"N-110",
+      "task":"Fireplace Install ",
+      "details":"Installation of selected fireplace",
+      "subcontractedamount":"2500",
+      "calculatedamount":"2750",
+      "subcontractor":"Pinnacle Plumbing",
+      "quoteestimateorprovision":"Estimate",
+      "comments":"",
+      "budgetamount":"2750",
+      "stilltoclaim":"2750",
+      "complete":"0",
+      "status":"Open",
+      "comment":"",
+      "claims":{
+      
+      }
+      },
+      "62":{
+      "code":"N-120",
+      "task":"Flue Flashings",
+      "details":"Costs of additional flashing requirements",
+      "subcontractedamount":"500",
+      "calculatedamount":"550",
+      "subcontractor":"Homesmart",
+      "quoteestimateorprovision":"Estimate",
+      "comments":"",
+      "budgetamount":"550",
+      "stilltoclaim":"550",
+      "complete":"0",
+      "status":"Open",
+      "comment":"",
+      "claims":{
+      
+      }
+      },
+      "63":{
+      "code":"N-160",
+      "task":"Hearths",
+      "details":"Hearth construction costs",
+      "subcontractedamount":"500",
+      "calculatedamount":"550",
+      "subcontractor":"Homesmart",
+      "quoteestimateorprovision":"Estimate",
+      "comments":"",
+      "budgetamount":"550",
+      "stilltoclaim":"550",
+      "complete":"0",
+      "status":"Open",
+      "comment":"",
+      "claims":{
+      
+      }
+      }
+      }
+      },
+      "14":{
+      "Tiling":{
+      "64":{
+      "code":"P-120",
+      "task":"Tile Supply",
+      "details":"Supply and delivery of selected tiles",
+      "subcontractedamount":"1500",
+      "calculatedamount":"1650",
+      "subcontractor":"Cando Tiling",
+      "quoteestimateorprovision":"Estimate",
+      "comments":"For Consideration",
+      "budgetamount":"1650",
+      "stilltoclaim":"1650",
+      "complete":"0",
+      "status":"Open",
+      "comment":"",
+      "claims":{
+      
+      }
+      },
+      "65":{
+      "code":"P-130",
+      "task":"Tiling",
+      "details":"Sub-contractor for tiling, grout and silicone ",
+      "subcontractedamount":"2570",
+      "calculatedamount":"2827",
+      "subcontractor":"Cando Tiling",
+      "quoteestimateorprovision":"Estimate",
+      "comments":"",
+      "budgetamount":"2827",
+      "stilltoclaim":"2827",
+      "complete":"0",
+      "status":"Open",
+      "comment":"",
+      "claims":{
+      
+      }
+      }
+      }
+      },
+      "15":{
+      "Flooring":{
+      "66":{
+      "code":"Q-100",
+      "task":"Timber flooring supply",
+      "details":"Supply and deliver timber floor boards",
+      "subcontractedamount":"5000",
+      "calculatedamount":"5500",
+      "subcontractor":"KPC",
+      "quoteestimateorprovision":"Estimate",
+      "comments":"",
+      "budgetamount":"5500",
+      "stilltoclaim":"5500",
+      "complete":"0",
+      "status":"Open",
+      "comment":"",
+      "claims":{
+      
+      }
+      },
+      "67":{
+      "code":"Q-120",
+      "task":"Timber Floor Sand & Finish",
+      "details":"Sub contractor to sand & finish old or new timber floors",
+      "subcontractedamount":"5000",
+      "calculatedamount":"5500",
+      "subcontractor":"Goodwood Flooring",
+      "quoteestimateorprovision":"Estimate ",
+      "comments":"",
+      "budgetamount":"5500",
+      "stilltoclaim":"5500",
+      "complete":"0",
+      "status":"Open",
+      "comment":"",
+      "claims":{
+      
+      }
+      },
+      "68":{
+      "code":"Q-150",
+      "task":"Carpet",
+      "details":"Supply and install of carpet and underlay including garage carpet",
+      "subcontractedamount":"4500",
+      "calculatedamount":"4950",
+      "subcontractor":"Carpet Court",
+      "quoteestimateorprovision":"Estimate",
+      "comments":"",
+      "budgetamount":"4950",
+      "stilltoclaim":"4950",
+      "complete":"0",
+      "status":"Open",
+      "comment":"",
+      "claims":{
+      
+      }
+      }
+      }
+      },
+      "16":{
+      "Painting & Decorating":{
+      "69":{
+      "code":"R-110",
+      "task":"Interior Painting",
+      "details":"Sub contractor for all internal prep and painting ",
+      "subcontractedamount":"15000",
+      "calculatedamount":"16500",
+      "subcontractor":"Sevin Decorating",
+      "quoteestimateorprovision":"Estimate",
+      "comments":"",
+      "budgetamount":"16500",
+      "stilltoclaim":"16500",
+      "complete":"0",
+      "status":"Open",
+      "comment":"",
+      "claims":{
+      
+      }
+      },
+      "70":{
+      "code":"R-120",
+      "task":"Exterior Painting",
+      "details":"Sub contractor for all exterior prep and painting",
+      "subcontractedamount":"10000",
+      "calculatedamount":"11000",
+      "subcontractor":"Sevin Decorating",
+      "quoteestimateorprovision":"Estimate",
+      "comments":"",
+      "budgetamount":"11000",
+      "stilltoclaim":"11000",
+      "complete":"0",
+      "status":"Open",
+      "comment":"",
+      "claims":{
+      
+      }
+      },
+      "71":{
       "code":"R-130",
       "task":"Painting Touch-ups ",
       "details":"Provision for touch-ups",
       "subcontractedamount":"400",
       "calculatedamount":"440",
       "subcontractor":"Sevin Decorating",
-      "quote,estimateorprovision":"Provision",
+      "quoteestimateorprovision":"Provision",
       "comments":"",
       "budgetamount":"440",
       "stilltoclaim":"440",
@@ -1394,117 +3122,148 @@
       
       }
       }
+      }
       },
-      "Glazing":{
-      "52":{
-      "code":"S-110",
-      "task":"Shower Glass",
-      "details":"Supply and install of shower glass",
-      "subcontractedamount":"1795.83",
-      "calculatedamount":"1975.413",
-      "subcontractor":"360 Glass",
-      "quote,estimateorprovision":"Quote",
+      "17":{
+      "Landscaping":{
+      "72":{
+      "code":"U-160",
+      "task":"Decking",
+      "details":"Labour for framing and laying decks",
+      "subcontractedamount":"17000",
+      "calculatedamount":"18700",
+      "subcontractor":"KPC",
+      "quoteestimateorprovision":"Estimate",
       "comments":"",
-      "budgetamount":"1975.413",
-      "stilltoclaim":"1975.413",
-      "complete":"0",
+      "budgetamount":"18700",
+      "stilltoclaim":"18700",
+      "complete":"1",
       "status":"Open",
       "comment":"",
       "claims":{
       
       }
+      },
+      "73":{
+      "code":"U-170",
+      "task":"Fencing",
+      "details":"Labour for building fences",
+      "subcontractedamount":"",
+      "calculatedamount":"0",
+      "subcontractor":"",
+      "quoteestimateorprovision":"",
+      "comments":"For Consideration",
+      "budgetamount":"0",
+      "stilltoclaim":"0",
+      "complete":"0",
+      "status":"Closed",
+      "comment":"",
+      "claims":{
+      
       }
       },
+      "74":{
+      "code":"U-270",
+      "task":"Planting",
+      "details":"Landscape planting",
+      "subcontractedamount":"",
+      "calculatedamount":"0",
+      "subcontractor":"",
+      "quoteestimateorprovision":"",
+      "comments":"For Consideration",
+      "budgetamount":"0",
+      "stilltoclaim":"0",
+      "complete":"0",
+      "status":"Closed",
+      "comment":"",
+      "claims":{
+      
+      }
+      }
+      }
+      },
+      "18":{
       "Materials":{
-      "53":{
-      "code":" ",
+      "75":{
+      "code":" V-100",
       "task":"Total Materials before Variation",
-      "details":" As per Placemakers take-off + allowance for general wasteage and consumables",
-      "subcontractedamount":"33380",
-      "calculatedamount":"36718",
+      "details":" Building Materials",
+      "subcontractedamount":"39948",
+      "calculatedamount":"43942.8",
       "subcontractor":"KPC",
-      "quote,estimateorprovision":"Estimate",
-      "comments":"",
-      "budgetamount":"36718",
-      "stilltoclaim":"36718",
+      "quoteestimateorprovision":"Estimate",
+      "comments":"To Be Updated",
+      "budgetamount":"43942.8",
+      "stilltoclaim":"43942.8",
       "complete":"0",
       "status":"Open",
       "comment":"",
       "claims":{
-      "claim1":"0"
+      "1":"0"
+      }
       }
       }
       },
+      "19":{
       "Labour":{
-      "54":{
+      "76":{
       "code":"W-100",
       "task":"Labour",
-      "details":"Labour total as per provided Labour List",
+      "details":"Labour total",
       "subcontractedamount":"",
-      "calculatedamount":"85690",
+      "calculatedamount":"130910",
       "subcontractor":"KPC",
-      "quote,estimateorprovision":"Estimate",
+      "quoteestimateorprovision":"Estimate",
       "comments":"",
-      "budgetamount":"85690",
-      "stilltoclaim":"85690",
+      "budgetamount":"130910",
+      "stilltoclaim":"130910",
       "complete":"0",
       "status":"Open",
       "comment":"",
       "claims":{
-      "claim1":"0",
-      "claim2":"0",
-      "claim3":"0",
-      "claim4":"0",
-      "claim5":"0"
+      "1":"0",
+      "2":"0",
+      "3":"0",
+      "4":"0",
+      "5":"0"
+      }
       }
       }
       }
       },
       "labourList":{
+      "1":{
       "GENERAL":{
       "1":{
       "name":"PROJECT ADMIN./ MEETINGS/ ORDERING MATERIALS/ DRAWING DETAILS ETC..",
       "hoursPredicted":{
-      "Foreman":"1",
-      "Builder 1":"",
-      "Builder 2":"",
-      "Apprentice 1":""
+      "Foreman":"2",
+      "Builder 1":"1"
       }
       },
       "2":{
       "name":"WORK WITH & ATTENDANCE OF SUB-TRADES & SITE MANAGEMENT",
       "hoursPredicted":{
       "Foreman":"2",
-      "Builder 1":"",
-      "Builder 2":"",
-      "Apprentice 1":""
+      "Builder 1":"2"
       }
       },
       "3":{
       "name":"CHECK EXTERIOR JOINERY SHOP DRAWINGS",
       "hoursPredicted":{
-      "Foreman":"0.25",
-      "Builder 1":"",
-      "Builder 2":"",
-      "Apprentice 1":""
+      "Foreman":"0.5"
       }
       },
       "4":{
       "name":"TILE SET OUTS ",
       "hoursPredicted":{
-      "Foreman":"0.25",
-      "Builder 1":"",
-      "Builder 2":"",
-      "Apprentice 1":""
+      "Foreman":"0.25"
       }
       },
       "5":{
       "name":"COUNCIL MEETINGS AND INSPECTIONS",
       "hoursPredicted":{
-      "Foreman":"0.5",
-      "Builder 1":"",
-      "Builder 2":"",
-      "Apprentice 1":""
+      "Foreman":"0.5"
       }
       },
       "6":{
@@ -1512,483 +3271,482 @@
       "hoursPredicted":{
       "Foreman":"1",
       "Builder 1":"1",
-      "Builder 2":"",
       "Apprentice 1":"1"
       }
       },
       "7":{
       "name":"DEMOLITION / SALVAGE WORKS",
       "hoursPredicted":{
-      "Foreman":"1",
-      "Builder 1":"1",
-      "Builder 2":"",
-      "Apprentice 1":"1"
+      "Foreman":"3",
+      "Builder 1":"3",
+      "Apprentice 1":"3"
       }
       },
       "8":{
       "name":"COVER AND PROTECT EXISTING HOUSE",
       "hoursPredicted":{
-      "Foreman":"0.5",
-      "Builder 1":"0.5",
-      "Builder 2":"",
-      "Apprentice 1":"0.5"
+      "Foreman":"2",
+      "Builder 1":"2",
+      "Apprentice 1":"2"
       }
       },
       "9":{
       "name":"PROFILE AND SETOUT ",
       "hoursPredicted":{
       "Foreman":"1",
-      "Builder 1":"",
-      "Builder 2":"",
-      "Apprentice 1":"1"
+      "Builder 1":"1"
+      }
       }
       }
       },
+      "2":{
       "SITE & CONCRETE WORKS":{
       "10":{
-      "name":"EXCAVATION WORKS",
-      "hoursPredicted":{
-      "Foreman":"1.5",
-      "Builder 1":"1",
-      "Builder 2":"",
-      "Apprentice 1":"1.5"
-      }
-      },
-      "11":{
-      "name":"FOOTING REO",
+      "name":"CLEAR VEGETATION AND MOVE/REMOVE EXISTING STRUCTURES",
       "hoursPredicted":{
       "Foreman":"1",
       "Builder 1":"1",
-      "Builder 2":"",
       "Apprentice 1":"1"
       }
       },
-      "12":{
-      "name":"SET FOOTIING SHS",
+      "11":{
+      "name":"EXCAVATION WORKS",
       "hoursPredicted":{
-      "Foreman":"0.5",
-      "Builder 1":" ",
-      "Builder 2":"",
-      "Apprentice 1":"0.5"
+      "Foreman":"2",
+      "Builder 1":"1",
+      "Apprentice 1":"2"
+      }
+      },
+      "12":{
+      "name":"FOOTING REO",
+      "hoursPredicted":{
+      "Foreman":"2",
+      "Builder 1":"2",
+      "Apprentice 1":"2"
       }
       },
       "13":{
+      "name":"SET FOOTIING SHS",
+      "hoursPredicted":{
+      
+      }
+      },
+      "14":{
       "name":"POUR AND PLACE FOOTINGS",
       "hoursPredicted":{
       "Foreman":"1",
       "Builder 1":"1",
-      "Builder 2":"",
-      "Apprentice 1":"1"
-      }
-      },
-      "14":{
-      "name":"PLACE AND COMPACT HARDFILL/DRAINAGE METAL",
-      "hoursPredicted":{
-      "Foreman":"1",
-      "Builder 1":"1",
-      "Builder 2":"",
       "Apprentice 1":"1"
       }
       },
       "15":{
-      "name":"BOX SLAB",
+      "name":"PLACE AND COMPACT HARDFILL/DRAINAGE METAL",
       "hoursPredicted":{
-      "Foreman":"2",
-      "Builder 1":"2",
-      "Builder 2":"",
-      "Apprentice 1":"2"
+      "Foreman":"1",
+      "Builder 1":"1",
+      "Apprentice 1":"1"
       }
       },
       "16":{
-      "name":"LAY DPM",
-      "hoursPredicted":{
-      "Foreman":"0.5",
-      "Builder 1":" ",
-      "Builder 2":"",
-      "Apprentice 1":"0.5"
-      }
-      },
-      "17":{
-      "name":"LAY POLYSTYRENE PODS",
-      "hoursPredicted":{
-      "Foreman":"0.5",
-      "Builder 1":" ",
-      "Builder 2":"",
-      "Apprentice 1":"0.5"
-      }
-      },
-      "18":{
-      "name":"INSTALL REO",
-      "hoursPredicted":{
-      "Foreman":"1",
-      "Builder 1":"1",
-      "Builder 2":"",
-      "Apprentice 1":"1"
-      }
-      },
-      "19":{
-      "name":"BOX REBATES",
-      "hoursPredicted":{
-      "Foreman":"0.5",
-      "Builder 1":"0.5",
-      "Builder 2":"",
-      "Apprentice 1":"0.5"
-      }
-      },
-      "20":{
-      "name":"POUR AND CURE SLAB",
-      "hoursPredicted":{
-      "Foreman":"1",
-      "Builder 1":"1",
-      "Builder 2":"",
-      "Apprentice 1":"1"
-      }
-      },
-      "21":{
-      "name":"STRIP BOXING, CLEAN CONCRETE",
-      "hoursPredicted":{
-      "Foreman":"0.5",
-      "Builder 1":"",
-      "Builder 2":" ",
-      "Apprentice 1":"0.5"
-      }
-      }
-      },
-      "1ST FIX CARPENTRY WORKS START":{
-      "22":{
-      "name":"EXTERIOR WALL FRAMING",
+      "name":"SET FOUNDATION PILES",
       "hoursPredicted":{
       "Foreman":"2",
       "Builder 1":"2",
-      "Builder 2":"",
       "Apprentice 1":"2"
       }
       },
-      "23":{
-      "name":"GENERAL FRAMING                                 ",
+      "17":{
+      "name":"GENERAL LANDSCAPING",
       "hoursPredicted":{
-      "Foreman":"1.5",
-      "Builder 1":"1.5",
-      "Builder 2":" ",
-      "Apprentice 1":"1.5"
+      "Foreman":"1",
+      "Builder 1":"1",
+      "Apprentice 1":"1"
       }
       },
-      "24":{
+      "18":{
+      "name":"STRIP BOXING, CLEAN CONCRETE",
+      "hoursPredicted":{
+      "Foreman":"1",
+      "Builder 1":"1",
+      "Apprentice 1":"1"
+      }
+      }
+      }
+      },
+      "3":{
+      "1ST FIX CARPENTRY WORKS START":{
+      "19":{
+      "name":"EXTERIOR WALL FRAMING",
+      "hoursPredicted":{
+      "Foreman":"4",
+      "Builder 1":"4",
+      "Apprentice 1":"4"
+      }
+      },
+      "20":{
+      "name":"GENERAL FRAMING                                 ",
+      "hoursPredicted":{
+      "Foreman":"2",
+      "Builder 1":"2",
+      "Apprentice 1":"3"
+      }
+      },
+      "21":{
       "name":"INSTALL PFC BEAMS",
       "hoursPredicted":{
       "Foreman":"1",
       "Builder 1":"1",
-      "Builder 2":"",
       "Apprentice 1":"1"
+      }
+      },
+      "22":{
+      "name":"WALL AND BEAM HARDWARE",
+      "hoursPredicted":{
+      
+      }
+      },
+      "23":{
+      "name":"PACK BEAMS",
+      "hoursPredicted":{
+      
+      }
+      },
+      "24":{
+      "name":"INSTALLING RAFTERS AND NOGS",
+      "hoursPredicted":{
+      
       }
       },
       "25":{
-      "name":"WALL AND BEAM HARDWARE",
+      "name":"PARAPET FRAMING",
       "hoursPredicted":{
-      "Foreman":"1",
-      "Builder 1":"1",
-      "Builder 2":"",
-      "Apprentice 1":"1"
+      
       }
       },
       "26":{
-      "name":"PACK BEAMS",
+      "name":"INSTALL FURRINGS ",
       "hoursPredicted":{
-      "Foreman":"1",
-      "Builder 1":"",
-      "Builder 2":"",
-      "Apprentice 1":"1"
+      
       }
       },
       "27":{
-      "name":"INSTALLING RAFTERS AND NOGS",
+      "name":"FRAME GUTTER",
       "hoursPredicted":{
-      "Foreman":"3",
-      "Builder 1":"3",
-      "Builder 2":" ",
-      "Apprentice 1":"3"
+      
       }
       },
       "28":{
-      "name":"PARAPET FRAMING",
+      "name":"INSTALL ROOF PLY",
       "hoursPredicted":{
-      "Foreman":"1",
-      "Builder 1":"1",
-      "Builder 2":"",
-      "Apprentice 1":"1"
+      
       }
       },
       "29":{
-      "name":"INSTALL FURRINGS ",
+      "name":"SET OUT & INSTALL ALL FLOOR JOISTS",
       "hoursPredicted":{
-      "Foreman":"2",
-      "Builder 1":"2",
-      "Builder 2":"",
-      "Apprentice 1":"2"
+      "Foreman":"1",
+      "Builder 1":"1",
+      "Apprentice 1":"1"
       }
       },
       "30":{
-      "name":"FRAME GUTTER",
+      "name":"INSTALL FLOOR JOIST NOGS & BLOCKING",
       "hoursPredicted":{
-      "Foreman":"0",
+      "Foreman":"1",
       "Builder 1":"1",
-      "Builder 2":"",
       "Apprentice 1":"1"
       }
       },
       "31":{
-      "name":"INSTALL ROOF PLY",
+      "name":"INSTALL FLOOR HARDWARE",
       "hoursPredicted":{
-      "Foreman":"1.5",
-      "Builder 1":"1.5",
-      "Builder 2":"",
-      "Apprentice 1":"1.5"
+      "Apprentice 1":"0.5"
       }
       },
       "32":{
-      "name":"WRAP WALLS & TAPE ALL OPENINGS ",
+      "name":"BUZZ & STRAIGHTEN FLOOR FRAMING",
       "hoursPredicted":{
-      "Foreman":"1",
-      "Builder 1":"",
-      "Builder 2":" ",
-      "Apprentice 1":"1"
+      "Builder 1":"0.5"
       }
       },
       "33":{
-      "name":"INSTALL ALUMINIUM JOINERY",
+      "name":"REPAIR FLOORING WHERE REQUIRED",
       "hoursPredicted":{
-      "Foreman":"1",
-      "Builder 1":"2",
-      "Builder 2":"",
-      "Apprentice 1":"2"
+      "Foreman":"5",
+      "Builder 1":"5",
+      "Apprentice 1":"5"
       }
       },
       "34":{
-      "name":"INSTALL CAVITY SYSTEM",
+      "name":"REPLACE WEATHER BOARDS",
       "hoursPredicted":{
-      "Foreman":"1",
-      "Builder 1":"1",
-      "Builder 2":"",
-      "Apprentice 1":"1"
-      }
-      },
-      "35":{
-      "name":"INSTALL WEATHERBOARD SYSTEM",
-      "hoursPredicted":{
-      "Foreman":"2",
+      "Foreman":"3",
       "Builder 1":"3",
-      "Builder 2":"",
       "Apprentice 1":"3"
       }
       },
-      "36":{
-      "name":"INSTALL JAMES HARDIES EASY LAP SYSTEM",
+      "35":{
+      "name":"REPLACE FASCIA",
       "hoursPredicted":{
       "Foreman":"1",
       "Builder 1":"1",
-      "Builder 2":"",
       "Apprentice 1":"1"
       }
       },
-      "37":{
-      "name":"FRAME AND LINE SOFFIT",
+      "36":{
+      "name":"ROOF FRAMING",
       "hoursPredicted":{
-      "Foreman":"1.5",
-      "Builder 1":"1",
-      "Builder 2":"",
-      "Apprentice 1":"1.5"
+      "Foreman":"3",
+      "Builder 1":"3",
+      "Apprentice 1":"3"
+      }
+      },
+      "37":{
+      "name":"FRAME SOFFIT ",
+      "hoursPredicted":{
+      "Foreman":"1",
+      "Apprentice 1":"1"
       }
       },
       "38":{
-      "name":"INTERIOR SETOUT",
+      "name":"LINE SOFFIT",
       "hoursPredicted":{
-      "Foreman":"0.5",
-      "Builder 1":"",
-      "Builder 2":"",
-      "Apprentice 1":""
+      "Foreman":"1",
+      "Apprentice 1":"1"
       }
       },
       "39":{
-      "name":"FRAME INTERNAL WALLS",
+      "name":"WRAP WALLS & TAPE ALL OPENINGS ",
       "hoursPredicted":{
       "Foreman":"1",
       "Builder 1":"1",
-      "Builder 2":"",
       "Apprentice 1":"1"
       }
       },
       "40":{
-      "name":"INSTALL INTERIOR DOORS",
+      "name":"INSTALL ALUMINIUM JOINERY",
       "hoursPredicted":{
-      "Foreman":"0.5",
-      "Builder 1":"",
-      "Builder 2":"",
-      "Apprentice 1":""
+      
       }
       },
       "41":{
-      "name":"EXTERIOR FINISHING",
+      "name":"INSTALL CAVITY SYSTEM",
       "hoursPredicted":{
-      "Foreman":"1.5",
-      "Builder 1":"1",
-      "Builder 2":"",
-      "Apprentice 1":"1"
+      "Foreman":"2",
+      "Builder 1":"2",
+      "Apprentice 1":"2"
       }
       },
       "42":{
-      "name":"INSULATE WALLS AND CEILING",
+      "name":"INSTALL WEATHERBOARD SYSTEM",
       "hoursPredicted":{
-      "Foreman":"1",
-      "Builder 1":"",
-      "Builder 2":"",
-      "Apprentice 1":"1"
+      "Foreman":"2",
+      "Builder 1":"2",
+      "Apprentice 1":"2"
       }
       },
       "43":{
-      "name":"INSTALL WALL HARDWARE",
+      "name":"INSTALL HEAD & SILL FLASHINGS",
       "hoursPredicted":{
-      "Foreman":"",
-      "Builder 1":"",
-      "Builder 2":"",
+      "Foreman":"1",
+      "Builder 1":"1",
       "Apprentice 1":"1"
       }
       },
       "44":{
-      "name":"BUZZ & STRAIGHTEN INTERNAL WALLS ",
+      "name":"AIR SEAL & FOAM ALL OPENINGS ",
       "hoursPredicted":{
-      "Foreman":"1",
-      "Builder 1":"1",
-      "Builder 2":"",
-      "Apprentice 1":" "
+      "Apprentice 1":"0.5"
       }
       },
       "45":{
-      "name":"INSTALL GIB",
+      "name":"INSTALL COVER BATTENS, BOX CORNERS, SCRIBERS AND HEAD TRIM",
       "hoursPredicted":{
-      "Foreman":"2",
-      "Builder 1":"2",
-      "Builder 2":"",
-      "Apprentice 1":"2"
-      }
+      "Builder 1":"2"
       }
       },
-      "2ND FIX CARPENTRY WORKS START":{
       "46":{
-      "name":"FINISHING LINES & DETAILING",
+      "name":"INTERIOR SETOUT",
       "hoursPredicted":{
-      "Foreman":"3",
-      "Builder 1":"3",
-      "Builder 2":" ",
-      "Apprentice 1":"3"
+      
       }
       },
       "47":{
-      "name":"INSTALL BATHROOM FIXTURES",
-      "hoursPredicted":{
-      "Foreman":"0.5",
-      "Builder 1":"",
-      "Builder 2":"",
-      "Apprentice 1":""
-      }
-      },
-      "48":{
-      "name":"FINAL DETAILING",
+      "name":"FRAME INTERNAL WALLS",
       "hoursPredicted":{
       "Foreman":"1",
       "Builder 1":"1",
-      "Builder 2":"",
       "Apprentice 1":"1"
       }
-      }
       },
-      "LANDSCAPE WORKS":{
-      
-      },
-      "MISC. WORKS":{
-      "49":{
-      "name":"SET UP TEMPORARY ACCESS & SCAFFOLD SYSTEMS",
+      "48":{
+      "name":"FRAME CEILINGS & SOLID BLOCKING",
       "hoursPredicted":{
       "Foreman":"1",
-      "Builder 1":"",
-      "Builder 2":" ",
+      "Builder 1":"1",
       "Apprentice 1":"1"
+      }
+      },
+      "49":{
+      "name":"INSTALL INTERIOR DOORS",
+      "hoursPredicted":{
+      "Foreman":"1",
+      "Builder 1":"1"
       }
       },
       "50":{
-      "name":"TEMP. COVER & PROTECT FLOOR SURFACES",
+      "name":"MATCHING FRAMING OLD TO NEW",
       "hoursPredicted":{
-      "Foreman":"",
-      "Builder 1":"",
-      "Builder 2":"",
-      "Apprentice 1":"0.5"
+      "Foreman":"2",
+      "Builder 1":"2",
+      "Apprentice 1":"2"
       }
       },
       "51":{
-      "name":"WATERBLASTING DRIVE & ROAD",
+      "name":"INSULATE FLOOR",
       "hoursPredicted":{
-      "Foreman":"",
-      "Builder 1":"",
-      "Builder 2":"",
-      "Apprentice 1":"0.5"
-      }
-      },
-      "52":{
-      "name":"FINAL SITE CLEAN",
-      "hoursPredicted":{
-      "Foreman":"1",
-      "Builder 1":"",
-      "Builder 2":"",
       "Apprentice 1":"1"
       }
       },
+      "52":{
+      "name":"EXTERIOR FINISHING",
+      "hoursPredicted":{
+      "Foreman":"1"
+      }
+      },
       "53":{
-      "name":"DELIVERIES, UNLOADING, MOVING & STACKING MATERIALS AROUND SITE",
+      "name":"INSULATE WALLS AND CEILING",
       "hoursPredicted":{
       "Foreman":"1",
-      "Builder 1":"",
-      "Builder 2":"",
+      "Builder 1":"1",
       "Apprentice 1":"1"
       }
       },
       "54":{
-      "name":"TOOL & PLANT MAINTENANCE",
+      "name":"INSTALL WALL HARDWARE",
       "hoursPredicted":{
-      "Foreman":"",
-      "Builder 1":"0.5",
-      "Builder 2":"",
-      "Apprentice 1":"0.5"
+      "Foreman":"1"
       }
       },
       "55":{
+      "name":"BUZZ & STRAIGHTEN INTERNAL WALLS ",
+      "hoursPredicted":{
+      "Foreman":"2",
+      "Builder 1":"2",
+      "Apprentice 1":"2"
+      }
+      },
+      "56":{
+      "name":"INSTALL GIB",
+      "hoursPredicted":{
+      "Foreman":"2",
+      "Builder 1":"2",
+      "Apprentice 1":"2"
+      }
+      }
+      }
+      },
+      "4":{
+      "2ND FIX CARPENTRY WORKS START":{
+      "57":{
+      "name":"FINISHING LINES & DETAILING",
+      "hoursPredicted":{
+      "Foreman":"4",
+      "Builder 1":"4",
+      "Apprentice 1":"4"
+      }
+      },
+      "58":{
+      "name":"INSTALL BATHROOM FIXTURES",
+      "hoursPredicted":{
+      "Foreman":"0.5"
+      }
+      },
+      "59":{
+      "name":"FINAL DETAILING",
+      "hoursPredicted":{
+      "Foreman":"1",
+      "Builder 1":"1",
+      "Apprentice 1":"1"
+      }
+      },
+      "60":{
+      "name":"INSTALL CABINETRY",
+      "hoursPredicted":{
+      "Foreman":"1",
+      "Builder 1":"1",
+      "Apprentice 1":"1"
+      }
+      }
+      }
+      },
+      "5":{
+      "LANDSCAPE WORKS":{
+      
+      }
+      },
+      "6":{
+      "MISC. WORKS":{
+      "61":{
+      "name":"SET UP TEMPORARY ACCESS & SCAFFOLD SYSTEMS",
+      "hoursPredicted":{
+      "Foreman":"1",
+      "Apprentice 1":"1"
+      }
+      },
+      "62":{
+      "name":"UNLOADING CABINETRY, JOINERY AND MATERIALS",
+      "hoursPredicted":{
+      "Foreman":"1",
+      "Builder 1":"1",
+      "Apprentice 1":"1"
+      }
+      },
+      "63":{
+      "name":"TEMP. COVER & PROTECT FLOOR SURFACES",
+      "hoursPredicted":{
+      "Foreman":"1",
+      "Apprentice 1":"1"
+      }
+      },
+      "64":{
+      "name":"WATERBLASTING DRIVE & ROAD",
+      "hoursPredicted":{
+      "Apprentice 1":"0.5"
+      }
+      },
+      "65":{
+      "name":"FINAL SITE CLEAN",
+      "hoursPredicted":{
+      "Foreman":"1",
+      "Builder 1":"1",
+      "Apprentice 1":"1"
+      }
+      },
+      "66":{
+      "name":"DELIVERIES, UNLOADING, MOVING & STACKING MATERIALS AROUND SITE",
+      "hoursPredicted":{
+      "Foreman":"1",
+      "Builder 1":"1",
+      "Apprentice 1":"1"
+      }
+      },
+      "67":{
+      "name":"TOOL & PLANT MAINTENANCE",
+      "hoursPredicted":{
+      "Foreman":"1",
+      "Builder 1":"1",
+      "Apprentice 1":"1"
+      }
+      },
+      "68":{
       "name":"PERFECTING DETAILS",
       "hoursPredicted":{
-      "Foreman":"0.5",
-      "Builder 1":"",
-      "Builder 2":"",
-      "Apprentice 1":""
+      
       }
       }
       }
       }
       }
-  ],
-
-  "teamMembers": [
-    {
-      "name": "Simon",
-      "position": "Managing Director"
-    },
-    {
-      "name": "Cam R",
-      "position": "Builder"
-    },
-    {
-      "Name": "Troy",
-      "Position": "Foreman"
-    }
-  ],
-  "TaskLibrary": [
-    {"MainList":{}},
-    {"LabourList":{}}
-  ]
-}
+      }
+    ]

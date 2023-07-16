@@ -203,7 +203,7 @@ function LabourStageCard({stage, team, switchUpdateLabourList, dispatchLabourLis
         let days = calculateMemberDays(member)
         totalDays.push({
             days: days,
-            cost: days * member.rate,
+            cost: days * member.rate * 9.5,
         })        
     });
 
