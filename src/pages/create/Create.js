@@ -85,13 +85,26 @@ export default function Create() {
         city,   
     }
 
+    const blankLabourList = [{
+      name: 'Labour',
+      tasks: [{
+        task:'Labour',
+        budgetamount: '0',
+        details: 'Summary of Labour List tasks. refresh MainList to update',        
+        quoteEstimateOrProvision: "",
+        status: "Open",
+        subcontractedamount: 0,
+        subcontractor: 'KPC',
+       }]
+    }]
+
     let project = {
       name,
       clientName,
       phone,
       email,
       address, 
-      mainList: tempMain ? tempMain.value.mainList : [{name: 'Labour', tasks: [{task:'Labour'}] }],
+      mainList: tempMain ? tempMain.value.mainList : blankLabourList,
       labourList: tempLabourList ? tempLabourList.value.labourList: [],
       startDate: timestamp.fromDate(new Date(startDate)),
       subContractFee,
