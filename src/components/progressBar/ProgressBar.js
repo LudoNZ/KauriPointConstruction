@@ -24,7 +24,7 @@ function ProgressBar({ initial, warning, progress }) {
     )
 }
 
-//FUNCTIONS
+//FUNCTIONS MAINLIST
 function calculateTaskClaimed(task){
     let totalClaimed = 0;
     //console.log('task: ', task)
@@ -36,14 +36,17 @@ function calculateTaskClaimed(task){
     return totalClaimed 
 }
 
-//calculate stage completion
-const calculateStageProgress = (stage) => { 
+//calculate MAINLIST stage completion
+const calculateStageProgress = (stage, fee) => { 
     let totalCost = 0;
     let totalClaimed = 0;
     let totalNextClaim = 0
     stage.tasks.forEach( task => {
         //console.log('StageProgressTask: ', task)
-        totalCost += parseFloat(task.calculatedamount);
+        const calculatedamount= parseFloat(task.customPercentage 
+            ? (task.subcontractedamount * task.customPercentage)
+            : task.subcontractedamount * (1 + parseFloat(fee)))
+        totalCost += calculatedamount;
         totalClaimed += parseFloat(calculateTaskClaimed(task));
         totalNextClaim += task.nextClaim ? parseFloat(task.nextClaim) : 0;
     })
@@ -59,7 +62,7 @@ const calculateProjectProgress = (project) => {
     let totalCost = 0
     let totalNextClaim = 0
     project.mainList.forEach( stage => {
-        const stageSums = calculateStageProgress(stage)
+        const stageSums = calculateStageProgress(stage, project.subContractFee)
         totalClaimed += stageSums.totalClaimed
         totalCost += stageSums.totalCost
         totalNextClaim += stageSums.totalNextClaim

@@ -1,6 +1,6 @@
 import './ClaimsList.css'
 
-import { NumberFormat } from '../../pages/project/ProjectFinancialInfo'
+import { NumberFormat, numberWithCommas } from '../../pages/project/ProjectFinancialInfo'
 import NextClaim from './NextClaim'
 import { useState } from 'react'
 import { useFirestore } from '../../hooks/useFirestore'
@@ -43,7 +43,7 @@ export default function ClaimsList ({ project }) {
                         <div key={key} className='claimCard'>
                             <div className='flex'>
                                 <p className='claim-count'>claim: {key}</p>
-                                <p className='claim-total'>$ {totalClaim}</p>
+                                <p className='claim-total'>$ {numberWithCommas(totalClaim)}</p>
                             </div>
                             
                             <div>{Object.entries(claim.tasks).map( ([key, task]) => {
@@ -51,7 +51,7 @@ export default function ClaimsList ({ project }) {
                                     <div key={key} className='claimCard-row'>
                                         <p className='row-name'>{task.task.task}</p>
                                         <NumberFormat number={task.value} prefix='$'/>
-                                        <NumberFormat number={task.task.calculatedamount} prefix='/' className='taskTotal'/>
+                                        <NumberFormat number={numberWithCommas(task.task.calculatedamount)} prefix='/' className='taskTotal'/>
                                     </div>
                                 )
                             })}</div>
