@@ -15,6 +15,7 @@ import '../../../components/MainList.css'
 import './ProjectUpdateMainList.css'
 import CreateNewStage from './components/CreateNewStage'
 import ClaimOnTask from './components/ClaimOnTask'
+import PDF_Creator from '../../../components/PDF_Creator'
 
 export const ACTIONS = {
     CREATE_STAGE: 'create_stage',
@@ -370,8 +371,9 @@ export default function ProjectUpdateMainList({project, SetSwitchUpdateMainlist,
   
   return (
     <div>
-      <h2>Main List:</h2>
       <div className="update-mainlist">    
+      <PDF_Creator>
+      <h2>Main List:</h2>
       { Object.entries(reStages).map( ([key, stage]) => {
         // console.log('stageKey',key)
         return (<Stage stage={stage} 
@@ -384,6 +386,7 @@ export default function ProjectUpdateMainList({project, SetSwitchUpdateMainlist,
       })}
       <AddStage stage={stages} dispatch={dispatch} />
       <CreateNewStage stage={stages} dispatch={dispatch} />
+      </PDF_Creator>
 
       <div className='sticky-bottom'>
         {switchUpdateMainlist 

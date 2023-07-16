@@ -32,7 +32,6 @@ export default function ClaimsList ({ project }) {
     return (
         <div>
             <NextClaim claimList={claimList} handleProcessClaim={handleProcessClaim}/>
-            
             <h1>Project Claims:</h1>
 
             {claimList 
@@ -48,6 +47,7 @@ export default function ClaimsList ({ project }) {
                             
                             <div>{Object.entries(claim.tasks).map( ([key, task]) => {
                                 return (
+                                    
                                     <div key={key} className='claimCard-row'>
                                         <p className='row-name'>{task.task.task}</p>
                                         <NumberFormat number={task.value} prefix='$'/>
@@ -60,7 +60,7 @@ export default function ClaimsList ({ project }) {
                 })}</div> 
                 
                 : <p>NO CLAIMS</p>}
-
+            
         </div>
     )
 } 
