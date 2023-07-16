@@ -91,7 +91,7 @@ export default function Create() {
       phone,
       email,
       address, 
-      mainList: tempMain ? tempMain.value.mainList : [],
+      mainList: tempMain ? tempMain.value.mainList : [{name: 'Labour', tasks: [{task:'Labour'}] }],
       labourList: tempLabourList ? tempLabourList.value.labourList: [],
       startDate: timestamp.fromDate(new Date(startDate)),
       subContractFee,

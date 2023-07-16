@@ -61,9 +61,9 @@ export default function LabourListAddStage({stage, dispatch}) {
         // Creat task options (second options) 
         console.log('SELECTED_STAGE:', selectedStage)
         
-        let setTasks = (Object.values(selectedStage.value)).map( valueTask => {
-            console.log('VALUE_TASK: ', valueTask)
-          return { name: valueTask.name, hoursPredicted: {}}       
+        let setTasks = Object.values(selectedStage.value).map( task => {
+            console.log('VALUE_TASK: ', task)
+          return {...task, label: task.name}       
         })
         setTaskOptions(setTasks)
 
