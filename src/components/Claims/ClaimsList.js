@@ -131,7 +131,8 @@ function processClaim(mainList, claimCount) {
     mainList.forEach(stage => {
         stage.tasks.forEach(task => {
             if(task.nextClaim) {
-                console.log('TASK: ', task.nextClaim , task.task)
+                if(!task.claims){task.claims = {} }
+                console.log('TASK: ', task)
                 task.claims[claimCount] = task.nextClaim
                 task.nextClaim = null
             }
