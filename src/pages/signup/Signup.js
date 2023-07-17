@@ -18,7 +18,7 @@ export default function Signup() {
     { value:'admin', label:'admin' },
     { value:'foreman', label:'foreman' },
     { value:'staff', label:'staff' },
-    { value:'customer', label:'customer' }
+    { value:'client', label:'client' }
   ]
   const role = userRole.value
   console.log('role',role)
