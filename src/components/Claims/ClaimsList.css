@@ -30,3 +30,13 @@ width: 25%
     font-size: 1.2em;
     font-weight: 550;
 }
+
+
+.claim-description{
+    display: flex;
+    gap: 2em;
+}
+
+.claim-description .label{
+    font-weight: 450;
+}

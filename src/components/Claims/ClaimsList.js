@@ -9,19 +9,25 @@ export default function ClaimsList ({ project }) {
     const [mainList, setNewMainList] = useState(project.mainList)
     const [claimList, setClaimList] = useState(updateClaims(project.mainList))
     const { updateDocument, response } = useFirestore('projects')
+    const claimsInfo = project.claims ? project.claims : {}
     
     console.log('CLAIM LIST initial state:', claimList)
 
     let claimCount = Object.keys(claimList.submittedClaims).length +1
 
-    const handleProcessClaim = async () => {
+    const handleProcessClaim = async (claimDetails) => {
         setNewMainList(processClaim(mainList, claimCount))
         setClaimList(updateClaims(mainList))
-        
-        //Save mainlist
-        let newMainList = { mainList: mainList}
-        console.log('UPDATING MAINLIST:', newMainList)
-        await updateDocument(project.id, newMainList)
+        if(!claimsInfo[claimCount]){claimsInfo[claimCount] = {}}
+        claimsInfo[claimCount] = {...claimDetails}
+
+        //Update specified Project values
+        const updateProject = { 
+            mainList: mainList,
+            claims: claimsInfo,
+        }   
+        console.log('UPDATING Project:', updateProject)
+        await updateDocument(project.id, updateProject)
     }
 
     if (!response.error) {
@@ -42,8 +48,10 @@ export default function ClaimsList ({ project }) {
                         <div key={key} className='claimCard'>
                             <div className='flex'>
                                 <p className='claim-count'>claim: {key}</p>
+                                {project.claims[key] && <p className='claim-count'>date: {project.claims[key].date}</p>}
                                 <p className='claim-total'>$ {numberWithCommas(totalClaim)}</p>
                             </div>
+                                {project.claims[key] && <div className='claim-description'><p className='label'>description:</p><p>{project.claims[key].description}</p></div>}
                             
                             <div>{Object.entries(claim.tasks).map( ([key, task]) => {
                                 return (
