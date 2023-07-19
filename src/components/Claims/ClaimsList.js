@@ -44,14 +44,22 @@ export default function ClaimsList ({ project }) {
             
                 ? <div>{Object.entries(claimList.submittedClaims).map(([key, claim] ) => {
                     let totalClaim = claimTotal(claim)
+                    let claimDate = ''
+                    let claimDescription = ''
+                    if(project.claims) {
+                        if(project.claims[key]){
+                        claimDate = project.claims[key].date
+                        claimDescription = project.claims[key].description
+                        }
+                    }
                     return (
                         <div key={key} className='claimCard'>
                             <div className='flex'>
                                 <p className='claim-count'>claim: {key}</p>
-                                {project.claims[key] && <p className='claim-count'>date: {project.claims[key].date}</p>}
+                                {claimDate && <p className='claim-date'>{claimDate}</p>}
                                 <p className='claim-total'>$ {numberWithCommas(totalClaim)}</p>
                             </div>
-                                {project.claims[key] && <div className='claim-description'><p className='label'>description:</p><p>{project.claims[key].description}</p></div>}
+                                {claimDescription && <div className='claim-description'><p className='label'>description:</p><p>{claimDescription}</p></div>}
                             
                             <div>{Object.entries(claim.tasks).map( ([key, task]) => {
                                 return (

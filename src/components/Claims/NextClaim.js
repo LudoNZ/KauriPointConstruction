@@ -15,6 +15,7 @@ export default function NextClaim({ claimList, handleProcessClaim}) {
             date: new Date().toLocaleDateString() + '',
         }
     console.log('claimDetails:', claimDetails)
+    setDescription('')
     handleProcessClaim(claimDetails)
     }
 

@@ -218,6 +218,7 @@ function TaskDetails({stageName, index, task, dispatch, switchUpdateMainlist, fe
           <span onClick={handleExpandTask} className={expandTask ? 'arrow-down' : 'arrow-right' }/>
           <span className='mainlist-taskHeader-name'>
               <div>{taskName}</div>
+              {nextClaim > 0 && <span className='mainlist-nextClaim'>next claim: ${numberWithCommas(nextClaim)}</span>}
               <ProgressBar progress={percentageComplete}  warning={percentageClaimed} />
           </span>
           <span className='mainlist-taskHeader-subContractor'>{subContractor}</span>
@@ -226,7 +227,9 @@ function TaskDetails({stageName, index, task, dispatch, switchUpdateMainlist, fe
             {switchUpdateMainlist && 
               <ClaimOnTask stageName={stageName} index={index} task={task} dispatch={dispatch}/>
             }
-            <span className=''>{claimed} / {numberWithCommas(calculatedamount)}</span>
+            <span className=''>
+            
+            {claimed} / {numberWithCommas(calculatedamount)}</span>
           </div>
           
           

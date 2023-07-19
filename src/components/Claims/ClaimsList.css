@@ -31,6 +31,9 @@ width: 25%
     font-weight: 550;
 }
 
+.claim-date{
+    font-weight:450;
+}
 
 .claim-description{
     display: flex;
