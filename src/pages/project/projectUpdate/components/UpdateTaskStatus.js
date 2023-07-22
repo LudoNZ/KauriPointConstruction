@@ -21,7 +21,7 @@ export default function UpdateTaskStatus({stageName, index, task, dispatch, fee}
   const [subcontractor, setSubcontractor] = useState(task.subcontractor)
   const [subcontractedamount, setSubcontractedamount] = useState(task.subcontractedamount)
   const [customPercentage, setCustomPercentage] = useState(task.customPercentage ? task.customPercentage : 0.0)
-  const [calculatedamount, setCalculatedamount] = useState(task.customPercentage ? task.customPercentage * subcontractedamount : fee * subcontractedamount)
+  const [calculatedamount, setCalculatedamount] = useState(task.customPercentage ? task.customPercentage * task.subcontractedamount : (1+fee) * task.subcontractedamount)
   const [status, setStatus] = useState(task.status? task.status : "Open" )
   const [quoteEstimateOrProvision, setQuoteEstimateOrProvision] = useState(task.quoteEstimateOrProvision ? task.quoteEstimateOrProvision : "" )
   
@@ -61,7 +61,12 @@ export default function UpdateTaskStatus({stageName, index, task, dispatch, fee}
   }
   function handleSubcontractedamount(value) {
     setSubcontractedamount(value)
-    setCalculatedamount(task.customPercentage ? (100*task.customPercentage) * value : (1+fee) * value)
+    setCalculatedamount(customPercentage > 0 ? customPercentage * value : (1+fee) * value)
+  }
+
+  function handleCustomPercentage(value) {
+    setCustomPercentage(value)
+    value > 0 ? setCalculatedamount(subcontractedamount*value) : setCalculatedamount(subcontractedamount*(1+fee)) 
   }
 
   function handleDelete(e) {
@@ -115,7 +120,7 @@ export default function UpdateTaskStatus({stageName, index, task, dispatch, fee}
               <div className='calculatedAmount'><span>calculated:</span><span>${ numberWithCommas(calculatedamount)}</span></div>
               <FormInput label='custom Fee % multiplier' 
                           value={customPercentage} 
-                          onChange={setCustomPercentage} />
+                          onChange={handleCustomPercentage} />
               <FormInput label='Status' 
                           value={status} 
                           options={['open', 'closed']}

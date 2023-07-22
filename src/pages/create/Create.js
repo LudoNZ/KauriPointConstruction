@@ -277,8 +277,7 @@ function FormInput({label, onChange, value, type, options, step}) {
     return (
       <label>
         <span>{label}</span>
-        <input 
-          required
+        <input
           type={type ? type : 'text'}
           step={step ? step : 1 }
           onChange={(e) => handleInput(e.target.value)}
