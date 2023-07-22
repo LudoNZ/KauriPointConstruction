@@ -97,15 +97,6 @@
     padding: 0px;
 }
 
-.delete{
-    margin-left: 3em;
-    color: var(--highlight-color);
-    border: var(--highlight-color) 2px solid;
-    border-radius: 5px;
-    padding: .1em;
-}
-
-
 
 @media screen and (max-width: 900px) {
 

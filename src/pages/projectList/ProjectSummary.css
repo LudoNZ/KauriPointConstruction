@@ -27,6 +27,9 @@
   font-size: 0.9em;
   color: var(--heading-color);
 }
+.project-summary h4:hover {
+  font-weight: 550;
+}
 .project-summary p {
   color: var(--text-color);
   font-size: 0.9em;

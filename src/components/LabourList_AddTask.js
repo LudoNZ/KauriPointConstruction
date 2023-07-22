@@ -104,10 +104,10 @@ export default function AddLabourTask ({stage, dispatch}) {
     return (
         <>
         <div className='labourList-StageTask' >
-            <button className='task-container'
+            <div className='task-container'
                 onClick={createTaskOption}>
-                + Add Task (in progress...)
-            </button>
+                <button className='btn-greenText'>+ Add Task</button>
+            </div>
         </div>
 
         <Modal

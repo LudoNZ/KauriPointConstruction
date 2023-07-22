@@ -320,7 +320,7 @@ function LabourStageTask({ stage, team, switchUpdateLabourList, handleTaskUpdate
                     <div className='labourList-StageTask' key={key}>
                         <div className='task-container'>{task.label ? task.label : task.name}
                             { switchUpdateLabourList && 
-                                <span className='delete' onClick={handleDelete}>-delete</span>}
+                                <button className='delete' onClick={handleDelete}>-delete</button>}
                         </div>
                         <div className='hours-container'> 
                             { switchUpdateLabourList 
