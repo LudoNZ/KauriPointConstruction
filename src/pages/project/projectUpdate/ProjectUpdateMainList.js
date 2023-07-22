@@ -57,7 +57,6 @@ function mainListReducer(reStages, action) {
           stage.tasks.forEach(task => {
             if(task.task === 'Labour'){
             const newAmount = action.payload.sumCost
-            task.budgetamount = newAmount
             task.subcontractedamount = newAmount
             }
           })
@@ -182,7 +181,6 @@ const TaskSectionData = ({label, value}) => {
 function TaskSection({task, fee}) {
   return (
       <div className='TaskSection'>
-          <TaskSectionData label='Budget amount' value={numberWithCommas(task.budgetamount)}/>
           <TaskSectionData label='Details' value={task.details}/>
           <TaskSectionData label='Quote, Estimate or Provision' value={task.quoteEstimateOrProvision}/>
           {task.customPercentage 

@@ -89,7 +89,6 @@ export default function Create() {
       name: 'Labour',
       tasks: [{
         task:'Labour',
-        budgetamount: '0',
         details: 'Summary of Labour List tasks. refresh MainList to update',        
         quoteEstimateOrProvision: "",
         status: "Open",
