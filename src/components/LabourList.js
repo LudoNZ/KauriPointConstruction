@@ -252,7 +252,7 @@ function LabourStageCard({stage, team, switchUpdateLabourList, dispatchLabourLis
             <div onClick={handleToggleStage} className='stage-container'>
                 <div className="stage-name-container">{stage.name}
                     {switchUpdateLabourList &&
-                        <button className={'deleteStage'} value={stage.name} onClick={handleDeleteStage}>- Delete Stage</button>}
+                        <button className={'delete'} value={stage.name} onClick={handleDeleteStage}>- Delete Stage</button>}
                 </div>
                 <div className="stage-role-container">
                     {expandLabourStage && team.map((member) => {return <span key={member.role}>{member.role}</span>})}
@@ -320,7 +320,7 @@ function LabourStageTask({ stage, team, switchUpdateLabourList, handleTaskUpdate
                     <div className='labourList-StageTask' key={key}>
                         <div className='task-container'>{task.label ? task.label : task.name}
                             { switchUpdateLabourList && 
-                                <span className='delete btn-red' onClick={handleDelete}>X</span>}
+                                <span className='delete' onClick={handleDelete}>-delete</span>}
                         </div>
                         <div className='hours-container'> 
                             { switchUpdateLabourList 

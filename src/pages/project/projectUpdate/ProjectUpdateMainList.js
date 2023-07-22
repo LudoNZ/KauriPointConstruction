@@ -302,7 +302,10 @@ function Stage({ stage, dispatch, userRole, switchUpdateMainlist, fee}) {
           { (switchUpdateMainlist && (userRole ==="admin") && expandStages) 
             && <div className='updateStage-footer'>
                 <AddTask stage={stage} dispatch={dispatch} />
-                <button value={stage.name} onClick={(e) => handleDeleteStage(e)}>- Delete Stage</button>
+                <button
+                  value={stage.name} 
+                  onClick={(e) => handleDeleteStage(e)}>- Delete Stage
+                </button>
               </div>
             }
             

@@ -98,14 +98,13 @@
 }
 
 .delete{
-    margin: 1em;
-    padding: .1em .5em;    
+    margin-left: 3em;
+    color: var(--highlight-color);
+    border: var(--highlight-color) 2px solid;
+    border-radius: 5px;
+    padding: .1em;
 }
 
-.deleteStage{
-    margin-left: 3em;
-    color: var(--tertiary-color);
-}
 
 
 @media screen and (max-width: 900px) {

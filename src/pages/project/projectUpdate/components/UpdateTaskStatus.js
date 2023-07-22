@@ -140,7 +140,7 @@ export default function UpdateTaskStatus({stageName, index, task, dispatch, fee}
                 </div>
                 <div>
                   <button 
-                    className="btn" 
+                    className="btn-red" 
                     type="btn"
                     onClick= {handleDelete}
                   >
