@@ -151,7 +151,7 @@ function mainListReducer(reStages, action) {
     case ACTIONS.DELETE_TASK_ITEM:
     return reStages.map(stage => {
       return (stage.name === action.payload.stageName 
-        ? {...stage, tasks: stage.tasks.filter(task => (task.label ? task.label : task.task !== action.payload.label)}
+        ? {...stage, tasks: stage.tasks.filter(task => (task.label ? task.label : task.task) !== action.payload.label)}
         : {...stage})
         //console.log('action.payload.task', action.payload.task)
         // console.log('stage.tasks', stage.tasks)
