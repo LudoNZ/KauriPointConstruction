@@ -17,6 +17,7 @@ export default function UpdateTaskStatus({stageName, index, task, dispatch, fee}
 
   // const { updateTaskInDocument, response } = useFirestore('projects')
   // const { id } = useParams()
+  const [label, setLabel] = useState(task.label? task.label : task.task)
   const [details, setDetails] = useState(task.details)
   const [subcontractor, setSubcontractor] = useState(task.subcontractor)
   const [subcontractedamount, setSubcontractedamount] = useState(task.subcontractedamount)
@@ -38,6 +39,7 @@ export default function UpdateTaskStatus({stageName, index, task, dispatch, fee}
 
     const updatedTask = {
       ...task,
+      label: label,
       details: details,
       subcontractor: subcontractor,
       subcontractedamount: subcontractedamount,
@@ -72,7 +74,9 @@ export default function UpdateTaskStatus({stageName, index, task, dispatch, fee}
   function handleDelete(e) {
     e.preventDefault()
     handleClose()
-    dispatch({ type: ACTIONS.DELETE_TASK_ITEM, payload:{ task: task.task }})  
+    const label = task.label ? task.label : task.task
+    dispatch({ type: ACTIONS.DELETE_TASK_ITEM, payload:{ stageName: stageName, label: label}
+    })  
   }
 
   return (
@@ -94,8 +98,9 @@ export default function UpdateTaskStatus({stageName, index, task, dispatch, fee}
               <div className="modal-title">
                 <h2>
                   Update Task:<br /> 
-                  {task.task}
+                  {label}
                 </h2>
+                {task.label && <span>({task.task})</span>}
               </div>
               <div>
               <span className="close-button" onClick={handleClose}>
@@ -108,6 +113,9 @@ export default function UpdateTaskStatus({stageName, index, task, dispatch, fee}
 
           <form>
             <div>
+              <FormInput label='Label' 
+                          value={label} 
+                          onChange={setLabel} />
               <FormInput label='Details' 
                           value={details} 
                           onChange={setDetails} />

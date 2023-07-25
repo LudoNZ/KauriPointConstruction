@@ -35,6 +35,7 @@ function mainListReducer(reStages, action) {
   //let taskIndex
   let newTaskArr
   // console.log('reducer payload', tasks, name)
+  console.log('PAYLOAD:', action)
   switch(action.type){
 
     case ACTIONS.MAKE_CLAIM:
@@ -104,7 +105,10 @@ function mainListReducer(reStages, action) {
       return {   
         ...stage,
         tasks: 
-          stage.tasks.filter(task => task.task !== action.payload.task.task)
+          stage.tasks.filter(task => { 
+            const label = task.label ? task.label : task.task
+            return label !== action.payload.task.label
+          })
             .map(task => {
               return {...task}
           })    
@@ -142,23 +146,15 @@ function mainListReducer(reStages, action) {
     case ACTIONS.DELETE_STAGE:
       console.log('payload', action.payload.stageName);
       return reStages.filter(stage => stage.name !== action.payload.stageName)
-        .map(stage => {
-          return {...stage}
-      })
       // return reStages
 
     case ACTIONS.DELETE_TASK_ITEM:
     return reStages.map(stage => {
-        // console.log('action.payload.task', action.payload.task)
+      return (stage.name === action.payload.stageName 
+        ? {...stage, tasks: stage.tasks.filter(task => (task.label ? task.label : task.task !== action.payload.label)}
+        : {...stage})
+        //console.log('action.payload.task', action.payload.task)
         // console.log('stage.tasks', stage.tasks)
-      return {   
-        ...stage,
-        tasks: 
-          stage.tasks.filter(task => task.task !== action.payload.task)
-            .map(task => {
-              return {...task}
-          })    
-      }
     })
 
     case ACTIONS.RESET:
@@ -199,7 +195,7 @@ function TaskDetails({stageName, index, task, dispatch, switchUpdateMainlist, fe
   const handleExpandTask = ()=>{
       setExpandTask(!expandTask)
   }
-  const taskName = task.task ? task.task : ' -'
+  const taskName = task.label ? task.label : task.task
   const subContractor = task.subcontractor ? task.subcontractor : " -"
   const calculatedamount= parseFloat(task.customPercentage 
                                             ? (subcontractedamount * task.customPercentage)

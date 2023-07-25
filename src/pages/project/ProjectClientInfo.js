@@ -7,10 +7,9 @@ export default function ProjectClientInfo({ project }) {
   const email = project.email ? project.email : '-'
 
   const line1 = project.address.line1? project.address.line1 : '-'
-  const line2 = project.address.line2? project.address.line2 : '-'
   const suburb = project.address.suburb? project.address.suburb : '-'
   const city = project.address.city? project.address.city : '-'
-  const address = line1 + ', ' + line2 + ', ' +  suburb + ', ' + city 
+  const address = line1 + ', ' +  suburb + ', ' + city 
   
 
   return (

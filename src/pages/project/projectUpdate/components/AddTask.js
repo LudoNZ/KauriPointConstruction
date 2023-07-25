@@ -16,10 +16,8 @@ export default function AddTask({stage, dispatch}) {
   const { error, document } = useDocument('taskLibrary' , mainList_id)
 
   // Adding a task in state (reStage)
-  const [selectedTask, setSelectedTask] = useState([])
+  const [selectedTask, setSelectedTask] = useState({})
   const [options, setOptions] = useState([])
-  const [stageName, setStageName] = useState('')
-  const [task, setTask] = useState([])
 
   // const [code, setCode] = useState('')
   // const [taskName, setTaskName] = useState('')
@@ -30,10 +28,11 @@ export default function AddTask({stage, dispatch}) {
   const [subcontractedamount, setSubcontractedamount] = useState('')
   const [calculatedamount, setCalculatedamount] = useState('')
   const [quoteEstimateOrProvision, setQuoteEstimateOrProvision] = useState('')
+  const [label, setLabel] =useState('')
 
   // Modal display functions
   const handleClose = () => {
-    setSelectedTask([])
+    setSelectedTask({})
     setShowModal(false)
   }
   const renderBackdrop = (props) => <div className="backdrop" {...props} />
@@ -45,32 +44,29 @@ export default function AddTask({stage, dispatch}) {
     return stageTask.task
   })
 
-
-  useEffect(() => {
-    if(selectedTask){
-      const passTask = selectedTask.value
-      const passStage = selectedTask.stageName
-      setTask(passTask)
-      setStageName(passStage)
-    }
-    // console.log('taskList',taskList);
-    // console.log('stageName',stageName);
-  }, [selectedTask])
+  function checkLabelIsUnique(label) {
+    setFormError(null)
+    stage.tasks.forEach(task => { if(task.label === label) {
+      const errorMessage = 'WARNING!: ' + task.label + 'is not unique!'
+      setFormError(errorMessage)}} )
+    setLabel(label)
+  }
 
 
   function createTaskOption() {
-      const allTasks = Object.values(document.stages).map(libStages => {
-          return { stageName: libStages.name, value: libStages.tasks }       
-      })
-      let stageTasks = allTasks.filter(singleStage => singleStage.stageName === stage.name)
-
-      let selectedTasks
-      Object.entries(stageTasks).map(([key, stage]) => (
-        selectedTasks = Object.entries(stage.value).map(([id, taskInfo]) => {
-          // console.log('stageName', stage.stageName)
-          return { value: {...taskInfo}, label: taskInfo.task, stageName: stage.stageName}
+      const allTasks = document.stages
+      console.log('all Tasks:', allTasks)
+      
+      let stageTasks = (allTasks.filter(singleStage => {
+        return singleStage.name === stage.name
+      }))[0].tasks
+      console.log('stageTasks:' , stageTasks)
+      
+      let selectedTasks = stageTasks.map( task => {
+          // console.log('stageName', stage.name)
+          return { ...task, label: task.task, stageName: stage.name}
         })
-      ))
+      
       const fileteredTasks = selectedTasks.filter(function(selectTask) {
         return !taskListCurrentlySelected.includes(selectTask.label)
       })
@@ -82,16 +78,20 @@ export default function AddTask({stage, dispatch}) {
     e.preventDefault()
     // setFormError(null)
 
-    const newTask = task
+    const newTask = {
+      ...selectedTask,
+      calculatedamount: calculatedamount,
+      label: label,
+      details: details,
+      calculatedamount: calculatedamount,
+      subcontractedamount: subcontractedamount,
+      subcontractor: subcontractor,
+      quoteEstimateOrProvision: quoteEstimateOrProvision ? quoteEstimateOrProvision : "NULL",
+      status: 'open'
+    }
     
-    newTask.calculatedamount = calculatedamount
-    newTask.details = details
-    newTask.calculatedamount = calculatedamount
-    newTask.subcontractedamount = subcontractedamount
-    newTask.subcontractor = subcontractor
-    newTask.quoteEstimateOrProvision = quoteEstimateOrProvision ? quoteEstimateOrProvision : "NULL"
-    newTask.status = 'open'
-    dispatch({ type: ACTIONS.ADD_TASK, payload: { stageName: stageName, task: newTask} })
+    
+    dispatch({ type: ACTIONS.ADD_TASK, payload: { stageName: stage.name, task: newTask} })
     
     
     console.log('quoteEstimateOrProvision: ', quoteEstimateOrProvision)
@@ -101,12 +101,12 @@ export default function AddTask({stage, dispatch}) {
   function handleSelectedTask(task) {
     console.log('task: ', task)
     setSelectedTask(task)
-    setDetails(task.value.details)
-    setCalculatedamount(task.value.calculatedamount)
-    setSubcontractedamount(task.value.subcontractedamount)
-    setSubcontractor(task.value.subcontractor)
-    setQuoteEstimateOrProvision(task.value.quoteEstimateOrProvision)
-    
+    setDetails(task.details)
+    setCalculatedamount(task.calculatedamount)
+    setSubcontractedamount(task.subcontractedamount)
+    setSubcontractor(task.subcontractor)
+    setQuoteEstimateOrProvision(task.quoteEstimateOrProvision)
+    setLabel(task.task)
   }
 
   return (
@@ -146,6 +146,9 @@ export default function AddTask({stage, dispatch}) {
             <br />
             <div>
             
+            <FormInput label='Label:' 
+                        value={label} 
+                        onChange={checkLabelIsUnique}/>
             <FormInput label='Details' 
                         value={details} 
                         onChange={setDetails}/>
@@ -162,7 +165,6 @@ export default function AddTask({stage, dispatch}) {
                         value={quoteEstimateOrProvision} 
                         onChange={ option => setQuoteEstimateOrProvision(option) }
                         options={[ 'estimate', 'quote', 'provision']}/>
-            
             </div>
 
               <div className="modal-footer">
