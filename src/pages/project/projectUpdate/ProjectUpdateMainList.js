@@ -384,8 +384,11 @@ export default function ProjectUpdateMainList({project, SetSwitchUpdateMainlist,
                       fee={fee}
                       />)
       })}
-      <AddStage stage={stages} dispatch={dispatch} />
-      <CreateNewStage stage={stages} dispatch={dispatch} />
+      {switchUpdateMainlist && (<>
+        <AddStage stage={stages} dispatch={dispatch} />
+        <CreateNewStage stage={stages} dispatch={dispatch} />
+        </>)
+      }
       </PDF_Creator>
 
       <div className='sticky-bottom'>

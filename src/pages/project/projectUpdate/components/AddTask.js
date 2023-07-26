@@ -106,7 +106,7 @@ export default function AddTask({stage, dispatch}) {
     setSubcontractedamount(task.subcontractedamount)
     setSubcontractor(task.subcontractor)
     setQuoteEstimateOrProvision(task.quoteEstimateOrProvision)
-    setLabel(task.task)
+    checkLabelIsUnique(task.label)
   }
 
   return (
@@ -146,6 +146,7 @@ export default function AddTask({stage, dispatch}) {
             <br />
             <div>
             
+            {formError && <p className="error">{formError}</p>}
             <FormInput label='Label:' 
                         value={label} 
                         onChange={checkLabelIsUnique}/>
@@ -175,7 +176,6 @@ export default function AddTask({stage, dispatch}) {
                     Add Task
                   </button>
               </div>
-            {formError && <p className="error">{formError}</p>}
           </form>
 
           </div>
