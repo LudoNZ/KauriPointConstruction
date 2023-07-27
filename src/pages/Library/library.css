@@ -1,0 +1,16 @@
+.card{
+    background-color: #FFF;
+    margin: 1em;
+    padding: 1em;
+    border-radius: 8px;
+}
+
+.card .title{
+    margin-bottom: .5em;
+
+}
+
+.card .task{
+    margin-bottom: .5em;
+    border-bottom: var(--secondary-color) 1px solid;
+}

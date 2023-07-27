@@ -28,6 +28,9 @@ export default function Sidebar( ) {
               <li>
               <NavLink to="/signup">Create New User</NavLink>
               </li>
+              <li>
+              <NavLink to="/library">Library</NavLink>
+              </li>
             </>
            } 
         </ul> 

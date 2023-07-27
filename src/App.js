@@ -16,6 +16,7 @@ import Team from './pages/team/team';
 import Projects from './pages/Projects/Projects';
 import Footer from './components/Footer';
 import ContactUs from './components/contact/contact';
+import Library from './pages/Library/library';
 
 function App() {
   const { user, authIsReady } = useAuthContext()
@@ -58,6 +59,9 @@ function App() {
               </Route>
               <Route path='/contact'>
                 <ContactUs />
+              </Route>
+              <Route path='/library'>
+                <Library />
               </Route>
 
             </Switch>
