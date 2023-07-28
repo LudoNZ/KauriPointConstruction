@@ -34,7 +34,6 @@ export default function MainList() {
     return(
         
         <div>
-            main List
             {document.stages.map(stage => <StageCard stage={stage} />)}
         </div>
     )

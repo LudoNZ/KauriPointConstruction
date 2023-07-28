@@ -1,3 +1,9 @@
+.libraryNav{
+    margin: 1em;
+    display: flex;
+    justify-content: space-around;
+}
+
 .card{
     background-color: #FFF;
     margin: 1em;

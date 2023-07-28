@@ -34,7 +34,6 @@ export default function LabourList() {
     return(
         
         <div>
-            Labour List
             {document.stages.map(stage => <StageCard stage={stage} />)}
         </div>
     )
