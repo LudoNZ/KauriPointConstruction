@@ -2,9 +2,25 @@ import { useState } from "react";
 import LabourList from "./labourList";
 import MainList from "./mainList";
 import Sidebar from "../../components/Sidebar";
+import { useCollection } from "../../hooks/useCollection";
+import { useEffect } from "react";
 
 export default function Library() {
+    const { documents, error } = useCollection('taskLibrary')
     const [switchList, setSwitchList] = useState('LABOUR_LIST')
+    const [labourList, setLabourList] = useState([])
+    const [mainList, setMainList] = useState([])
+
+    useEffect(() => {
+        if(documents){
+            console.log('DOCUMENTSa:', documents)
+            const lList = documents.filter(doc => doc.id === 'labourList')[0].stages
+            const mList = documents.filter(doc => doc.id === 'mainList')[0].stages
+          setLabourList(lList)
+          setMainList(mList)
+        }  
+      }, [documents])
+
 
     const ListPicker = () => {
         return (
@@ -27,13 +43,14 @@ export default function Library() {
         <div className='page-container'>
             <Sidebar />
             <div className='content-container'>
+                {error && <div>{error}</div>}
                 <ListPicker />
 
                 {switchList === 'MAIN_LIST' && 
-                    <MainList />
+                    <MainList list={mainList}/>
                 }  
                 {switchList === 'LABOUR_LIST' && 
-                    <LabourList />    
+                    <LabourList list={labourList}/>    
                 }
             </div>
         </div>

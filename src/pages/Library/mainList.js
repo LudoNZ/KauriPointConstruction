@@ -1,5 +1,4 @@
 import { useState } from "react"
-import { useDocument } from "../../hooks/useDocument"
 
 //styles
 import './library.css'
@@ -21,20 +20,16 @@ const StageCard = ({stage}) => {
     )
 }
 
-export default function MainList() {
-    const {error, document} = useDocument('taskLibrary', 'mainList')
+export default function MainList({list}) {
+    //const {error, document} = useDocument('taskLibrary', 'mainList')
     
-    console.log('MAINLIST: ', document)
-    console.log('error: ', error)
-
-    if (!document) {
-        return <div>Loading...</div>;
-      }
+    console.log('MAINLIST: ', list)
+    //console.log('error: ', error)
       
     return(
         
         <div>
-            {document.stages.map(stage => <StageCard stage={stage} />)}
+            {list.map(stage => <StageCard stage={stage} key={stage.name}/>)}
         </div>
     )
 }
