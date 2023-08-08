@@ -295,7 +295,7 @@ function Stage({ stage, dispatch, userRole, switchUpdateMainlist, fee}) {
         <div className='stageCard-header-titleBar'>
           <h3 onClick={handleExpand}>{stage.name}</h3>
           <ProgressBar progress={stageProgress} warning={NextClaimProgress}/>
-          { (switchUpdateMainlist && (userRole ==="admin") && expandStages) 
+          { (switchUpdateMainlist && (userRole ==="admin") && expandStages && ("labour" !== stage.name.toLowerCase()) ) 
             && <div className='updateStage-footer'>
                 <AddTask stage={stage} dispatch={dispatch} />
                 <button
