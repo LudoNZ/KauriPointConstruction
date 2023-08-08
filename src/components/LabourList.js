@@ -61,9 +61,7 @@ let tempLabourList = [...reLabourList]
         case 'DELETE_STAGE':
             console.log('payload', action.payload.stageName);
             return reLabourList.filter(stage => stage.name !== action.payload.stageName)
-                .map(stage => {
-                return {...stage}
-            })
+
             // return reStages
         case 'RESET':
             return action.payload
@@ -100,7 +98,6 @@ export default function LabourList({ project, switchUpdateLabourList, setSwitchU
       const handleReset = () => {
         dispatchLabourList({ type: 'RESET', payload: preserveLabourList})
         setSwitchUpdateLabourList()
-        window.location.reload();
       }
 
     return (
