@@ -55,10 +55,7 @@ let tempLabourList = [...reLabourList]
               return {   
                 ...stage,
                 tasks: 
-                  stage.tasks.filter(task => (task.label ? task.label : task.name) !== (action.payload.task.label ? action.payload.task.label : action.payload.task.name) )
-                    .map(task => {
-                      return {...task}
-                  })    
+                  stage.tasks.filter(task => (task.label ? task.label : task.name) !== (action.payload.task.label ? action.payload.task.label : action.payload.task.name) )    
               }
             })
         case 'DELETE_STAGE':

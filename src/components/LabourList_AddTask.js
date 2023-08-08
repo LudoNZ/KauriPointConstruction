@@ -19,6 +19,12 @@ export default function AddLabourTask ({stage, dispatch}) {
 
   const [label, setLabel] =useState('')
 
+  const handleChangeLabel = (value) => {
+    console.log(value)
+    setLabel(value)
+    checkLabelIsUnique(value)
+  }
+
   // Modal display functions
   const handleClose = () => {
     setSelectedTask([])
@@ -88,13 +94,14 @@ export default function AddLabourTask ({stage, dispatch}) {
   function handleSelectedTask(task) {
     console.log('task: ', task)
     setSelectedTask(task)
-    checkLabelIsUnique(label)
+    setLabel(task.label)
+    checkLabelIsUnique(task.label)
     
   }
 
   function checkLabelIsUnique(label) {
     setFormError(null)
-    stage.tasks.forEach(task => { if((task.label ? task.label : task.task) === label) {
+    stage.tasks.forEach(task => { if((task.label ? task.label : task.name) === label) {
       const errorMessage = 'WARNING!: ' + label + ' is not unique!'
       setFormError(errorMessage)}} )
     setStageName(stage.name)
@@ -142,7 +149,7 @@ export default function AddLabourTask ({stage, dispatch}) {
 
             <FormInput label='Label:' 
                         value={label} 
-                        onChange={(e) => {checkLabelIsUnique(e)}}/>
+                        onChange={(e) => {handleChangeLabel(e)}}/>
             
             </div>
 
