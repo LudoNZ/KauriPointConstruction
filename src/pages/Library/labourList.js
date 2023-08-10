@@ -23,6 +23,23 @@ function labourListReducer(reLabourList, action) {
                 }
                 return { ...stage }
             })
+
+            case "DELETE_TASK":
+                return modList.map(stage => {
+                if( stage.name == action.payload.stageName ){
+                    return {
+                        ...stage,
+                        tasks:[
+                            ...stage.tasks,
+                            action.payload.task,
+                        ]
+                    }
+                }
+                return { ...stage }
+            })
+
+        default:
+            return reLabourList
     }
 }
 
@@ -83,8 +100,11 @@ export default function LabourList({list}) {
     return(
         
         <div>
-            <div className='btn-green' onClick={()=>handleSave(reLabourList)} > Save Changes </div>
-            {reLabourList.map(stage => <StageCard stage={stage} key={stage.name} dispatch={dispatch}/>)}
+            {reLabourList && (
+            <>
+                <div className='btn-green' onClick={()=>handleSave(reLabourList)} > Save Changes </div>
+                {reLabourList.map(stage => <StageCard stage={stage} key={stage.name} dispatch={dispatch}/>)}
+            </>)}
         </div>
     )
 }
