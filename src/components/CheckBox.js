@@ -1,4 +1,3 @@
-
 const Checkbox = ({ label }) => {
   return (
     <div className="checkbox-wrapper">
@@ -9,4 +8,3 @@ const Checkbox = ({ label }) => {
     </div>
   );
 };
-
