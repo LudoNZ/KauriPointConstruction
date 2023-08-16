@@ -1,10 +1,6 @@
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import {
-  projectAuth,
-  projectStorage,
-  projectFirestore,
-} from "../firebase/config";
+import { projectAuth, projectFirestore } from "../firebase/config";
 import { useAuthContext } from "./useAuthContext";
 
 export const useSignup = () => {
@@ -15,7 +11,7 @@ export const useSignup = () => {
 
   const history = useHistory();
 
-  const signup = async (email, password, displayName, thumbnail, userRole) => {
+  const signup = async (email, password, displayName, userRole) => {
     setError(null);
     setIsPending(true);
 
@@ -30,18 +26,12 @@ export const useSignup = () => {
         throw new Error("Could not complete signup");
       }
 
-      // upload user thumbnail
-      const uploadPath = `thumbnails/${res.user.uid}/${thumbnail.name}`;
-      const img = await projectStorage.ref(uploadPath).put(thumbnail);
-      const imgUrl = await img.ref.getDownloadURL();
-
       // add display AND PHOTO_URL name to user
-      await res.user.updateProfile({ displayName, photoURL: imgUrl, userRole });
+      await res.user.updateProfile({ displayName, userRole });
 
       // create a user document
       await projectFirestore.collection("users").doc(res.user.uid).set({
         displayName,
-        photoURL: imgUrl,
         userRole,
       });
 

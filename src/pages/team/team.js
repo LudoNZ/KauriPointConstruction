@@ -3,10 +3,9 @@ import { Link } from "react-router-dom";
 //mugshot photos
 import mugshotSimon from "../../assets/team/cropped_Simon.jpg";
 import mugshotCam from "../../assets/team/cropped_Cam.jpg";
-import mugshotChaz from "../../assets/team/cropped_Chaz.jpg";
 import mugshotIsaac from "../../assets/team/cropped_Isaac.jpg";
-import mugshotLudo from "../../assets/team/cropped_Ludo.jpg";
 import postFoundations from "../../assets/team/postFoundations.JPG";
+import defaultUser from "../../assets/icons/defaultProfile.png";
 //Icons
 import img_cost from "../../assets/icons/cost.png";
 import img_quality from "../../assets/icons/quality.png";
@@ -29,22 +28,16 @@ export default function Team() {
           text={CamCert()}
         ></TeamMemberCard>
         <TeamMemberCard
-          name="Ludo"
-          position="Carpenter"
-          mugshot={mugshotLudo}
-          text={LudoCert()}
-        />
-        <TeamMemberCard
-          name="Chaz"
-          position="Apprentice"
-          mugshot={mugshotChaz}
-          text={ChazCert()}
-        />
-        <TeamMemberCard
           name="Isaac"
           position="Apprentice"
           mugshot={mugshotIsaac}
           text={IsaacCert()}
+        />
+        <TeamMemberCard
+          name="Dan"
+          position="Builder"
+          mugshot={defaultUser}
+          text={DanCert()}
         />
       </div>
       <Attributes />
@@ -63,21 +56,11 @@ const CamCert = () => {
     </>
   );
 };
-const ChazCert = () => {
-  return <> Apprentice BCITO</>;
-};
-const LudoCert = () => {
-  return (
-    <>
-      {" "}
-      Builder
-      <br />
-      National Cert. Carpentry
-    </>
-  );
-};
 const IsaacCert = () => {
   return <> Apprentice BCITO</>;
+};
+const DanCert = () => {
+  return <>Builder</>;
 };
 
 function TeamPoster() {

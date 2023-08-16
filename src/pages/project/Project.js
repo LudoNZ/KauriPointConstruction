@@ -58,7 +58,7 @@ export default function Project() {
           )}
 
           {/* Financial details */}
-          <ProjectFinancialInfo project={document} />
+          {userRole === "admin" && <ProjectFinancialInfo project={document} />}
 
           <div
             className={
@@ -86,13 +86,17 @@ export default function Project() {
               >
                 LabourList
               </button>
-              <button
-                onClick={() => handleSwitchList("CLAIM_LIST")}
-                className="btn"
-                id={switchList === "CLAIM_LIST" ? "btn-active" : "btn-disabled"}
-              >
-                Claims
-              </button>
+              {userRole === "admin" && (
+                <button
+                  onClick={() => handleSwitchList("CLAIM_LIST")}
+                  className="btn"
+                  id={
+                    switchList === "CLAIM_LIST" ? "btn-active" : "btn-disabled"
+                  }
+                >
+                  Claims
+                </button>
+              )}
             </div>
             {switchUpdateLabourList && (
               <span className="updating-alert">
@@ -113,9 +117,12 @@ export default function Project() {
                 SetSwitchUpdateMainlist={handleSwitchUpdateMainlist}
                 switchUpdateMainlist={switchUpdateMainList}
               />
-
-              <ProjectDetail project={document} />
-              <ProjectUpdateProjectDetail project={document} />
+              {userRole === "admin" && (
+                <>
+                  <ProjectDetail project={document} />
+                  <ProjectUpdateProjectDetail project={document} />
+                </>
+              )}
             </>
           )}
           {switchList === "LABOUR_LIST" && (

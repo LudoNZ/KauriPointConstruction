@@ -20,17 +20,44 @@ function labourListReducer(reLabourList, action) {
         }
         return { ...stage };
       });
-
+    case "UPDATE_TASK":
+      return modList.map((stage) => {
+        if (stage.name === action.payload.stageName) {
+          const updatedTasks = stage.tasks.map((task) => {
+            if (task.name === action.payload.task.name) {
+              return action.payload.task;
+            }
+            return task;
+          });
+          return {
+            ...stage,
+            tasks: updatedTasks,
+          };
+        }
+        return { ...stage };
+      });
     case "DELETE_TASK":
       return modList.map((stage) => {
         if (stage.name == action.payload.stageName) {
           return {
             ...stage,
-            tasks: [...stage.tasks, action.payload.task],
+            tasks: stage.tasks.filter((task) => task !== action.payload.task),
           };
         }
         return { ...stage };
       });
+
+    case "ADD_STAGE":
+      return [
+        ...modList,
+        {
+          name: action.payload.stageName,
+          tasks: [],
+        },
+      ];
+
+    case "DELETE_STAGE":
+      return modList.filter((stage) => stage.name !== action.payload.stageName);
 
     default:
       return reLabourList;
@@ -40,20 +67,36 @@ function labourListReducer(reLabourList, action) {
 const AddTask = ({ dispatch, stageName }) => {
   const [taskName, setTaskName] = useState("");
 
-  const handleAddTask = async () => {
+  const handleAddTask = () => {
     const payload = {
       stageName: stageName,
       task: { name: taskName },
     };
     dispatch({ type: "ADD_TASK", payload: payload });
   };
+  const handleUpdateTask = (oldTask, newTask) => {
+    const payload = {
+      stageName: stage.name,
+      oldTask: oldTask,
+      newTask: newTask,
+    };
+    dispatch({ type: "UPDATE_TASK", payload: payload });
+  };
+  const handleDeleteTask = (task) => {
+    const payload = {
+      stageName: stage.name,
+      task: task,
+    };
+    dispatch({ type: "DELETE_TASK", payload: payload });
+  };
+
   return (
     <div className="flex">
       <FormInput
-        label="new Task:"
+        label="New Task:"
         value={taskName}
         onChange={(e) => {
-          setTaskName(e);
+          setTaskName(e.target.value);
         }}
       />
       <button onClick={handleAddTask} className="btn-green">
@@ -65,11 +108,27 @@ const AddTask = ({ dispatch, stageName }) => {
 
 const StageCard = ({ stage, dispatch }) => {
   const [expandCard, setExpandCard] = useState(false);
+  const [updatedTask, setUpdatedTask] = useState("");
 
   const handleExpand = () => {
     setExpandCard(!expandCard);
   };
-
+  const handleUpdateTask = (oldTask, newTask) => {
+    const payload = {
+      stageName: stage.name,
+      oldTask: oldTask,
+      newTask: { name: newTask },
+    };
+    dispatch({ type: "UPDATE_TASK", payload: payload });
+    setUpdatedTask(""); // Clear the input after updating
+  };
+  const handleDeleteTask = (task) => {
+    const payload = {
+      stageName: stage.name,
+      task: task,
+    };
+    dispatch({ type: "DELETE_TASK", payload: payload });
+  };
   return (
     <div className="card">
       <h2 className="title" onClick={handleExpand}>

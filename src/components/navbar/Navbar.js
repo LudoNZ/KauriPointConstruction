@@ -17,13 +17,15 @@ export default function Navbar() {
     <nav className="navbar">
       <ContactCard />
 
+      {user && <div className="username">Hi {user.displayName}</div>}
+
       <div className="logo">
         <img src={Logo} alt="KPC logo" />
       </div>
 
-      <ul>
+      <>
         {!user && (
-          <>
+          <ul>
             <li>
               <Link to="/home">Home</Link>
             </li>
@@ -39,45 +41,42 @@ export default function Navbar() {
             <li>
               <Link to="/login">Login</Link>
             </li>
-          </>
+          </ul>
         )}
         {user && (
           <>
-            <li>
-              <Link to="/home">Home</Link>
-            </li>
-            <li>
-              <Link to="/projects">Projects</Link>
-            </li>
-            <li>
-              <Link to="/team">Team</Link>
-            </li>
-            <li>
-              <Link to="/contact">Contact</Link>
-            </li>
-            <li>
-              <Link to="/">App</Link>
-            </li>
-
-            <li>Hi {user.displayName}, </li>
-            <li>
-              <Avatar src={user.photoURL} />
-            </li>
-            <li>
-              {!isPending && (
-                <button className="btn" onClick={logout}>
-                  Logout
-                </button>
-              )}
-              {isPending && (
-                <button className="btn" disabled>
-                  Loging out...
-                </button>
-              )}
-            </li>
+            <ul>
+              <li>
+                <Link to="/home">Home</Link>
+              </li>
+              <li>
+                <Link to="/projects">Projects</Link>
+              </li>
+              <li>
+                <Link to="/team">Team</Link>
+              </li>
+              <li>
+                <Link to="/contact">Contact</Link>
+              </li>
+              <li>
+                <Link to="/">App</Link>
+              </li>
+              <li>
+                {!isPending && (
+                  <button className="btn" onClick={logout}>
+                    Logout
+                  </button>
+                )}
+                {isPending && (
+                  <button className="btn" disabled>
+                    Loging out...
+                  </button>
+                )}
+              </li>
+            </ul>
           </>
         )}
-      </ul>
+      </>
     </nav>
   );
 }
