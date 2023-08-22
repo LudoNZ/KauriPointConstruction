@@ -1,0 +1,77 @@
+.Header{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 3em;
+}
+.Header h1{
+    font-weight: 500;
+}
+.Header .stamp{
+    
+    display: flex;
+    flex-wrap: wrap-reverse;
+    gap: 1em 4em;
+}
+.Header .StampInfo{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1em;
+}
+.Header .KPCInfo{
+    line-height: 1.5em;
+}
+.Header .stamp .Info h5{
+    margin: 0;
+    line-height: 1em;
+}
+.Header .stamp .Info p{
+    line-height: 1em;
+}
+
+.Content .address{
+    font-family: "Poppins";
+    font-weight: 500;
+}
+
+.Content .table .row{
+    display: flex;
+    justify-content: space-between;
+}
+
+.Content .table .row .numbers{
+    display: flex;
+    justify-content: space-between;
+    gap: 3em;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .table th,
+  .table td {
+    border-bottom: 1px solid #000;
+    padding: 8px;
+    text-align: end;
+    width: 10em;
+  }
+  
+  .table th {
+    background-color: #f2f2f2;
+  }
+  
+  .table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .table tbody tr:hover {
+    background-color: #ddd;
+  }
+  
+  .table .description {
+    width: 40%;
+    text-align: start;
+  } 

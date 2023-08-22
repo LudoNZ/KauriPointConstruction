@@ -17,11 +17,14 @@ import "./Project.css";
 import ClaimsList from "../../components/Claims/ClaimsList";
 import ProjectUpdateMainList from "./projectUpdate/ProjectUpdateMainList";
 
+//components
+import InitialEstimate from "./projectUpdate/components/clientPDF/initialEstimate";
+
 export default function Project() {
   const { id } = useParams();
   const { error, document } = useDocument("projects", id);
   const { user, authIsReady } = useAuthContext();
-  const [switchList, SetSwitchList] = useState("MAIN_LIST");
+  const [switchList, SetSwitchList] = useState("Main");
   const [switchUpdateLabourList, setSwitchUpdateLabourList] = useState(false);
   const [switchUpdateMainList, setSwitchUpdateMainList] = useState(false);
 
@@ -47,6 +50,18 @@ export default function Project() {
     setSwitchUpdateMainList(!switchUpdateMainList);
   };
 
+  const ViewSelector = ({ text }) => {
+    return (
+      <button
+        onClick={() => handleSwitchList(text)}
+        className="btn"
+        id={switchList === text ? "btn-active" : "btn-disabled"}
+      >
+        {text}
+      </button>
+    );
+  };
+
   return (
     <div className="page-container">
       <Sidebar />
@@ -70,32 +85,14 @@ export default function Project() {
             }
           >
             <div className="listSelector">
-              <button
-                onClick={() => handleSwitchList("MAIN_LIST")}
-                className="btn"
-                id={switchList === "MAIN_LIST" ? "btn-active" : "btn-disabled"}
-              >
-                MainList
-              </button>
-              <button
-                onClick={() => handleSwitchList("LABOUR_LIST")}
-                className="btn"
-                id={
-                  switchList === "LABOUR_LIST" ? "btn-active" : "btn-disabled"
-                }
-              >
-                LabourList
-              </button>
+              <ViewSelector text="Main" />
+              <ViewSelector text="Labour" />
+
               {userRole === "admin" && (
-                <button
-                  onClick={() => handleSwitchList("CLAIM_LIST")}
-                  className="btn"
-                  id={
-                    switchList === "CLAIM_LIST" ? "btn-active" : "btn-disabled"
-                  }
-                >
-                  Claims
-                </button>
+                <>
+                  <ViewSelector text="Claims" />
+                  <ViewSelector text="Estimates" />
+                </>
               )}
             </div>
             {switchUpdateLabourList && (
@@ -110,7 +107,7 @@ export default function Project() {
             )}
           </div>
 
-          {switchList === "MAIN_LIST" && (
+          {switchList === "Main" && (
             <>
               <ProjectUpdateMainList
                 project={document}
@@ -125,7 +122,7 @@ export default function Project() {
               )}
             </>
           )}
-          {switchList === "LABOUR_LIST" && (
+          {switchList === "Labour" && (
             <ProjectLabourList
               project={document}
               setSwitchUpdateLabourList={reSwitchUpdateLabourList}
@@ -133,7 +130,8 @@ export default function Project() {
             />
           )}
 
-          {switchList === "CLAIM_LIST" && <ClaimsList project={document} />}
+          {switchList === "Claims" && <ClaimsList project={document} />}
+          {switchList === "Estimates" && <InitialEstimate project={document} />}
         </div>
       </div>
     </div>

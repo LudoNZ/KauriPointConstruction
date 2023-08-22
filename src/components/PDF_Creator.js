@@ -21,7 +21,7 @@ export default function PDF_Creator({ children }) {
   };
 
   return (
-    <div>
+    <div style={{ padding: "1em" }}>
       <div ref={printRef}>{children}</div>
       <button type="button" onClick={handleDownloadPdf}>
         Download as PDF

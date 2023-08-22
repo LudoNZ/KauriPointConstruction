@@ -76,7 +76,7 @@ const AddTask = ({ dispatch, stageName }) => {
   };
   const handleUpdateTask = (oldTask, newTask) => {
     const payload = {
-      stageName: stage.name,
+      //stageName: stage.name,
       oldTask: oldTask,
       newTask: newTask,
     };
@@ -84,7 +84,7 @@ const AddTask = ({ dispatch, stageName }) => {
   };
   const handleDeleteTask = (task) => {
     const payload = {
-      stageName: stage.name,
+      //stageName: stage.name,
       task: task,
     };
     dispatch({ type: "DELETE_TASK", payload: payload });
