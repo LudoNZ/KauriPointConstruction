@@ -21,7 +21,6 @@ import "./ProjectUpdateMainList.css";
 import CreateNewStage from "./components/CreateNewStage";
 import ClaimOnTask from "./components/ClaimOnTask";
 import PDF_Creator from "../../../components/PDF_Creator";
-import ExpandableContent from "../../../components/utilities/ExpandableContent";
 
 export const ACTIONS = {
   CREATE_STAGE: "create_stage",
@@ -244,11 +243,8 @@ function TaskDetails({
 
   return (
     <>
-      <div className="mainlist-task">
-        <span
-          onClick={handleExpandTask}
-          className={expandTask ? "arrow-down" : "arrow-right"}
-        />
+      <div className="mainlist-task" onClick={handleExpandTask}>
+        <span className={expandTask ? "arrow-down" : "arrow-right"} />
         <span className="mainlist-taskHeader-name">
           <div>{taskName}</div>
           {nextClaim > 0 && (
@@ -304,7 +300,7 @@ function Tasks({
   expandStages,
 }) {
   return (
-    <ExpandableContent expand={expandStages}>
+    <div>
       <div className="mainList-stageTasks">
         <div className="mainlist-taskHeader">
           <span className="mainlist-taskHeader-name">Task Items</span>
@@ -314,6 +310,7 @@ function Tasks({
           <span className="mainlist-taskHeader-cost">Claimed / Cost</span>
           <span className="mainlist-taskHeader-status">Status</span>
         </div>
+
         {Object.entries(stage).map(([key, task]) => {
           return (
             <TaskDetails
@@ -328,16 +325,16 @@ function Tasks({
           );
         })}
       </div>
-    </ExpandableContent>
+    </div>
   );
 }
 
 // function Stage({ stageKey, stage, dispatch }) {
 function Stage({ stage, dispatch, userRole, switchUpdateMainlist, fee }) {
-  const [expandStages, setCollapseStages] = useState(false);
+  const [expandStages, setExpandStages] = useState(false);
 
   function handleExpand() {
-    setCollapseStages(!expandStages);
+    setExpandStages(!expandStages);
   }
 
   function handleDeleteStage(e) {
@@ -355,13 +352,10 @@ function Stage({ stage, dispatch, userRole, switchUpdateMainlist, fee }) {
   // console.log('stage: ',stage)
   return (
     <div className="mainlist-stageCard">
-      <div className="mainlist-stageCard-header">
-        <div
-          onClick={handleExpand}
-          className={expandStages ? "arrow-down" : "arrow-right"}
-        />
+      <div onClick={handleExpand} className="mainlist-stageCard-header">
+        <div className={expandStages ? "arrow-down" : "arrow-right"} />
         <div className="stageCard-header-titleBar">
-          <h3 onClick={handleExpand}>{stage.name}</h3>
+          <h3>{stage.name}</h3>
           <ProgressBar progress={stageProgress} warning={NextClaimProgress} />
           {switchUpdateMainlist &&
             userRole === "admin" &&
@@ -383,15 +377,16 @@ function Stage({ stage, dispatch, userRole, switchUpdateMainlist, fee }) {
           <span> / ${numberWithCommas(stageCost)}</span>
         </div>
       </div>
-
-      <Tasks
-        stageName={stage.name}
-        stage={stage.tasks}
-        dispatch={dispatch}
-        switchUpdateMainlist={switchUpdateMainlist}
-        fee={fee}
-        expandStages={expandStages}
-      />
+      {expandStages && (
+        <Tasks
+          stageName={stage.name}
+          stage={stage.tasks}
+          dispatch={dispatch}
+          switchUpdateMainlist={switchUpdateMainlist}
+          fee={fee}
+          expandStages={expandStages}
+        />
+      )}
     </div>
   );
 }
