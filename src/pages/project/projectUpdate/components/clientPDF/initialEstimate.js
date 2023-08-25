@@ -1,11 +1,21 @@
 import PDF_Creator from "../../../../../components/PDF_Creator";
 import "./initialEstimate.css";
 
+import logo from "../../../../../assets/logo.png";
+
+import {
+  calculateProjectProgress,
+  calculateStageProgress,
+} from "../../../../../components/progressBar/ProgressBar";
+import { numberWithCommas } from "../../../ProjectFinancialInfo";
+
 export default function InitialEstimate({ project }) {
   const Header = () => {
     const KPCInfo = () => {
       return (
         <div className="KPCInfo">
+          <img src={logo} alt="KPC logo" className="form-logo" />
+
           <p>Kauri Point Construction Ltd</p>
           <p>771 South Titirangi Road</p>
           <p>Titirangi</p>
@@ -26,13 +36,22 @@ export default function InitialEstimate({ project }) {
       };
       return (
         <div className="StampInfo">
-          <Info label={"Date"} data={"yy mmm dd"} />
+          <Info
+            label={"Date"}
+            data={new Date().toLocaleDateString(undefined, {
+              day: "2-digit",
+              month: "short",
+              year: "2-digit",
+            })}
+          />
+
           <Info label={"Expiry"} data={"yy mmm dd"} />
           <Info label={"Quote Number"} data={"?required"} />
           <Info label={"GST Number"} data={"?required"} />
         </div>
       );
     };
+
     return (
       <div className="Header">
         <div>
@@ -49,88 +68,11 @@ export default function InitialEstimate({ project }) {
 
   const Content = () => {
     const Table = () => {
-      const data = [
-        {
-          description: "Bathroom",
-          quantity: 1.0,
-          unitPrice: 7983.78,
-          amount: 7983.78,
-        },
-        {
-          description: "Toilet",
-          quantity: 1.0,
-          unitPrice: 3122.84,
-          amount: 3122.84,
-        },
-        {
-          description: "Lounge/ Dining",
-          quantity: 1.0,
-          unitPrice: 19278.21,
-          amount: 19278.21,
-        },
-        {
-          description: "Master Bedroom",
-          quantity: 1.0,
-          unitPrice: 8842.78,
-          amount: 8842.78,
-        },
-        {
-          description: "Kitchen",
-          quantity: 1.0,
-          unitPrice: 24538.18,
-          amount: 24538.18,
-        },
-        {
-          description: "Garage",
-          quantity: 1.0,
-          unitPrice: 9937.62,
-          amount: 9937.62,
-        },
-        {
-          description: "Bedroom 2",
-          quantity: 1.0,
-          unitPrice: 9916.0,
-          amount: 9916.0,
-        },
-        {
-          description: "Bedroom 3",
-          quantity: 1.0,
-          unitPrice: 9916.0,
-          amount: 9916.0,
-        },
-        {
-          description: "Entry",
-          quantity: 1.0,
-          unitPrice: 5024.99,
-          amount: 5024.99,
-        },
-        {
-          description: "Exterior",
-          quantity: 1.0,
-          unitPrice: 9948.0,
-          amount: 9948.0,
-        },
-        {
-          description: "Engineer (PC SUM)",
-          quantity: 1.0,
-          unitPrice: 8000.0,
-          amount: 8000.0,
-        },
-        {
-          description: "P&G",
-          quantity: 1.0,
-          unitPrice: 9320.67,
-          amount: 9320.67,
-        },
-        {
-          description: "Margin",
-          quantity: 1.0,
-          unitPrice: 12582.91,
-          amount: 12582.91,
-        },
+      const mainList = [...project.mainList];
+      console.log("MMAINLIST:", mainList);
 
-        { description: "TOTAL NZD", amount: 159173.79 },
-      ];
+      const projectFinancials = calculateProjectProgress(project);
+      const totalCost = numberWithCommas(projectFinancials.totalCost);
       return (
         <table className="table">
           <thead>
@@ -142,14 +84,32 @@ export default function InitialEstimate({ project }) {
             </tr>
           </thead>
           <tbody>
-            {Object.entries(data).map(([index, item]) => (
-              <tr key={index}>
-                <td className="description">{item.description}</td>
-                <td>{item.quantity}</td>
-                <td>{item.unitPrice}</td>
-                <td>{item.amount}</td>
-              </tr>
-            ))}
+            {mainList.map((stage) => {
+              console.log("STAGE:", stage);
+
+              const stageFinancials = calculateStageProgress(
+                stage,
+                project.subContractFee
+              );
+              const stageCost = numberWithCommas(stageFinancials.totalCost);
+
+              return (
+                <tr key={stage.name}>
+                  <td className="description">{stage.name}</td>
+                  <td>{stage.quantity}</td>
+                  <td>{stage.unitPrice}</td>
+                  <td>{stageCost}</td>
+                </tr>
+              );
+            })}
+            <tr>
+              <td className="description">Total</td>
+              <td>{}</td>
+              <td>{}</td>
+              <td>
+                <strong>{totalCost}</strong>
+              </td>
+            </tr>
           </tbody>
         </table>
       );
@@ -163,11 +123,22 @@ export default function InitialEstimate({ project }) {
       </div>
     );
   };
+  const Terms = () => {
+    return (
+      <div className="terms">
+        <h5>Terms</h5>
+        <p>This invoice is claimed under the Construction Contracts Act 2015</p>
+      </div>
+    );
+  };
 
   return (
-    <PDF_Creator>
-      <Header />
-      <Content />
-    </PDF_Creator>
+    <div className="pdfForm">
+      <PDF_Creator>
+        <Header />
+        <Content />
+        <Terms />
+      </PDF_Creator>
+    </div>
   );
 }

@@ -1,3 +1,17 @@
+.pdfForm{
+    background-color: #FFF;
+}
+
+.terms{
+    padding-top: 4em;
+}
+.terms br{
+    position: relative;
+    width: 100px;
+    height: 10px;
+    border: 2px solid black;
+}
+
 .Header{
     display: flex;
     justify-content: space-between;
@@ -8,7 +22,6 @@
     font-weight: 500;
 }
 .Header .stamp{
-    
     display: flex;
     flex-wrap: wrap-reverse;
     gap: 1em 4em;
@@ -16,11 +29,16 @@
 .Header .StampInfo{
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-end;
     gap: 1em;
 }
 .Header .KPCInfo{
     line-height: 1.5em;
+}
+.form-logo{
+    position: relative;
+    right: 0;
+    height: 150px;
 }
 .Header .stamp .Info h5{
     margin: 0;
@@ -60,11 +78,6 @@
   }
   
   .table th {
-    background-color: #f2f2f2;
-  }
-  
-  .table tbody tr:nth-child(even) {
-    background-color: #f2f2f2;
   }
   
   .table tbody tr:hover {
