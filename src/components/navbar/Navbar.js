@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { useLogout } from "../../hooks/useLogout";
 import { useAuthContext } from "../../hooks/useAuthContext";
-import Avatar from "./../Avatar";
 import phone from "../../assets/icons/phone.png";
 
 // styles & images

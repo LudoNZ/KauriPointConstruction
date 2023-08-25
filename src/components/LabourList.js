@@ -8,7 +8,6 @@ import LabourListAddStage from "./LabourList_AddStage";
 function labourListReducer(reLabourList, action) {
   //WORK IN PROGRESS
   //console.log('reLabourList: ', reLabourList)
-  let stages;
   let tempLabourList = [...reLabourList];
   switch (action.type) {
     case "UPDATE_EXPECTED_HOURS":
@@ -258,15 +257,6 @@ function LabourStageCard({
     });
     //console.log('SUM DAYS: ', member, sumDays)
     return sumDays;
-  }
-
-  //console.log('totalDays: ', totalDays)
-
-  function setSum(total, num) {
-    if (!num || num === " ") {
-      num = 0;
-    }
-    return total + parseFloat(num);
   }
 
   //Calculate stage labour

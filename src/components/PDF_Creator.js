@@ -1,7 +1,6 @@
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
 import React from "react";
-import { Children } from "react";
 
 export default function PDF_Creator({ children }) {
   const printRef = React.useRef();
