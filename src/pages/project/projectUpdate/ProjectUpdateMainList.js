@@ -2,6 +2,7 @@ import { useState, useReducer } from "react";
 import { useAuthContext } from "../../../hooks/useAuthContext";
 import { useUserRole } from "../../../hooks/useUserRole";
 import { useFirestore } from "../../../hooks/useFirestore";
+import Collapsible from "react-collapsible";
 
 import {
   ProgressBar,
@@ -243,50 +244,57 @@ function TaskDetails({
 
   return (
     <>
-      <div className="mainlist-task" onClick={handleExpandTask}>
-        <span className={expandTask ? "arrow-down" : "arrow-right"} />
-        <span className="mainlist-taskHeader-name">
-          <div>{taskName}</div>
-          {nextClaim > 0 && (
-            <span className="mainlist-nextClaim">
-              next claim: ${numberWithCommas(nextClaim)}
+      <Collapsible
+        onOpening={handleExpandTask}
+        onClosing={handleExpandTask}
+        trigger={
+          <div className="mainlist-task">
+            <span className={expandTask ? "arrow-down" : "arrow-right"} />
+            <span className="mainlist-taskHeader-name">
+              <div>{taskName}</div>
+              {nextClaim > 0 && (
+                <span className="mainlist-nextClaim">
+                  next claim: ${numberWithCommas(nextClaim)}
+                </span>
+              )}
+              <ProgressBar
+                progress={percentageComplete}
+                warning={percentageClaimed}
+              />
             </span>
-          )}
-          <ProgressBar
-            progress={percentageComplete}
-            warning={percentageClaimed}
-          />
-        </span>
-        <span className="mainlist-taskHeader-subContractor">
-          {subContractor}
-        </span>
-        <div className="mainlist-taskHeader-cost space">
-          {switchUpdateMainlist && (
-            <ClaimOnTask
-              stageName={stageName}
-              index={index}
-              task={task}
-              dispatch={dispatch}
-            />
-          )}
-          <span className="">
-            {claimed} / {numberWithCommas(calculatedamount)}
-          </span>
-        </div>
+            <span className="mainlist-taskHeader-subContractor">
+              {subContractor}
+            </span>
+            <div className="mainlist-taskHeader-cost space">
+              {switchUpdateMainlist && (
+                <ClaimOnTask
+                  stageName={stageName}
+                  index={index}
+                  task={task}
+                  dispatch={dispatch}
+                />
+              )}
+              <span className="">
+                {claimed} / {numberWithCommas(calculatedamount)}
+              </span>
+            </div>
 
-        {switchUpdateMainlist ? (
-          <UpdateTaskStatus
-            stageName={stageName}
-            index={index}
-            task={task}
-            dispatch={dispatch}
-            fee={fee}
-          />
-        ) : (
-          <span className="mainlist-taskHeader-status">{status} </span>
-        )}
-      </div>
-      <div>{expandTask && <TaskSection task={task} fee={fee} />}</div>
+            {switchUpdateMainlist ? (
+              <UpdateTaskStatus
+                stageName={stageName}
+                index={index}
+                task={task}
+                dispatch={dispatch}
+                fee={fee}
+              />
+            ) : (
+              <span className="mainlist-taskHeader-status">{status} </span>
+            )}
+          </div>
+        }
+      >
+        <TaskSection task={task} fee={fee} />
+      </Collapsible>
     </>
   );
 }
@@ -351,43 +359,52 @@ function Stage({ stage, dispatch, userRole, switchUpdateMainlist, fee }) {
 
   // console.log('stage: ',stage)
   return (
-    <div className="mainlist-stageCard">
-      <div onClick={handleExpand} className="mainlist-stageCard-header">
-        <div className={expandStages ? "arrow-down" : "arrow-right"} />
-        <div className="stageCard-header-titleBar">
-          <h3>{stage.name}</h3>
-          <ProgressBar progress={stageProgress} warning={NextClaimProgress} />
-          {switchUpdateMainlist &&
-            userRole === "admin" &&
-            expandStages &&
-            "labour" !== stage.name.toLowerCase() && (
-              <div className="updateStage-footer">
-                <AddTask stage={stage} dispatch={dispatch} />
-                <button
-                  value={stage.name}
-                  onClick={(e) => handleDeleteStage(e)}
-                >
-                  - Delete Stage
-                </button>
-              </div>
-            )}
+    <Collapsible
+      onOpening={handleExpand}
+      onClosing={handleExpand}
+      trigger={
+        <div className="mainlist-stageCard">
+          <div className="mainlist-stageCard-header">
+            <div className={expandStages ? "arrow-down" : "arrow-right"} />
+            <div className="stageCard-header-titleBar">
+              <h3>{stage.name}</h3>
+              <ProgressBar
+                progress={stageProgress}
+                warning={NextClaimProgress}
+              />
+              {switchUpdateMainlist &&
+                userRole === "admin" &&
+                "labour" !== stage.name.toLowerCase() && (
+                  <div className="updateStage-footer">
+                    <AddTask stage={stage} dispatch={dispatch} />
+                    <button
+                      value={stage.name}
+                      onClick={(e) => handleDeleteStage(e)}
+                    >
+                      - Delete Stage
+                    </button>
+                  </div>
+                )}
+            </div>
+            <div className="mainlist-stageTotals">
+              <span className="numerator">
+                ${numberWithCommas(stageClaimed)}
+              </span>
+              <span> / ${numberWithCommas(stageCost)}</span>
+            </div>
+          </div>
         </div>
-        <div className="mainlist-stageTotals">
-          <span className="numerator">${numberWithCommas(stageClaimed)}</span>
-          <span> / ${numberWithCommas(stageCost)}</span>
-        </div>
-      </div>
-      {expandStages && (
-        <Tasks
-          stageName={stage.name}
-          stage={stage.tasks}
-          dispatch={dispatch}
-          switchUpdateMainlist={switchUpdateMainlist}
-          fee={fee}
-          expandStages={expandStages}
-        />
-      )}
-    </div>
+      }
+    >
+      <Tasks
+        stageName={stage.name}
+        stage={stage.tasks}
+        dispatch={dispatch}
+        switchUpdateMainlist={switchUpdateMainlist}
+        fee={fee}
+        expandStages={expandStages}
+      />
+    </Collapsible>
   );
 }
 

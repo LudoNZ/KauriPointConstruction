@@ -77,9 +77,9 @@
     width: 10em;
   }
   
-  .table th {
+  /* .table th {
   }
-  
+   */
   .table tbody tr:hover {
     background-color: #ddd;
   }
