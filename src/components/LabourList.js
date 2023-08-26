@@ -4,6 +4,7 @@ import { calculateStageLabour, sumLabourList } from "./progressBar/ProgressBar";
 import { useFirestore } from "../hooks/useFirestore";
 import AddLabourTask from "./LabourList_AddTask";
 import LabourListAddStage from "./LabourList_AddStage";
+import Collapsible from "react-collapsible";
 
 function labourListReducer(reLabourList, action) {
   //WORK IN PROGRESS
@@ -269,28 +270,32 @@ function LabourStageCard({
   }
   return (
     <div className="labourStageCard">
-      <div onClick={handleToggleStage} className="stage-container">
-        <div className="stage-name-container">
-          {stage.name}
-          {switchUpdateLabourList && (
-            <button
-              className={"delete"}
-              value={stage.name}
-              onClick={handleDeleteStage}
-            >
-              - Delete Stage
-            </button>
-          )}
-        </div>
-        <div className="stage-role-container">
-          {expandLabourStage &&
-            team.map((member) => {
+      <Collapsible
+        onOpening={handleToggleStage}
+        onClosing={handleToggleStage}
+        trigger={
+          <div className="stage-container">
+            <div className="stage-name-container">
+              {stage.name}
+              {switchUpdateLabourList && (
+                <button
+                  className={"delete"}
+                  value={stage.name}
+                  onClick={handleDeleteStage}
+                >
+                  - Delete Stage
+                </button>
+              )}
+            </div>
+          </div>
+        }
+      >
+        <>
+          <div className="stage-role-container">
+            {team.map((member) => {
               return <span key={member.role}>{member.role}</span>;
             })}
-        </div>
-      </div>
-      {expandLabourStage && (
-        <>
+          </div>
           <LabourStageTask
             stage={stage.tasks}
             team={team}
@@ -320,7 +325,7 @@ function LabourStageCard({
             </div>
           </div>
         </>
-      )}
+      </Collapsible>
 
       <div className="labourList-StageTask labourList-StageTotal">
         <span>Stage Totals</span>
