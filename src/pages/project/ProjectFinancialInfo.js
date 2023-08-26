@@ -5,10 +5,10 @@ import "./ProjectFinancialInfo.css";
 export default function ProjectFinancialInfo({ project }) {
   const financialInfo = calculateProjectProgress(project);
 
-  const totalExcGst = financialInfo.totalCost;
+  const totalExcGst = financialInfo.totalCostExcludingGST;
   const totalClaimed = financialInfo.totalClaimed;
   const gst = totalExcGst * 0.15; // GST 15%
-  const totalIncGst = totalExcGst * 1.15;
+  const totalIncGst = financialInfo.totalCost;
   const stilltoclaim = totalIncGst - totalClaimed;
 
   return (

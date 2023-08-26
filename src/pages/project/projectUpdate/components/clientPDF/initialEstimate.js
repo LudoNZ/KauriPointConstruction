@@ -46,8 +46,7 @@ export default function InitialEstimate({ project }) {
           />
 
           <Info label={"Expiry"} data={"yy mmm dd"} />
-          <Info label={"Quote Number"} data={"?required"} />
-          <Info label={"GST Number"} data={"?required"} />
+          <Info label={"Quote Number"} data={"#UNIQUE_ID"} />
         </div>
       );
     };
@@ -78,9 +77,8 @@ export default function InitialEstimate({ project }) {
           <thead>
             <tr>
               <th className="description">Description</th>
-              <th>Quantity</th>
               <th>Unit Price</th>
-              <th>Amount NZD</th>
+              <th>including GST</th>
             </tr>
           </thead>
           <tbody>
@@ -92,19 +90,20 @@ export default function InitialEstimate({ project }) {
                 project.subContractFee
               );
               const stageCost = numberWithCommas(stageFinancials.totalCost);
+              const stageCostExcGST = numberWithCommas(
+                stageFinancials.totalCostExcludingGST
+              );
 
               return (
                 <tr key={stage.name}>
                   <td className="description">{stage.name}</td>
-                  <td>{stage.quantity}</td>
-                  <td>{stage.unitPrice}</td>
+                  <td>{stageCostExcGST}</td>
                   <td>{stageCost}</td>
                 </tr>
               );
             })}
             <tr>
               <td className="description">Total</td>
-              <td>{}</td>
               <td>{}</td>
               <td>
                 <strong>{totalCost}</strong>
