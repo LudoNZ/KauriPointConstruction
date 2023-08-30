@@ -178,8 +178,10 @@ function LabourListSummary({ project }) {
   return (
     <div className="flex">
       <h3>Labour List Summary:</h3>
-      <span>days:{labourSums.sumDays}</span>
-      <span>cost:{labourSums.sumCost}</span>
+      <span>{labourSums.sumDays} days</span>
+      <span>
+        $ {labourSums.sumCost} <span>ex GST</span>
+      </span>
     </div>
   );
 }

@@ -72,15 +72,18 @@ export default function InitialEstimate({ project }) {
 
       const projectFinancials = calculateProjectProgress(project);
       const totalCost = numberWithCommas(projectFinancials.totalCost);
+      const totalCostIncGST = numberWithCommas(
+        projectFinancials.totalCost * 1.15
+      );
       return (
-        <table className="table">
-          <thead>
-            <tr>
+        <div className="table">
+          <div>
+            <di>
               <th className="description">Description</th>
               <th>Unit Price</th>
               <th>including GST</th>
-            </tr>
-          </thead>
+            </di>
+          </div>
           <tbody>
             {mainList.map((stage) => {
               console.log("STAGE:", stage);
@@ -90,27 +93,43 @@ export default function InitialEstimate({ project }) {
                 project.subContractFee
               );
               const stageCost = numberWithCommas(stageFinancials.totalCost);
-              const stageCostExcGST = numberWithCommas(
-                stageFinancials.totalCostExcludingGST
+              const stageCostIncGST = numberWithCommas(
+                stageFinancials.totalCost * 1.15
               );
 
               return (
-                <tr key={stage.name}>
-                  <td className="description">{stage.name}</td>
-                  <td>{stageCostExcGST}</td>
-                  <td>{stageCost}</td>
-                </tr>
+                <>
+                  <tr key={stage.name}>
+                    <td className="description">{stage.name}</td>
+                    <td>{stageCost}</td>
+                    <td>{stageCostIncGST}</td>
+                  </tr>
+                  {stage.tasks.map((task) => {
+                    console.log("TTASK:", task);
+                    const unitPrice = numberWithCommas(task.calculatedamount);
+                    const incGST = numberWithCommas(
+                      task.calculatedamount * 1.15
+                    );
+                    return (
+                      <tr key={task.code} className="sub-task">
+                        <td className="description">{task.task}</td>
+                        <td>{unitPrice}</td>
+                        <td>{incGST}</td>
+                      </tr>
+                    );
+                  })}
+                </>
               );
             })}
-            <tr>
+            <tr className="totalRow">
               <td className="description">Total</td>
-              <td>{}</td>
+              <td>{totalCost}</td>
               <td>
-                <strong>{totalCost}</strong>
+                <strong>{totalCostIncGST}</strong>
               </td>
             </tr>
           </tbody>
-        </table>
+        </div>
       );
     };
 

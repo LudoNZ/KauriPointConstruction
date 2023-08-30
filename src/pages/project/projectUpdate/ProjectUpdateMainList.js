@@ -64,6 +64,7 @@ function mainListReducer(reStages, action) {
             if (task.task === "Labour") {
               const newAmount = action.payload.sumCost;
               task.subcontractedamount = newAmount;
+              task.calculatedamount = newAmount;
             }
           });
         }

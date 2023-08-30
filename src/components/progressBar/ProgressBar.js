@@ -43,7 +43,6 @@ function calculateTaskClaimed(task) {
 
 //calculate MAINLIST stage completion
 const calculateStageProgress = (stage, fee) => {
-  let totalCostExcludingGST = 0;
   let totalCost = 0;
   let totalClaimed = 0;
   let totalNextClaim = 0;
@@ -54,7 +53,6 @@ const calculateStageProgress = (stage, fee) => {
         ? task.subcontractedamount * task.customPercentage
         : task.subcontractedamount * (1 + parseFloat(fee))
     );
-    totalCostExcludingGST += parseFloat(task.subcontractedamount) || 0;
     totalCost += calculatedamount;
     totalClaimed += parseFloat(calculateTaskClaimed(task));
     totalNextClaim += task.nextClaim ? parseFloat(task.nextClaim) : 0;
@@ -64,7 +62,6 @@ const calculateStageProgress = (stage, fee) => {
     totalCost: totalCost,
     totalClaimed: totalClaimed,
     totalNextClaim: totalNextClaim,
-    totalCostExcludingGST: totalCostExcludingGST,
   };
 
   return results;
@@ -73,20 +70,17 @@ const calculateStageProgress = (stage, fee) => {
 const calculateProjectProgress = (project) => {
   let totalClaimed = 0;
   let totalCost = 0;
-  let totalCostExcludingGST = 0;
   let totalNextClaim = 0;
   project.mainList.forEach((stage) => {
     const stageSums = calculateStageProgress(stage, project.subContractFee);
     totalClaimed += stageSums.totalClaimed;
     totalCost += stageSums.totalCost;
-    totalCostExcludingGST += stageSums.totalCostExcludingGST;
     totalNextClaim += stageSums.totalNextClaim;
   });
   return {
     totalClaimed: totalClaimed,
     totalCost: totalCost,
     totalNextClaim: totalNextClaim,
-    totalCostExcludingGST: totalCostExcludingGST,
   };
 };
 

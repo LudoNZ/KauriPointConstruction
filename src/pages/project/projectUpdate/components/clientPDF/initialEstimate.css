@@ -71,7 +71,7 @@
   }
   
   .table th,
-  .table td {
+   .table td {
     border-bottom: 1px solid lightgrey;
     padding: 4px;
     text-align: end;
@@ -89,3 +89,14 @@
     width: 60%;
     text-align: start;
   } 
+  .table .sub-task{
+    color: gray
+  }
+  .table .sub-task > .description{
+    padding-left: 2em;
+  }
+
+  .totalRow{
+    line-height: 3em;
+
+  }
