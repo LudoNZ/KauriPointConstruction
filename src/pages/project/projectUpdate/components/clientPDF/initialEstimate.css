@@ -100,3 +100,7 @@
     line-height: 3em;
 
   }
+
+  .cursorHover{
+    cursor: pointer;
+  }

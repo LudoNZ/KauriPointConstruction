@@ -9,6 +9,8 @@ import {
 } from "../../../../../components/progressBar/ProgressBar";
 import { numberWithCommas } from "../../../ProjectFinancialInfo";
 
+import Collapsible from "react-collapsible";
+
 export default function InitialEstimate({ project }) {
   const Header = () => {
     const KPCInfo = () => {
@@ -68,59 +70,63 @@ export default function InitialEstimate({ project }) {
   const Content = () => {
     const Table = () => {
       const mainList = [...project.mainList];
-      console.log("MMAINLIST:", mainList);
-
       const projectFinancials = calculateProjectProgress(project);
       const totalCost = numberWithCommas(projectFinancials.totalCost);
       const totalCostIncGST = numberWithCommas(
         projectFinancials.totalCost * 1.15
       );
+      const StageRow = ({ stage }) => {
+        const stageFinancials = calculateStageProgress(
+          stage,
+          project.subContractFee
+        );
+        const stageCost = numberWithCommas(stageFinancials.totalCost);
+        const stageCostIncGST = numberWithCommas(
+          stageFinancials.totalCost * 1.15
+        );
+        const TaskRow = ({ task }) => {
+          const unitPrice = numberWithCommas(task.calculatedamount);
+          const incGST = numberWithCommas(task.calculatedamount * 1.15);
+          return (
+            <tr key={task.code} className="sub-task">
+              <td className="description">{task.task}</td>
+              <td>{unitPrice}</td>
+              <td>{incGST}</td>
+            </tr>
+          );
+        };
+
+        return (
+          <Collapsible
+            trigger={
+              <tr key={stage.name}>
+                <td className="description cursorHover">{stage.name}</td>
+                <td>{stageCost}</td>
+                <td>{stageCostIncGST}</td>
+              </tr>
+            }
+          >
+            <div className="table-tasks">
+              {stage.tasks.map((task) => (
+                <TaskRow task={task} />
+              ))}
+            </div>
+          </Collapsible>
+        );
+      };
       return (
         <div className="table">
-          <div>
-            <di>
+          <thead>
+            <tr>
               <th className="description">Description</th>
               <th>Unit Price</th>
               <th>including GST</th>
-            </di>
-          </div>
-          <tbody>
-            {mainList.map((stage) => {
-              console.log("STAGE:", stage);
-
-              const stageFinancials = calculateStageProgress(
-                stage,
-                project.subContractFee
-              );
-              const stageCost = numberWithCommas(stageFinancials.totalCost);
-              const stageCostIncGST = numberWithCommas(
-                stageFinancials.totalCost * 1.15
-              );
-
-              return (
-                <>
-                  <tr key={stage.name}>
-                    <td className="description">{stage.name}</td>
-                    <td>{stageCost}</td>
-                    <td>{stageCostIncGST}</td>
-                  </tr>
-                  {stage.tasks.map((task) => {
-                    console.log("TTASK:", task);
-                    const unitPrice = numberWithCommas(task.calculatedamount);
-                    const incGST = numberWithCommas(
-                      task.calculatedamount * 1.15
-                    );
-                    return (
-                      <tr key={task.code} className="sub-task">
-                        <td className="description">{task.task}</td>
-                        <td>{unitPrice}</td>
-                        <td>{incGST}</td>
-                      </tr>
-                    );
-                  })}
-                </>
-              );
-            })}
+            </tr>
+          </thead>
+          <div>
+            {mainList.map((stage) => (
+              <StageRow stage={stage} />
+            ))}
             <tr className="totalRow">
               <td className="description">Total</td>
               <td>{totalCost}</td>
@@ -128,7 +134,7 @@ export default function InitialEstimate({ project }) {
                 <strong>{totalCostIncGST}</strong>
               </td>
             </tr>
-          </tbody>
+          </div>
         </div>
       );
     };

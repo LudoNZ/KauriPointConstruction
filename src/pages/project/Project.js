@@ -91,7 +91,7 @@ export default function Project() {
               {userRole === "admin" && (
                 <>
                   <ViewSelector text="Claims" />
-                  <ViewSelector text="Estimates" />
+                  <ViewSelector text="Quotes" />
                 </>
               )}
             </div>
@@ -131,7 +131,7 @@ export default function Project() {
           )}
 
           {switchList === "Claims" && <ClaimsList project={document} />}
-          {switchList === "Estimates" && <InitialEstimate project={document} />}
+          {switchList === "Quotes" && <InitialEstimate project={document} />}
         </div>
       </div>
     </div>
