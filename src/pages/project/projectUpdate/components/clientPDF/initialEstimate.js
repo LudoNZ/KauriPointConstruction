@@ -1,5 +1,8 @@
+import { useFirestore } from "../../../../../hooks/useFirestore";
 import PDF_Creator from "../../../../../components/PDF_Creator";
 import "./initialEstimate.css";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 import logo from "../../../../../assets/logo.png";
 
@@ -10,8 +13,35 @@ import {
 import { numberWithCommas } from "../../../ProjectFinancialInfo";
 
 import Collapsible from "react-collapsible";
+import { useState } from "react";
 
 export default function InitialEstimate({ project }) {
+  const { updateDocument, response } = useFirestore("projects");
+
+  const handleSubmitQuote = async () => {
+    const quotes = project.quotes || {};
+    let newQuoteCount = Object.keys(quotes).length + 1;
+    quotes[newQuoteCount] = {
+      mainList: project.mainList,
+      labourList: project.labourList,
+    };
+
+    const updateProject = {
+      quotes: quotes,
+    };
+    await updateDocument(project.id, updateProject);
+  };
+
+  function generateUniqueId(length) {
+    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    let uniqueId = "";
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * characters.length);
+      uniqueId += characters.charAt(randomIndex);
+    }
+    return uniqueId;
+  }
+
   const Header = () => {
     const KPCInfo = () => {
       return (
@@ -28,6 +58,22 @@ export default function InitialEstimate({ project }) {
       );
     };
     const StampInfo = () => {
+      const currentDate = new Date();
+      const futureDate = new Date(currentDate);
+      futureDate.setDate(futureDate.getDate() + 30);
+
+      const [selectedDate, setSelectedDate] = useState({
+        date: currentDate,
+        expiry: futureDate,
+      });
+
+      const handleDateChange = (date) => {
+        setSelectedDate({ ...selectedDate, date: date });
+      };
+      const handleExpiryChange = (date) => {
+        setSelectedDate({ ...selectedDate, expiry: date });
+      };
+
       const Info = ({ label, data }) => {
         return (
           <div className="Info">
@@ -40,15 +86,26 @@ export default function InitialEstimate({ project }) {
         <div className="StampInfo">
           <Info
             label={"Date"}
-            data={new Date().toLocaleDateString(undefined, {
-              day: "2-digit",
-              month: "short",
-              year: "2-digit",
-            })}
+            data={
+              <DatePicker
+                selected={selectedDate.date} // Set this to the selected date
+                dateFormat="dd MMM yy"
+                onChange={(date) => handleDateChange(date)} // Implement handleDateChange function
+              />
+            }
           />
 
-          <Info label={"Expiry"} data={"yy mmm dd"} />
-          <Info label={"Quote Number"} data={"#UNIQUE_ID"} />
+          <Info
+            label={"Expiry"}
+            data={
+              <DatePicker
+                selected={selectedDate.expiry} // Set this to the selected date
+                dateFormat="dd MMM yy"
+                onChange={(date) => handleExpiryChange(date)} // Implement handleDateChange function
+              />
+            }
+          />
+          <Info label={"Quote Number"} data={generateUniqueId(8)} />
         </div>
       );
     };
@@ -147,6 +204,15 @@ export default function InitialEstimate({ project }) {
       </div>
     );
   };
+
+  const Submit = () => {
+    return (
+      <div className="btn" onClick={handleSubmitQuote}>
+        Submit
+      </div>
+    );
+  };
+
   const Terms = () => {
     return (
       <div className="terms">
@@ -163,6 +229,7 @@ export default function InitialEstimate({ project }) {
         <Content />
         <Terms />
       </PDF_Creator>
+      <Submit />
     </div>
   );
 }
