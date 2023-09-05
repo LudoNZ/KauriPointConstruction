@@ -17,11 +17,14 @@ import { useState } from "react";
 
 export default function InitialEstimate({ project }) {
   const { updateDocument, response } = useFirestore("projects");
+  const [comment, setComment] = useState("");
+  const uniqueID = generateUniqueId(8);
 
   const handleSubmitQuote = async () => {
     const quotes = project.quotes || {};
     let newQuoteCount = Object.keys(quotes).length + 1;
     quotes[newQuoteCount] = {
+      comment: comment,
       mainList: project.mainList,
       labourList: project.labourList,
     };
@@ -105,7 +108,7 @@ export default function InitialEstimate({ project }) {
               />
             }
           />
-          <Info label={"Quote Number"} data={generateUniqueId(8)} />
+          <Info label={"Quote Number"} data={uniqueID} />
         </div>
       );
     };
@@ -125,6 +128,9 @@ export default function InitialEstimate({ project }) {
   };
 
   const Content = () => {
+    const handleCommentInputChange = (e) => {
+      setComment(e);
+    };
     const Table = () => {
       const mainList = [...project.mainList];
       const projectFinancials = calculateProjectProgress(project);
@@ -199,7 +205,12 @@ export default function InitialEstimate({ project }) {
     return (
       <div className="Content">
         <h2 className="address">{project.address.line1}</h2>
-        <p>This quote.....</p>
+        <input
+          placeholder="This Quote...."
+          onChange={(e) => handleCommentInputChange(e.target.value)}
+          value={comment}
+          key="comment-input"
+        />
         <Table />
       </div>
     );
