@@ -219,3 +219,8 @@ display: flex;
 justify-content: space-between;
 width: 100%;
 }
+
+/* Interactive */
+.ch {
+  cursor: pointer;
+}

@@ -1,3 +1,5 @@
+import React from "react";
+
 import { useFirestore } from "../../../../../hooks/useFirestore";
 import PDF_Creator from "../../../../../components/PDF_Creator";
 import "./initialEstimate.css";
@@ -14,6 +16,7 @@ import { numberWithCommas } from "../../../ProjectFinancialInfo";
 
 import Collapsible from "react-collapsible";
 import { useEffect, useState } from "react";
+import FormText from "../../../../../components/forms/formText";
 
 export default function InitialEstimate({ project }) {
   const { updateDocument, response } = useFirestore("projects");
@@ -130,98 +133,107 @@ export default function InitialEstimate({ project }) {
     );
   };
 
+  const TaskRow = ({ task }) => {
+    const unitPrice = numberWithCommas(task.calculatedamount);
+    const incGST = numberWithCommas(task.calculatedamount * 1.15);
+    return (
+      <div key={task.code} className="sub-task flex-spaceBetween">
+        <span className="description">{task.task}</span>
+        <span>{unitPrice}</span>
+        <span>{incGST}</span>
+      </div>
+    );
+  };
+
+  const StageRow = ({ stage }) => {
+    const stageFinancials = calculateStageProgress(
+      stage,
+      project.subContractFee
+    );
+    const stageCost = numberWithCommas(stageFinancials.totalCost);
+    const stageCostIncGST = numberWithCommas(stageFinancials.totalCost * 1.15);
+
+    return (
+      <Collapsible
+        className="stage"
+        open={true}
+        transitionTime={100}
+        trigger={
+          <div key={stage.name} className="flex-spaceBetween stageRow">
+            <span className="description cursorHover flex-spaceBetween">
+              {stage.name}
+            </span>
+            <span>{stageCost}</span>
+            <span>{stageCostIncGST}</span>
+          </div>
+        }
+      >
+        <div className="stageTasks">
+          {stage.tasks.map((task, k) => (
+            <TaskRow task={task} key={k} />
+          ))}
+        </div>
+      </Collapsible>
+    );
+  };
+
+  const Table = () => {
+    const mainList = [...project.mainList];
+    const projectFinancials = calculateProjectProgress(project);
+    const totalCost = numberWithCommas(projectFinancials.totalCost);
+    const totalCostIncGST = numberWithCommas(
+      projectFinancials.totalCost * 1.15
+    );
+    return (
+      <div className="table">
+        <div className="topRow">
+          <div className="flex-spaceBetween">
+            <span className="description">Description</span>
+            <span>Unit Price</span>
+            <span>including GST</span>
+          </div>
+        </div>
+        <div>
+          {mainList.map((stage) => (
+            <StageRow stage={stage} key={stage.name} />
+          ))}
+          <div className="totalRow flex-spaceBetween">
+            <span className="description">Total</span>
+            <span>{totalCost}</span>
+            <span>
+              <strong>{totalCostIncGST}</strong>
+            </span>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   const Content = () => {
     const [comment, setComment] = useState("");
-    const handleCommentInputChange = (e) => {
-      setComment(e.target.value);
-    };
+    const [isEditMode, setIsEditMode] = useState(false);
 
-    const TaskRow = ({ task }) => {
-      const unitPrice = numberWithCommas(task.calculatedamount);
-      const incGST = numberWithCommas(task.calculatedamount * 1.15);
-      return (
-        <div key={task.code} className="sub-task flex-spaceBetween">
-          <span className="description">{task.task}</span>
-          <span>{unitPrice}</span>
-          <span>{incGST}</span>
-        </div>
-      );
-    };
-
-    const StageRow = ({ stage }) => {
-      const stageFinancials = calculateStageProgress(
-        stage,
-        project.subContractFee
-      );
-      const stageCost = numberWithCommas(stageFinancials.totalCost);
-      const stageCostIncGST = numberWithCommas(
-        stageFinancials.totalCost * 1.15
-      );
-
-      return (
-        <Collapsible
-          className="stage"
-          open={true}
-          trigger={
-            <div key={stage.name} className="flex-spaceBetween stageRow">
-              <span className="description cursorHover flex-spaceBetween">
-                {stage.name}
-              </span>
-              <span>{stageCost}</span>
-              <span>{stageCostIncGST}</span>
-            </div>
-          }
-        >
-          <div className="stageTasks">
-            {stage.tasks.map((task, k) => (
-              <TaskRow task={task} key={k} />
-            ))}
-          </div>
-        </Collapsible>
-      );
-    };
-
-    const Table = () => {
-      const mainList = [...project.mainList];
-      const projectFinancials = calculateProjectProgress(project);
-      const totalCost = numberWithCommas(projectFinancials.totalCost);
-      const totalCostIncGST = numberWithCommas(
-        projectFinancials.totalCost * 1.15
-      );
-      return (
-        <div className="table">
-          <div className="topRow">
-            <div className="flex-spaceBetween">
-              <span className="description">Description</span>
-              <span>Unit Price</span>
-              <span>including GST</span>
-            </div>
-          </div>
-          <div>
-            {mainList.map((stage) => (
-              <StageRow stage={stage} key={stage.name} />
-            ))}
-            <div className="totalRow flex-spaceBetween">
-              <span className="description">Total</span>
-              <span>{totalCost}</span>
-              <span>
-                <strong>{totalCostIncGST}</strong>
-              </span>
-            </div>
-          </div>
-        </div>
-      );
+    const stopEditing = () => {
+      setIsEditMode(false);
+      console.log("stopping editing");
     };
 
     return (
       <div className="Content">
         <h2 className="address">{project.address.line1}</h2>
-        <input
-          placeholder="This Quote...."
-          onChange={handleCommentInputChange}
-          value={comment}
-          key="comment-input"
-        />
+        {isEditMode ? (
+          <FormText
+            text={comment}
+            placeholder="quote text..."
+            updateText={setComment}
+            onUpdate={stopEditing}
+          />
+        ) : (
+          <div onClick={() => setIsEditMode(true)} className="ch">
+            {comment || "CLICK TO CHANGE TEXT......"}
+          </div>
+        )}
+        <div style={{ height: "100px" }} />
         <Table />
       </div>
     );
