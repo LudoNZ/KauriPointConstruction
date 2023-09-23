@@ -211,5 +211,11 @@ textarea {
 
 .flex{
   display: flex;
-  justify-content: space-between;
+  gap: 1em
+}
+
+.flex-spaceBetween{
+display: flex;
+justify-content: space-between;
+width: 100%;
 }

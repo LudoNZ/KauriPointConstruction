@@ -12,7 +12,7 @@ function labourListReducer(reLabourList, action) {
   switch (action.type) {
     case "ADD_TASK":
       return modList.map((stage) => {
-        if (stage.name == action.payload.stageName) {
+        if (stage.name === action.payload.stageName) {
           return {
             ...stage,
             tasks: [...stage.tasks, action.payload.task],
@@ -38,7 +38,7 @@ function labourListReducer(reLabourList, action) {
       });
     case "DELETE_TASK":
       return modList.map((stage) => {
-        if (stage.name == action.payload.stageName) {
+        if (stage.name === action.payload.stageName) {
           return {
             ...stage,
             tasks: stage.tasks.filter((task) => task !== action.payload.task),

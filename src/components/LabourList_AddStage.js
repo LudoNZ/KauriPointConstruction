@@ -6,7 +6,6 @@ import Select from "react-select";
 export default function LabourListAddStage({ stage, dispatch }) {
   //Modal
   const [showModal, setShowModal] = useState(false);
-  const [formError, setFormError] = useState(null);
 
   // Firebase
   const { error, document } = useDocument("taskLibrary", "labourList");
@@ -152,7 +151,7 @@ export default function LabourListAddStage({ stage, dispatch }) {
                   <button className="btn">Add Stage and Task</button>
                 </div>
               </div>
-              {formError && <p className="error">{formError}</p>}
+              {error && <p className="error">{error}</p>}
             </form>
           </div>
         </div>

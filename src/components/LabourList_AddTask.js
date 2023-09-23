@@ -168,6 +168,7 @@ export default function AddLabourTask({ stage, dispatch }) {
                 </button>
               </div>
               {formError && <p className="error">{formError}</p>}
+              {error && <p className="error">{error}</p>}
             </form>
           </div>
         </div>

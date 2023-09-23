@@ -13,18 +13,21 @@ import {
 import { numberWithCommas } from "../../../ProjectFinancialInfo";
 
 import Collapsible from "react-collapsible";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function InitialEstimate({ project }) {
   const { updateDocument, response } = useFirestore("projects");
-  const [comment, setComment] = useState("");
-  const uniqueID = generateUniqueId(8);
 
+  const [uniqueID, setUniqueID] = useState("");
+
+  useEffect(() => {
+    setUniqueID(generateUniqueId(8));
+  }, []);
   const handleSubmitQuote = async () => {
     const quotes = project.quotes || {};
     let newQuoteCount = Object.keys(quotes).length + 1;
     quotes[newQuoteCount] = {
-      comment: comment,
+      //comment: comment,
       mainList: project.mainList,
       labourList: project.labourList,
     };
@@ -81,7 +84,7 @@ export default function InitialEstimate({ project }) {
         return (
           <div className="Info">
             <h5>{label}</h5>
-            <p>{data}</p>
+            <div>{data}</div>
           </div>
         );
       };
@@ -128,9 +131,56 @@ export default function InitialEstimate({ project }) {
   };
 
   const Content = () => {
+    const [comment, setComment] = useState("");
     const handleCommentInputChange = (e) => {
-      setComment(e);
+      setComment(e.target.value);
     };
+
+    const TaskRow = ({ task }) => {
+      const unitPrice = numberWithCommas(task.calculatedamount);
+      const incGST = numberWithCommas(task.calculatedamount * 1.15);
+      return (
+        <div key={task.code} className="sub-task flex-spaceBetween">
+          <span className="description">{task.task}</span>
+          <span>{unitPrice}</span>
+          <span>{incGST}</span>
+        </div>
+      );
+    };
+
+    const StageRow = ({ stage }) => {
+      const stageFinancials = calculateStageProgress(
+        stage,
+        project.subContractFee
+      );
+      const stageCost = numberWithCommas(stageFinancials.totalCost);
+      const stageCostIncGST = numberWithCommas(
+        stageFinancials.totalCost * 1.15
+      );
+
+      return (
+        <Collapsible
+          className="stage"
+          open={true}
+          trigger={
+            <div key={stage.name} className="flex-spaceBetween stageRow">
+              <span className="description cursorHover flex-spaceBetween">
+                {stage.name}
+              </span>
+              <span>{stageCost}</span>
+              <span>{stageCostIncGST}</span>
+            </div>
+          }
+        >
+          <div className="stageTasks">
+            {stage.tasks.map((task, k) => (
+              <TaskRow task={task} key={k} />
+            ))}
+          </div>
+        </Collapsible>
+      );
+    };
+
     const Table = () => {
       const mainList = [...project.mainList];
       const projectFinancials = calculateProjectProgress(project);
@@ -138,65 +188,26 @@ export default function InitialEstimate({ project }) {
       const totalCostIncGST = numberWithCommas(
         projectFinancials.totalCost * 1.15
       );
-      const StageRow = ({ stage }) => {
-        const stageFinancials = calculateStageProgress(
-          stage,
-          project.subContractFee
-        );
-        const stageCost = numberWithCommas(stageFinancials.totalCost);
-        const stageCostIncGST = numberWithCommas(
-          stageFinancials.totalCost * 1.15
-        );
-        const TaskRow = ({ task }) => {
-          const unitPrice = numberWithCommas(task.calculatedamount);
-          const incGST = numberWithCommas(task.calculatedamount * 1.15);
-          return (
-            <tr key={task.code} className="sub-task">
-              <td className="description">{task.task}</td>
-              <td>{unitPrice}</td>
-              <td>{incGST}</td>
-            </tr>
-          );
-        };
-
-        return (
-          <Collapsible
-            trigger={
-              <tr key={stage.name}>
-                <td className="description cursorHover">{stage.name}</td>
-                <td>{stageCost}</td>
-                <td>{stageCostIncGST}</td>
-              </tr>
-            }
-          >
-            <div className="table-tasks">
-              {stage.tasks.map((task) => (
-                <TaskRow task={task} />
-              ))}
-            </div>
-          </Collapsible>
-        );
-      };
       return (
         <div className="table">
-          <thead>
-            <tr>
-              <th className="description">Description</th>
-              <th>Unit Price</th>
-              <th>including GST</th>
-            </tr>
-          </thead>
+          <div className="topRow">
+            <div className="flex-spaceBetween">
+              <span className="description">Description</span>
+              <span>Unit Price</span>
+              <span>including GST</span>
+            </div>
+          </div>
           <div>
             {mainList.map((stage) => (
-              <StageRow stage={stage} />
+              <StageRow stage={stage} key={stage.name} />
             ))}
-            <tr className="totalRow">
-              <td className="description">Total</td>
-              <td>{totalCost}</td>
-              <td>
+            <div className="totalRow flex-spaceBetween">
+              <span className="description">Total</span>
+              <span>{totalCost}</span>
+              <span>
                 <strong>{totalCostIncGST}</strong>
-              </td>
-            </tr>
+              </span>
+            </div>
           </div>
         </div>
       );
@@ -207,7 +218,7 @@ export default function InitialEstimate({ project }) {
         <h2 className="address">{project.address.line1}</h2>
         <input
           placeholder="This Quote...."
-          onChange={(e) => handleCommentInputChange(e.target.value)}
+          onChange={handleCommentInputChange}
           value={comment}
           key="comment-input"
         />
