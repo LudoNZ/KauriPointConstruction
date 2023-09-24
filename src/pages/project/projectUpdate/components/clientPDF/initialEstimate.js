@@ -20,19 +20,30 @@ import FormText from "../../../../../components/forms/formText";
 
 export default function InitialEstimate({ project }) {
   const { updateDocument, response } = useFirestore("projects");
-
+  const [comment, setComment] = useState("");
   const [uniqueID, setUniqueID] = useState("");
+
+  const currentDate = new Date();
+  const futureDate = new Date(currentDate);
+  futureDate.setDate(futureDate.getDate() + 30);
+
+  const [selectedDate, setSelectedDate] = useState({
+    date: currentDate,
+    expiry: futureDate,
+  });
 
   useEffect(() => {
     setUniqueID(generateUniqueId(8));
   }, []);
+
   const handleSubmitQuote = async () => {
     const quotes = project.quotes || {};
     let newQuoteCount = Object.keys(quotes).length + 1;
     quotes[newQuoteCount] = {
-      //comment: comment,
+      comment: comment,
       mainList: project.mainList,
       labourList: project.labourList,
+      dates: selectedDate,
     };
 
     const updateProject = {
@@ -67,15 +78,6 @@ export default function InitialEstimate({ project }) {
       );
     };
     const StampInfo = () => {
-      const currentDate = new Date();
-      const futureDate = new Date(currentDate);
-      futureDate.setDate(futureDate.getDate() + 30);
-
-      const [selectedDate, setSelectedDate] = useState({
-        date: currentDate,
-        expiry: futureDate,
-      });
-
       const handleDateChange = (date) => {
         setSelectedDate({ ...selectedDate, date: date });
       };
@@ -210,7 +212,6 @@ export default function InitialEstimate({ project }) {
   };
 
   const Content = () => {
-    const [comment, setComment] = useState("");
     const [isEditMode, setIsEditMode] = useState(false);
 
     const stopEditing = () => {
