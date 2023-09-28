@@ -82,7 +82,7 @@ export default function ClaimsList({ project }) {
                         <p className="row-name">{task.task.task}</p>
                         <NumberFormat number={task.value} prefix="$" />
                         <NumberFormat
-                          number={numberWithCommas(task.task.calculatedamount)}
+                          number={task.task.calculatedamount}
                           prefix="/"
                           className="taskTotal"
                         />

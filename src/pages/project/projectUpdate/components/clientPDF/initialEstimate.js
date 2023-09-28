@@ -17,11 +17,13 @@ import { numberWithCommas } from "../../../ProjectFinancialInfo";
 import Collapsible from "react-collapsible";
 import { useEffect, useState } from "react";
 import FormText from "../../../../../components/forms/formText";
+import FormSelect from "../../../../../components/forms/formSelect";
 
 export default function InitialEstimate({ project }) {
   const { updateDocument, response } = useFirestore("projects");
-  const [comment, setComment] = useState("");
   const [uniqueID, setUniqueID] = useState("");
+  const [comment, setComment] = useState("");
+  const [type, setType] = useState("Estimate");
 
   const currentDate = new Date();
   const futureDate = new Date(currentDate);
@@ -37,14 +39,15 @@ export default function InitialEstimate({ project }) {
   }, []);
 
   const handleSubmitQuote = async () => {
-    const quotes = project.quotes || {};
-    let newQuoteCount = Object.keys(quotes).length + 1;
-    quotes[newQuoteCount] = {
+    const quotes = project.quotes || [];
+    quotes.push({
+      uniqueID: uniqueID,
       comment: comment,
       mainList: project.mainList,
       labourList: project.labourList,
       dates: selectedDate,
-    };
+      type: type,
+    });
 
     const updateProject = {
       quotes: quotes,
@@ -63,6 +66,7 @@ export default function InitialEstimate({ project }) {
   }
 
   const Header = () => {
+    const [isEditMode, setIsEditMode] = useState(false);
     const KPCInfo = () => {
       return (
         <div className="KPCInfo">
@@ -124,7 +128,17 @@ export default function InitialEstimate({ project }) {
     return (
       <div className="Header">
         <div>
-          <h1>Estimate</h1>
+          {isEditMode ? (
+            <FormSelect
+              options={["Estimate", "Quote"]}
+              updateText={setType}
+              onUpdate={() => setIsEditMode(false)}
+            />
+          ) : (
+            <h1 className="ch" onClick={() => setIsEditMode(true)}>
+              {type}
+            </h1>
+          )}
           <div className="clientName">{project.clientName}</div>
         </div>
         <div className="stamp">
@@ -179,7 +193,7 @@ export default function InitialEstimate({ project }) {
     );
   };
 
-  const Table = () => {
+  const Table = ({ project }) => {
     const mainList = [...project.mainList];
     const projectFinancials = calculateProjectProgress(project);
     const totalCost = numberWithCommas(projectFinancials.totalCost);
@@ -213,10 +227,8 @@ export default function InitialEstimate({ project }) {
 
   const Content = () => {
     const [isEditMode, setIsEditMode] = useState(false);
-
     const stopEditing = () => {
       setIsEditMode(false);
-      console.log("stopping editing");
     };
 
     return (
@@ -235,7 +247,7 @@ export default function InitialEstimate({ project }) {
           </div>
         )}
         <div style={{ height: "100px" }} />
-        <Table />
+        <Table project={project} />
       </div>
     );
   };

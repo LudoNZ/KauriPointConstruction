@@ -1,4 +1,9 @@
 .formText {
     display: flex;
     justify-content: space-between;
-}
+    color: black
+    }
+    .formText input {
+        background-color: #ec67671a;
+        color: inherit
+    }

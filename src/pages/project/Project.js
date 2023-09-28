@@ -19,6 +19,7 @@ import ProjectUpdateMainList from "./projectUpdate/ProjectUpdateMainList";
 
 //components
 import InitialEstimate from "./projectUpdate/components/clientPDF/initialEstimate";
+import QuotesList from "../../components/quotes/quotesList";
 
 export default function Project() {
   const { id } = useParams();
@@ -131,7 +132,15 @@ export default function Project() {
           )}
 
           {switchList === "Claims" && <ClaimsList project={document} />}
-          {switchList === "Quotes" && <InitialEstimate project={document} />}
+          {switchList === "Quotes" && (
+            <>
+              <InitialEstimate project={document} />
+              <QuotesList
+                project={document}
+                projectFee={document.subContractFee}
+              />
+            </>
+          )}
         </div>
       </div>
     </div>
