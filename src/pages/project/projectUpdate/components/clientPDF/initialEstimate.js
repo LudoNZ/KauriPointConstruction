@@ -18,12 +18,16 @@ import Collapsible from "react-collapsible";
 import { useEffect, useState } from "react";
 import FormText from "../../../../../components/forms/formText";
 import FormSelect from "../../../../../components/forms/formSelect";
+import QuotesList from "../../../../../components/quotes/quotesList";
 
 export default function InitialEstimate({ project }) {
   const { updateDocument, response } = useFirestore("projects");
   const [uniqueID, setUniqueID] = useState("");
   const [comment, setComment] = useState("");
   const [type, setType] = useState("Estimate");
+
+  //lifted state
+  const [quotes, setQuotes] = useState(project.quotes || []);
 
   const currentDate = new Date();
   const futureDate = new Date(currentDate);
@@ -39,20 +43,25 @@ export default function InitialEstimate({ project }) {
   }, []);
 
   const handleSubmitQuote = async () => {
-    const quotes = project.quotes || [];
-    quotes.push({
+    const newQuotes = quotes;
+
+    const newQuote = {
       uniqueID: uniqueID,
       comment: comment,
       mainList: project.mainList,
       labourList: project.labourList,
       dates: selectedDate,
       type: type,
-    });
+    };
+
+    newQuotes.push(newQuote);
 
     const updateProject = {
       quotes: quotes,
     };
     await updateDocument(project.id, updateProject);
+
+    setQuotes(newQuotes);
   };
 
   function generateUniqueId(length) {
@@ -270,13 +279,22 @@ export default function InitialEstimate({ project }) {
   };
 
   return (
-    <div className="pdfForm">
-      <PDF_Creator>
-        <Header />
-        <Content />
-        <Terms />
-      </PDF_Creator>
-      <Submit />
-    </div>
+    <>
+      <div className="pdfForm">
+        <PDF_Creator>
+          <Header />
+          <Content />
+          <Terms />
+        </PDF_Creator>
+        <Submit />
+      </div>
+      const [quotes, setQuotes] = useState(project.quotes || []);
+      <QuotesList
+        project={project}
+        projectFee={project.subContractFee}
+        quotes={quotes}
+        setQuotes={setQuotes}
+      />
+    </>
   );
 }

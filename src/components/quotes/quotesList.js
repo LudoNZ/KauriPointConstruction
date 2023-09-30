@@ -1,16 +1,47 @@
 import Collapsible from "react-collapsible";
 import { numberWithCommas } from "../../pages/project/ProjectFinancialInfo";
 import { calculateStageProgress } from "../progressBar/ProgressBar";
+import { useFirestore } from "../../hooks/useFirestore";
+import { useEffect, useRef, useState } from "react";
 
-export default function QuotesList({ project, projectFee }) {
+export default function QuotesList({ project, projectFee, quotes, setQuotes }) {
+  const isMounted = useRef(true);
+
+  useEffect(() => {
+    // Set isMounted to true when the component is mounted
+    isMounted.current = true;
+
+    // Cleanup function to set isMounted to false when the component is unmounted
+    return () => {
+      isMounted.current = false;
+    };
+  }, []);
+
+  const { updateDocument, response } = useFirestore("projects");
+
+  const handleDeleteQuote = async (quoteID) => {
+    console.log("Deleting Quote:", quoteID);
+
+    const newQuoteList = quotes.filter((quote) => quoteID != quote.uniqueID);
+
+    const updateProject = {
+      quotes: newQuoteList,
+    };
+    if (isMounted.current) {
+      await updateDocument(project.id, updateProject);
+      setQuotes(newQuoteList);
+    }
+  };
+
   return (
     <div className="quotes">
       <h3>History:</h3>
 
       {project.quotes && (
         <>
-          {Object.values(project.quotes).map((quote) => (
+          {quotes.map((quote) => (
             <Estimate
+              handleDelete={handleDeleteQuote}
               quote={quote}
               projectFee={projectFee}
               key={quote.uniqueID}
@@ -22,7 +53,17 @@ export default function QuotesList({ project, projectFee }) {
   );
 }
 
-function Estimate({ quote, projectFee }) {
+function Estimate({ quote, projectFee, handleDelete }) {
+  const isMounted = useRef(true);
+
+  useEffect(() => {
+    isMounted.current = true;
+
+    return () => {
+      isMounted.current = false;
+    };
+  }, []);
+
   const Content = () => {
     const TaskRow = ({ task }) => {
       const unitPrice = numberWithCommas(task.calculatedamount);
@@ -101,11 +142,30 @@ function Estimate({ quote, projectFee }) {
     return (
       <div className="Content">
         <div style={{ padding: "4em 0 1em 0" }}>
+          <div
+            onClick={() => {
+              handleDelete(quote.uniqueID);
+            }}
+          >
+            Delete Quote
+          </div>
           <div>ID: {quote.uniqueID}</div>
-          <div>{quote.type}</div>
-          <div>{quote.comment}</div>
-          <div>created: {quote.dates.date.toDate().toLocaleDateString()} </div>
-          expires: {quote.dates.expiry.toDate().toLocaleDateString()}
+          <div>type: {quote.type}</div>
+          <div>comment: {quote.comment}</div>
+          <div>
+            created:{" "}
+            {quote.dates.date && quote.dates.date.toDate
+              ? isMounted.current &&
+                quote.dates.date.toDate().toLocaleDateString()
+              : "Invalid Date"}
+          </div>
+          <div>
+            expires:{" "}
+            {quote.dates.expiry && quote.dates.expiry.toDate
+              ? isMounted.current &&
+                quote.dates.expiry.toDate().toLocaleDateString()
+              : "Invalid Date"}
+          </div>
         </div>
         <Table project={quote} />
       </div>
@@ -125,7 +185,6 @@ const calculateQuoteProgress = (project, projectFee) => {
   let totalNextClaim = 0;
   project.mainList.forEach((stage) => {
     const stageSums = calculateStageProgress(stage, projectFee);
-    console.log("SS:", stageSums);
     totalClaimed += stageSums.totalClaimed;
     totalCost += stageSums.totalCost;
     totalNextClaim += stageSums.totalNextClaim;
